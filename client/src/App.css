@@ -243,4 +243,21 @@ nav {
     color: var(--clr-primary-7);
   }
 }
+.srch-container{
+  position: relative;
+  display: flex;
+  min-width: 100px;
+}
+.srch-field {
+  width: 280px;
+  height: 28px;
+  border: 1px solid grey;
+  padding: 2px;
+  border-radius: 3px;
+}
+.srch-toggle {
+  width: 80px;
+  height: 28px;
+  border: 1px solid grey;
+}
 

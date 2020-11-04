@@ -10,6 +10,11 @@ export default function Header() {
           <FaBars />
         </button>
       </div>
+      {/* ADD SEARCH BAR HERE */}
+      <div className='srch-container'>
+        <input className='srch-field' type='text' />
+        <button className='srch-toggle'>Search</button>
+      </div>
       <div className='links-container'>
         <ul className='links social-icons'>
           <li>
