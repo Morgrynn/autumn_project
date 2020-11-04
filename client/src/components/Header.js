@@ -10,7 +10,7 @@ export default function Header() {
           <FaBars />
         </button>
       </div>
-      <div className='linls-container'>
+      <div className='links-container'>
         <ul className='links social-icons'>
           <li>
             <FaUser /> Login/Register

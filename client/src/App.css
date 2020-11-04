@@ -173,6 +173,12 @@ nav {
   padding: 0.5rem 1rem;
   transition: var(--transition);
 }
+.links li:hover {
+  background: var(--clr-primary-8);
+  color: var(--clr-primary-5);
+  padding-left: 1.5rem;
+  cursor: pointer;
+}
 .links a:hover {
   background: var(--clr-primary-8);
   color: var(--clr-primary-5);
@@ -214,6 +220,10 @@ nav {
     padding: 0;
     margin: 0 0.5rem;
   }
+  .links li:hover {
+    padding: 0;
+    background: transparent;
+  }
   .links a:hover {
     padding: 0;
     background: transparent;
@@ -227,6 +237,9 @@ nav {
     transition: var(--transition);
   }
   .social-icons a:hover {
+    color: var(--clr-primary-7);
+  }
+  .social-icons li:hover {
     color: var(--clr-primary-7);
   }
 }
