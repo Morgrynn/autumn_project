@@ -1,14 +1,14 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
-export default function Motherboard() {
+export default function Gpu() {
   return (
     <Container className='mt-5'>
       <Row>
         <Col></Col>
         <Col xs={9}>
           <div className='main-title text-center'>
-            Hello There! This is the Motherboards products page
+            Hello There! This is the CPU Coolers products page
           </div>
         </Col>
         <Col></Col>
