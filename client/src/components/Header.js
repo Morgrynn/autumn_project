@@ -1,11 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FaBars, FaShoppingCart, FaUser } from 'react-icons/fa';
 
 export default function Header() {
   return (
     <nav className='nav-center'>
       <div className='nav-header'>
-        <div>PC Picker</div>
+        <div>
+          <Link to='/'>PC Picker</Link>
+        </div>
         <button className='nav-toggle'>
           <FaBars />
         </button>
