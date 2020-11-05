@@ -1,5 +1,5 @@
 import React from "react";
-import {Container, Row, Col, Button} from "react-bootstrap";
+import {Container, Row, Col, Button, Table, Card, ListGroup, ListGroupItem} from "react-bootstrap";
 import './Main.css'
 import Laptop from '../images/laptop.png'
 
@@ -45,7 +45,7 @@ export default function Main() {
                             </Col>
                             <Col xs={9}>
                                 <div className='nav-category'>
-                                    <div className='nav-menu-item p-3 ml-3 nav-chosen-category'>
+                                    <div className='nav-menu-item p-3 ml-3'>
                                         Trending
                                     </div>
                                     <div className='nav-menu-item p-3 ml-2'>
@@ -72,12 +72,16 @@ export default function Main() {
                             </Col>
                         </Row>
                         <Row className='mt-3 mb-3'>
-                            <Col></Col>
-                            <Col xs={9}>
-                                <div className='nav-menu'>
-                                </div>
+                            <Col>
+
                             </Col>
-                            <Col></Col>
+                            <Col xs={9}>
+                                <input type='text' className='nav-menu'>
+                                </input>
+                            </Col>
+                            <Col>
+
+                            </Col>
                         </Row>
                     </Container>
                 </Row>
@@ -93,6 +97,26 @@ export default function Main() {
                 </Col>
                 <Col>
 
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <Card>
+                        <Card.Header className='text-center'><b>Sort by</b></Card.Header>
+                        <ListGroup.Item className='text-center'>
+                            <input className='m-auto' type='radio' value='name' name="sort-by"/>
+                            <label>Name</label>
+                            <input type='radio' value='price' name="sort-by" className='ml-5'/>
+                            <label>Price</label>
+                        </ListGroup.Item>
+                        <Card.Header className='text-center'><b>Price</b> </Card.Header>
+                        <ListGroup.Item className='text-center'>
+                            <input type='text' className='price-range-input mr-2' placeholder='min'/> – <input type='text' placeholder='max' className='ml-2 price-range-input'/>
+                        </ListGroup.Item>
+                    </Card>
+                </Col>
+                <Col xs={9}>
+                    Main content
                 </Col>
             </Row>
         </Container>
