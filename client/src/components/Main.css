@@ -1,6 +1,6 @@
 .main-header {
     background-color: #E9E9E9;
-    height: 425px;
+    min-height: 470px;
 }
 
 .shop-text {
@@ -10,11 +10,32 @@
     line-height: 22px;
 }
 
-.main-picture {
+.nav-menu {
+    height: 45px;
+    background-color: #FBFBFB;
+    border-radius: 30px;
+    border: 1px solid #969393;
 
+}
+
+.nav-category {
+
+}
+.nav-chosen-category {
+    border-radius: 30px;
+    background-color: #CEC7C7;
+}
+.nav-menu-item {
+    display: inline-block;
+    font-size: 18px;
+    color: #565353;
 }
 
 .laptop-pic {
     width: 329px;
     height: 330px;
+}
+
+.main-title {
+    font-size: 24px;
 }

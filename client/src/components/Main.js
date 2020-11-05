@@ -5,6 +5,7 @@ import Laptop from '../images/laptop.png'
 
 export default function Main() {
     return(
+        <div>
         <div className='main-header'>
             <Container>
                 <Row >
@@ -12,13 +13,13 @@ export default function Main() {
                         <Row>
                             <Col>
                                 <div className='mt-2'>
-                                    <h1>NYX</h1>
+                                    <h1>LOGO</h1>
                                 </div>
                             </Col>
                             <Col>
                                 <div className='float-right mt-2'>
-                                <Button  size="sm" variant="outline-secondary">Login</Button>
-                                <Button className='ml-3' size="sm" variant="secondary">Register</Button>
+                                <Button style={{width: "100px"}} size="sm" variant="outline-secondary">Login</Button>
+                                <Button style={{width: "100px"}} className='ml-3' size="sm" variant="secondary">Register</Button>
                                 </div>
                             </Col>
                         </Row>
@@ -38,10 +39,63 @@ export default function Main() {
                                 </div>
                             </Col>
                         </Row>
+                        <Row>
+                            <Col>
 
+                            </Col>
+                            <Col xs={9}>
+                                <div className='nav-category'>
+                                    <div className='nav-menu-item p-3 ml-3 nav-chosen-category'>
+                                        Trending
+                                    </div>
+                                    <div className='nav-menu-item p-3 ml-2'>
+                                        CPU
+                                    </div>
+                                    <div className='nav-menu-item p-3 ml-2'>
+                                        Motherboards
+                                    </div>
+                                    <div className='nav-menu-item p-3 ml-2'>
+                                        GPU
+                                    </div>
+                                    <div className='nav-menu-item p-3 ml-2'>
+                                        Memory
+                                    </div>
+                                    <div className='nav-menu-item p-3 ml-2'>
+                                        Storage
+                                    </div>
+                                    <div className='nav-menu-item p-3 ml-2'>
+                                        Power supplies
+                                    </div>
+                                </div>
+                            </Col>
+                            <Col>
+                            </Col>
+                        </Row>
+                        <Row className='mt-3 mb-3'>
+                            <Col></Col>
+                            <Col xs={9}>
+                                <div className='nav-menu'>
+                                </div>
+                            </Col>
+                            <Col></Col>
+                        </Row>
                     </Container>
                 </Row>
             </Container>
+        </div>
+        <Container className='mt-5'>
+            <Row>
+                <Col>
+
+                </Col>
+                <Col xs={9}>
+                    <div className='main-title text-center'>Trending</div>
+                </Col>
+                <Col>
+
+                </Col>
+            </Row>
+        </Container>
         </div>
     )
 }
