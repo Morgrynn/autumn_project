@@ -2,7 +2,7 @@ const db = require('../database');
 
 const cpu = {
   get: function (callback) {
-    return db.query(`select * from cpu_table order by id desc`, callback);
+    return db.query(`select * from cpu_table order by id asc`, callback);
   },
   getById: function (id, callback) {
     return db.query('select * from cpu_table where id=$1', [id], callback);
