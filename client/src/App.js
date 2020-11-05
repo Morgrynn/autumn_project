@@ -10,8 +10,25 @@ import Motherboard from './components/products/Motherboard';
 import Memory from './components/products/Memory';
 import Storage from './components/products/Storage';
 import PowerSupply from './components/products/PowerSupply';
+import axios from 'axios';
 
 function App() {
+  const [cpuData, setCpuData] = useState([]);
+
+  useEffect(() => {
+    getProductCPU();
+  }, []);
+
+  const getProductCPU = () => {
+    axios
+      .get(`http://localhost:3001/cpu`)
+      .then((res) => {
+        console.log(res.data);
+        setCpuData(res.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div className='App'>
       <Main />
@@ -19,9 +36,12 @@ function App() {
         <Route exact path='/'>
           <Trending />
         </Route>
-        <Route exact path='/cpu'>
-          <Cpu />
-        </Route>
+        <Route
+          exact
+          path='/cpu'
+          render={(routeProps) => (
+            <Cpu productData={cpuData} {...routeProps} />
+          )}></Route>
         <Route exact path='/motherboard'>
           <Motherboard />
         </Route>
