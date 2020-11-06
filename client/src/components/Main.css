@@ -37,10 +37,12 @@
 
 .nav-menu-item a {
     text-decoration: none;
+    color: #565353;
 }
 
 .nav-menu-item a:hover {
     text-decoration: none;
+    color: #565353;
 }
 
 .laptop-pic {
