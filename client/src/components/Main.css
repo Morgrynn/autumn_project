@@ -32,9 +32,14 @@
 .nav-menu-item:hover {
     border-radius: 30px;
     background-color: #CEC7C7;
+    
 }
 
 .nav-menu-item a {
+    text-decoration: none;
+}
+
+.nav-menu-item a:hover {
     text-decoration: none;
 }
 
