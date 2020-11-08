@@ -1,6 +1,5 @@
 import React from "react";
 import { Modal, Button, InputGroup, FormControl } from 'react-bootstrap';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import EmailIcon from '@material-ui/icons/Email';
 import LockIcon from '@material-ui/icons/Lock';
 

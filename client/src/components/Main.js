@@ -54,7 +54,9 @@ export default function Main() {
                 </Col>
               </Row>
               <Row>
-                <Col xs={2}></Col>
+                <Col xs={2}>
+
+                </Col>
                 <Col className='mt-5'>
                   <h2>UPGRADE!</h2>
                   <div className='shop-text'>
@@ -75,7 +77,9 @@ export default function Main() {
                 </Col>
               </Row>
               <Row>
-                <Col></Col>
+                <Col>
+
+                </Col>
                 <Col xs={9}>
                   <div className='nav-category'>
                     <div className='nav-menu-item p-3 ml-3 nav-chosen-category'>
@@ -101,14 +105,22 @@ export default function Main() {
                     </div>
                   </div>
                 </Col>
-                <Col></Col>
+                <Col>
+
+                </Col>
               </Row>
               <Row className='mt-3 mb-3'>
-                <Col></Col>
-                <Col xs={9}>
-                  <div className='nav-menu'></div>
+                <Col>
+
                 </Col>
-                <Col></Col>
+                <Col xs={9}>
+                  <div className='nav-menu'>
+
+                  </div>
+                </Col>
+                <Col>
+
+                </Col>
               </Row>
             </Container>
           </Row>
