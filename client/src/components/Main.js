@@ -1,12 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import './Main.css';
 import Laptop from '../images/laptop.png';
 import { Link } from 'react-router-dom';
+import RegistrationModal from "./Registration";
+
 
 export default function Main() {
+
+
+  const [showRegistration, setShowRegistration] = useState(false);
+
+  const handleClose = () => setShowRegistration(false);
+  const handleShow = () => setShowRegistration(true);
+
   return (
     <div>
+      <RegistrationModal handleClose={handleClose} handleShow={handleShow} showRegistration={showRegistration}/>
+
       <div className='main-header'>
         <Container>
           <Row>
@@ -29,7 +40,8 @@ export default function Main() {
                       style={{ width: '100px' }}
                       className='ml-3'
                       size='sm'
-                      variant='secondary'>
+                      variant='secondary'
+                      onClick={handleShow}>
                       Register
                     </Button>
                   </div>
@@ -99,3 +111,4 @@ export default function Main() {
     </div>
   );
 }
+  
