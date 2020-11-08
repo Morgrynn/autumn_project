@@ -12,6 +12,7 @@ const indexRouter = require('./routes/index');
 // const usersRouter = require('./routes/users');
 const cpuRouter = require('./routes/cpu');
 const coolerRouter = require('./routes/cooler');
+const motherboardRouter = require('./routes/motherboard');
 
 const app = express();
 
@@ -19,7 +20,7 @@ const app = express();
 app.use(cors());
 
 // Middleware to secure HTTP headers
-app.use(helmet());
+// app.use(helmet());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -34,10 +35,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Routes
 app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 app.use('/cpu', cpuRouter);
 app.use('/cooler', coolerRouter);
+app.use('/motherboards', motherboardRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
