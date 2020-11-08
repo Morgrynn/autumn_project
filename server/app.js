@@ -1,20 +1,25 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var cors = require('cors');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const cors = require('cors');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 // const db = require('../database');
 
-var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
-var cpuRouter = require('./routes/cpu');
-var coolerRouter = require('./routes/cooler');
+const indexRouter = require('./routes/index');
+// const usersRouter = require('./routes/users');
+const cpuRouter = require('./routes/cpu');
+const coolerRouter = require('./routes/cooler');
 
-var app = express();
+const app = express();
+
+// Middleware to allow restricted resources
 app.use(cors());
+
+// Middleware to secure HTTP headers
+app.use(helmet());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -54,13 +59,13 @@ app.use(function (err, req, res, next) {
 // Promise.all([
 //   db.query(`CREATE TABLE IF NOT EXISTS public.cpu_table (
 //     id BIGSERIAL NOT NULL PRIMARY KEY,
-//     cpu_name VARCHAR(50) NOT NULL,
+//     cpu_name constCHAR(50) NOT NULL,
 //     core_count INTEGER NOT NULL,
-//     core_clock VARCHAR(50) NOT NULL,
-//     boost_clock VARCHAR(50) NOT NULL,
-//     tdp VARCHAR(50) NOT NULL,
-//     integrated_graphics VARCHAR(50) NOT NULL,
-//     smt VARCHAR(50) NOT NULL,
+//     core_clock constCHAR(50) NOT NULL,
+//     boost_clock constCHAR(50) NOT NULL,
+//     tdp constCHAR(50) NOT NULL,
+//     integrated_graphics constCHAR(50) NOT NULL,
+//     smt constCHAR(50) NOT NULL,
 //     rating INTEGER NOT NULL,
 //     price DECIMAL(12,2) NOT NULL
 // )`),
