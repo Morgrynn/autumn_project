@@ -13,6 +13,7 @@ const indexRouter = require('./routes/index');
 const cpuRouter = require('./routes/cpu');
 const coolerRouter = require('./routes/cooler');
 const motherboardRouter = require('./routes/motherboard');
+const gpuRouter = require('./routes/gpu');
 
 const app = express();
 
@@ -41,6 +42,7 @@ app.use('/', indexRouter);
 app.use('/cpu', cpuRouter);
 app.use('/cooler', coolerRouter);
 app.use('/motherboards', motherboardRouter);
+app.use('/gpu', gpuRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
