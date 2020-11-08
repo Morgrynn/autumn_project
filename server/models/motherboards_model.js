@@ -16,12 +16,13 @@ const motherboards = {
   },
   add: function (motherboards, callback) {
     return db.query(
-      'insert into motherboards_table(motherboards_name, socket_cpu, form_factor, memory_max, color, rating, price) values($1,$2,$3,$4,$5,$6,$7)',
+      'insert into motherboards_table(motherboards_name, socket_cpu, form_factor, memory_max, memory_slots, color, rating, price) values($1,$2,$3,$4,$5,$6,$7,$8)',
       [
         motherboards.motherboards_name,
         motherboards.socket_cpu,
         motherboards.form_factor,
         motherboards.memory_max,
+        motherboards.memory_slots,
         motherboards.color,
         motherboards.rating,
         motherboards.price,
@@ -38,12 +39,13 @@ const motherboards = {
   },
   update: function (id, motherboards, callback) {
     return db.query(
-      'update motherboards_table set motherboards_name=$1, socket_cpu=$2, form_factor=$3, memory_max=$4, color=$5, rating=$6, price=$7 where id=$8',
+      'update motherboards_table set motherboards_name=$1, socket_cpu=$2, form_factor=$3, memory_max=$4, memory_slots=$5, color=$6, rating=$7, price=$8 where id=$9',
       [
         motherboards.motherboards_name,
         motherboards.socket_cpu,
         motherboards.form_factor,
         motherboards.memory_max,
+        motherboards.memory_slots,
         motherboards.color,
         motherboards.rating,
         motherboards.price,
