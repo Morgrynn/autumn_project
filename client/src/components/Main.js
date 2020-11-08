@@ -4,7 +4,7 @@ import './Main.css';
 import Laptop from '../images/laptop.png';
 import { Link } from 'react-router-dom';
 import RegistrationModal from "./Registration";
-
+import LoginModal from "./Login";
 
 export default function Main() {
 
@@ -14,10 +14,15 @@ export default function Main() {
   const handleClose = () => setShowRegistration(false);
   const handleShow = () => setShowRegistration(true);
 
+  const [showLogin, setShowLogin] = useState(false);
+
+  const handleLoginClose = () => setShowLogin(false);
+  const handleLoginShow = () => setShowLogin(true);
+
   return (
     <div>
       <RegistrationModal handleClose={handleClose} handleShow={handleShow} showRegistration={showRegistration}/>
-
+      <LoginModal handleClose={handleLoginClose} handleShow={handleLoginShow} showRegistration={showLogin} />
       <div className='main-header'>
         <Container>
           <Row>
@@ -33,7 +38,8 @@ export default function Main() {
                     <Button
                       style={{ width: '100px' }}
                       size='sm'
-                      variant='outline-secondary'>
+                      variant='outline-secondary'
+                      onClick={handleLoginShow}>
                       Login
                     </Button>
                     <Button
