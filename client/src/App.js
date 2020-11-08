@@ -11,6 +11,7 @@ import Memory from './components/products/Memory';
 import Storage from './components/products/Storage';
 import PowerSupply from './components/products/PowerSupply';
 import axios from 'axios';
+const baseUrl = process.env.REACT_APP_BASEURL;
 
 function App() {
   const [cpuData, setCpuData] = useState([]);
@@ -21,7 +22,7 @@ function App() {
 
   const getProductCPU = () => {
     axios
-      .get(`http://localhost:3001/cpu`)
+      .get(`${baseUrl}cpu`)
       .then((res) => {
         console.log(res.data);
         setCpuData(res.data);
