@@ -22,8 +22,12 @@ export default function RegistrationModal(props) {
             username: Yup.string().max(100, 'Username is too long!').min(2, 'Username is too short!').required('Username is required!'),
             email: Yup.string().email('Invalid email').max(250, 'Email is too long!').min(8, 'Email must be at least 8 characters!').required('Email is required!'),
             password: Yup.string().max(250, 'Password is too long!').min(6, 'Password must be at least 6 characters!').required('Password is required!'),
-            confirm_password: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match')
+            confirm_password: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').required('Password confirmation is required!')
         }),
+        onSubmit: () =>  {
+            props.setLoggedIn(true)
+            props.handleClose()
+        }
     })
 
     return (
@@ -31,9 +35,10 @@ export default function RegistrationModal(props) {
             <Modal.Header closeButton>
                 <Modal.Title>Registration</Modal.Title>
             </Modal.Header>
+            <form onSubmit={handleSubmit}>
             <Modal.Body>
                 <div className='text-center'>
-                    <form onSubmit={handleSubmit}>
+
                     <InputGroup className="mb-3" >
                         <InputGroup.Prepend>
                             <InputGroup.Text id="basic-addon1"><AccountCircleIcon /></InputGroup.Text>
@@ -105,7 +110,6 @@ export default function RegistrationModal(props) {
                         {touched.confirm_password && errors.confirm_password && (
                             <div className='inputErrors'><ReportIcon className='sidebarIcons'/>{errors.confirm_password}</div>
                         ) }
-                    </form>
                 </div>
 
             </Modal.Body>
@@ -113,10 +117,12 @@ export default function RegistrationModal(props) {
                 <Button variant="secondary" onClick={props.handleClose}>
                     Close
                 </Button>
-                <Button variant="success" onClick={props.handleClose}>
+                <Button variant="success" type="submit" disabled={isSubmitting} >
                     Register
                 </Button>
             </Modal.Footer>
+            </form>
+
         </Modal>
     )
 }
