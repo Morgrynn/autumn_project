@@ -42,7 +42,10 @@ export default function LoginModal(props) {
                 <Button variant="secondary" onClick={props.handleClose}>
                     Close
                 </Button>
-                <Button variant="success" onClick={props.handleClose}>
+                <Button variant="success" onClick={() => {
+                    props.setLoggedIn(true)
+                    props.handleClose()}}
+                >
                     Login
                 </Button>
             </Modal.Footer>

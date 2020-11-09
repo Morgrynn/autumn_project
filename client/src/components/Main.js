@@ -6,8 +6,11 @@ import { Link } from 'react-router-dom';
 import RegistrationModal from "./Registration";
 import LoginModal from "./Login";
 
+
 export default function Main() {
 
+
+  const [loggedIn, setLoggedIn] = React.useState(false)
 
   const [showRegistration, setShowRegistration] = useState(false);
 
@@ -22,7 +25,7 @@ export default function Main() {
   return (
     <div>
       <RegistrationModal handleClose={handleClose} handleShow={handleShow} showRegistration={showRegistration}/>
-      <LoginModal handleClose={handleLoginClose} handleShow={handleLoginShow} showRegistration={showLogin} />
+      <LoginModal handleClose={handleLoginClose} handleShow={handleLoginShow} showRegistration={showLogin} setLoggedIn={setLoggedIn} />
       <div className='main-header'>
         <Container>
           <Row>
@@ -34,23 +37,36 @@ export default function Main() {
                   </div>
                 </Col>
                 <Col>
-                  <div className='float-right mt-2'>
-                    <Button
-                      style={{ width: '100px' }}
-                      size='sm'
-                      variant='outline-secondary'
-                      onClick={handleLoginShow}>
-                      Login
-                    </Button>
-                    <Button
-                      style={{ width: '100px' }}
-                      className='ml-3'
-                      size='sm'
-                      variant='secondary'
-                      onClick={handleShow}>
-                      Register
-                    </Button>
-                  </div>
+                  {loggedIn
+                      ? <div className='float-right mt-2'>
+                        <Button
+                            style={{width: '100px'}}
+                            className='ml-3'
+                            size='sm'
+                            variant='secondary'
+                            onClick={() => setLoggedIn(false)}>
+                          Logout
+                        </Button>
+                      </div>
+                      :
+                      <div className='float-right mt-2'>
+                        <Button
+                            style={{width: '100px'}}
+                            size='sm'
+                            variant='outline-secondary'
+                            onClick={handleLoginShow}>
+                          Login
+                        </Button>
+                        <Button
+                            style={{width: '100px'}}
+                            className='ml-3'
+                            size='sm'
+                            variant='secondary'
+                            onClick={handleShow}>
+                          Register
+                        </Button>
+                      </div>
+                  }
                 </Col>
               </Row>
               <Row>
