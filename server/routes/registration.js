@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const registration = require('../models/registration_model');
-const bcrypt = require('bcrypt')
 
 router.post('/', (req, res) => {
         registration.checkIfExists(req.body.username, function (err, rows) {

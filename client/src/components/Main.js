@@ -58,12 +58,17 @@ export default function Main() {
   return (
     <div>
       <ReactNotification />
+
       <RegistrationModal handleClose={handleClose} handleShow={handleShow}
                          showRegistration={showRegistration} setLoggedIn={setLoggedIn}
                          handleNotificationsSuccess={handleNotificationsSuccess}
                          handleNotificationsDanger={handleNotificationsDanger}
       />
-      <LoginModal handleClose={handleLoginClose} handleShow={handleLoginShow} showRegistration={showLogin} setLoggedIn={setLoggedIn} />
+
+      <LoginModal handleClose={handleLoginClose} handleShow={handleLoginShow}
+                  showRegistration={showLogin} setLoggedIn={setLoggedIn}
+      />
+
       <div className='main-header'>
         <Container>
           <Row>
