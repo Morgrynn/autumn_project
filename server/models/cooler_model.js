@@ -9,7 +9,7 @@ const cooler = {
   },
   add: function (cooler, callback) {
     return db.query(
-      'insert into cooler_table(cooler_name, fan_rpm, noise_level, color, radiator_size, rating, price) values($1,$2,$3,$4,$5,$6,$7)',
+      'insert into cooler_table(cooler_name, fan_rpm, noise_level, color, radiator_size, rating, price, image) values($1,$2,$3,$4,$5,$6,$7,$8)',
       [
         cooler.cooler_name,
         cooler.fan_rpm,
@@ -18,6 +18,7 @@ const cooler = {
         cooler.radiator_size,
         cooler.rating,
         cooler.price,
+        cooler.image,
       ],
       callback
     );
@@ -27,7 +28,7 @@ const cooler = {
   },
   update: function (id, cooler, callback) {
     return db.query(
-      'update cooler_table set cooler_name=$1, fan_rpm=$2, noise_level=$3, color=$4, radiator_size=$5, rating=$6, price=$7 where id=$8',
+      'update cooler_table set cooler_name=$1, fan_rpm=$2, noise_level=$3, color=$4, radiator_size=$5, rating=$6, price=$7, image=$8 where id=$9',
       [
         cooler.cooler_name,
         cooler.fan_rpm,
@@ -36,6 +37,7 @@ const cooler = {
         cooler.radiator_size,
         cooler.rating,
         cooler.price,
+        cooler.image,
         id,
       ],
       callback
