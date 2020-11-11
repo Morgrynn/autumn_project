@@ -79,7 +79,13 @@ export default function Main() {
                       <Link to='/storage'>Storage</Link>
                     </div>
                     <div className='nav-menu-item p-3 ml-2'>
-                      <Link to='/power-supply'>Power supply</Link>
+                      <Link to='/power'>Power supply</Link>
+                    </div>
+                    <div className='nav-menu-item p-3 ml-2'>
+                      <Link to='/cooler'>Cooler</Link>
+                    </div>
+                    <div className='nav-menu-item p-3 ml-2'>
+                      <Link to='/cases'>Case</Link>
                     </div>
                   </div>
                 </Col>

@@ -1,14 +1,79 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, CardGroup, Card } from 'react-bootstrap';
+import { FaStar } from 'react-icons/fa';
+const baseUrl = process.env.REACT_APP_BASEURL;
 
-export default function Storage() {
+const Star = ({ selected = false }) => (
+  <FaStar color={selected ? 'yellow' : 'grey'} />
+);
+
+const createArray = (length) => [...Array(length)];
+
+export default function Storage({ productData }) {
   return (
     <Container className='mt-5'>
       <Row>
         <Col></Col>
         <Col xs={9}>
           <div className='main-title text-center'>
-            Hello There! This is the Storage products page
+            <CardGroup>
+              {productData.map((item, index) => {
+                return (
+                  <Card
+                    key={index}
+                    style={{ marginRight: '3px', marginLeft: '3px' }}>
+                    <Card.Img
+                      variant='top'
+                      src={`${baseUrl}${item.image}`}
+                      alt={item.storage_name}
+                    />
+                    <Card.Body>
+                      <Card.Title>{item.storage_name}</Card.Title>
+                      <Card.Text
+                        style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
+                        Capacity {item.capacity}
+                      </Card.Text>
+                      <Card.Text
+                        style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
+                        Price / GB {item.price_pergb}
+                      </Card.Text>
+                      <Card.Text
+                        style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
+                        Type {item.type}
+                      </Card.Text>
+                      <Card.Text
+                        style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
+                        Cache {item.cache}
+                      </Card.Text>
+                      <Card.Text
+                        style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
+                        Form Factor {item.form_factor}
+                      </Card.Text>
+                      <Card.Text
+                        style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
+                        Interface {item.interface}
+                      </Card.Text>
+                      <Card.Text style={{ marginBottom: '0.8rem' }}>
+                        Price €{item.price}
+                      </Card.Text>
+                    </Card.Body>
+                    <Card.Footer
+                      style={{ backgroundColor: 'rgba(3, 3, 3, 0.35)' }}>
+                      <small className='text-muted'>
+                        <>
+                          {createArray(5).map((n, i) => (
+                            <Star key={i} selected={item.rating > i} />
+                          ))}
+                          <p style={{ color: 'hsl(209.7, 92.7%, 21.4%)' }}>
+                            {item.rating} of {5} stars
+                          </p>
+                        </>
+                      </small>
+                    </Card.Footer>
+                  </Card>
+                );
+              })}
+            </CardGroup>
           </div>
         </Col>
         <Col></Col>
