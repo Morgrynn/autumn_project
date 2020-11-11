@@ -16,7 +16,6 @@ export default function Case({ productData }) {
         <Col></Col>
         <Col xs={9}>
           <div className='main-title text-center'>
-            Hello There! This is the CPU products page
             <CardGroup>
               {productData.map((item, index) => {
                 return (
