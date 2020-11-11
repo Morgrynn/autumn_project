@@ -7,21 +7,23 @@ import {useFormik} from "formik";
 
 export default function LoginModal(props) {
 
-    const {handleSubmit, handleChange, values} = useFormik({
+    const {handleSubmit, handleChange, values, isSubmitting, resetForm} = useFormik({
         initialValues: {
             username: '',
             password: ''
         },
         onSubmit: (username,password) => {
             Axios.post("http://localhost:5000/login", {
-                email: values.username,
+                username: values.username,
                 password: values.password
             }).then((response) => {
-                if(!response.data === false) {
+                if(response.data === true) {
                     props.setLoggedIn(true)
-                    props.handleNotificationsSuccess('You have successfully logged in!')
+                    console.log('logged in')
+                    props.handleClose()
                 } else {
-                    props.handleNotificationsDanger('Something went wrong')
+                    console.log('not logged in')
+                    resetForm()
                 }
             })
         }
@@ -68,10 +70,7 @@ export default function LoginModal(props) {
 
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={props.handleClose}>
-                    Close
-                </Button>
-                <Button variant="success" type='submit'>
+                <Button variant="success" type="submit" disabled={isSubmitting}>
                     Login
                 </Button>
             </Modal.Footer>
