@@ -31,8 +31,17 @@ export default function RegistrationModal(props) {
                 password: values.password,
                 balance: 0
             }).then((response) => {
-                console.log(response)
-                props.handleClose()
+                console.log(response.data)
+                if (response.data === false) {
+                    props.handleNotificationsDanger('Username is already in use')
+                    props.handleClose()
+                    resetForm();
+                } else if (response.data === true) {
+                    props.handleNotificationsSuccess('You have successfully been registered!')
+                    props.handleClose()
+                    resetForm();
+                }
+
             })
 
         }

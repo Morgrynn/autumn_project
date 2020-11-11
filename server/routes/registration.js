@@ -10,9 +10,9 @@ router.post('/', (req, res) => {
             } else {
                 if (rows.rows.length === 0) {
                     registration.addUser(req.body)
-                    res.send('Successfully registered!')
+                    res.send(true)
                 } else {
-                    res.send('Username is already in use')
+                    res.send(false)
                 }
             }
         })

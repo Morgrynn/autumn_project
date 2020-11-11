@@ -41,7 +41,9 @@ function App() {
           path='/cpu'
           render={(routeProps) => (
             <Cpu productData={cpuData} {...routeProps} />
-          )}></Route>
+          )}>
+
+        </Route>
         <Route exact path='/motherboard'>
           <Motherboard />
         </Route>

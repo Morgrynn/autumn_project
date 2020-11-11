@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import RegistrationModal from "./Registration";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import LoginModal from "./Login";
+import ReactNotification, {store} from "react-notifications-component";
+import 'react-notifications-component/dist/theme.css'
 
 
 export default function Main() {
@@ -23,9 +25,44 @@ export default function Main() {
   const handleLoginClose = () => setShowLogin(false);
   const handleLoginShow = () => setShowLogin(true);
 
+  const handleNotificationsSuccess = (message) => {
+    store.addNotification({
+      title: "Success!",
+      message: message,
+      type: "success",
+      container: 'top-right',
+      insert: 'top',
+      dismiss: {
+        duration: 5000,
+        showIcon: true
+      },
+      width: 700
+    })
+  }
+
+  const handleNotificationsDanger = (message) => {
+    store.addNotification({
+      title: "ERROR!",
+      message: message,
+      type: "danger",
+      container: 'top-right',
+      insert: 'top',
+      dismiss: {
+        duration: 5000,
+        showIcon: true
+      },
+      width: 700
+    })
+  }
+
   return (
     <div>
-      <RegistrationModal handleClose={handleClose} handleShow={handleShow} showRegistration={showRegistration} setLoggedIn={setLoggedIn}/>
+      <ReactNotification />
+      <RegistrationModal handleClose={handleClose} handleShow={handleShow}
+                         showRegistration={showRegistration} setLoggedIn={setLoggedIn}
+                         handleNotificationsSuccess={handleNotificationsSuccess}
+                         handleNotificationsDanger={handleNotificationsDanger}
+      />
       <LoginModal handleClose={handleLoginClose} handleShow={handleLoginShow} showRegistration={showLogin} setLoggedIn={setLoggedIn} />
       <div className='main-header'>
         <Container>
