@@ -46,7 +46,7 @@ const cooler = {
   searchByName: function (value, callback) {
     var nameLike = '%' + value + '%';
     return db.query(
-      'select * from cpu_table where cpu_name ILIKE $1 order by id desc',
+      'select * from cooler_table where cooler_name ILIKE $1 order by id asc',
       [nameLike],
       callback
     );

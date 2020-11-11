@@ -52,7 +52,7 @@ router.put('/:id', function (req, res, next) {
   });
 });
 
-router.get('    cases-name/:value?', function (req, res, next) {
+router.get('/cases-name/:value?', function (req, res, next) {
   cases.searchByName(req.params.value, function (err, rows) {
     if (err) {
       res.json(err);

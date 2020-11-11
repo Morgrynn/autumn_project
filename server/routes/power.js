@@ -52,7 +52,7 @@ router.put('/:id', function (req, res, next) {
   });
 });
 
-router.get('    power_supply-name/:value?', function (req, res, next) {
+router.get('/power-name/:value?', function (req, res, next) {
   power_supply.searchByName(req.params.value, function (err, rows) {
     if (err) {
       res.json(err);
