@@ -12,6 +12,7 @@ var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
 var cpuRouter = require('./routes/cpu');
 var coolerRouter = require('./routes/cooler');
+var registrationRouter = require('./routes/registration');
 
 var app = express();
 app.use(cors());
@@ -33,6 +34,7 @@ app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 app.use('/cpu', cpuRouter);
 app.use('/cooler', coolerRouter);
+app.use('/register', registrationRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

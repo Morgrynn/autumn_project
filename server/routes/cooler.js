@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const cooler = require('../models/cooler_model');
 
+
 router.get('/:id?', function (req, res, next) {
   if (req.params.id) {
     cooler.getById(req.params.id, function (err, rows) {

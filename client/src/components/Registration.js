@@ -25,8 +25,16 @@ export default function RegistrationModal(props) {
             confirm_password: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').required('Password confirmation is required!')
         }),
         onSubmit: () =>  {
-            props.setLoggedIn(true)
-            props.handleClose()
+            Axios.post("http://localhost:5000/register", {
+                username: values.username,
+                email: values.email,
+                password: values.password,
+                balance: 0
+            }).then((response) => {
+                console.log(response)
+                props.handleClose()
+            })
+
         }
     })
 

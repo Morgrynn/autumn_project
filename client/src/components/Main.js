@@ -4,6 +4,7 @@ import './Main.css';
 import Laptop from '../images/laptop.png';
 import { Link } from 'react-router-dom';
 import RegistrationModal from "./Registration";
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import LoginModal from "./Login";
 
 
@@ -41,12 +42,13 @@ export default function Main() {
                       ? <div className='float-right mt-2'>
                         <Button
                             style={{width: '100px'}}
-                            className='ml-3'
+                            className='mr-3'
                             size='sm'
                             variant='secondary'
                             onClick={() => setLoggedIn(false)}>
                           Logout
                         </Button>
+                        <ShoppingCartIcon />
                       </div>
                       :
                       <div className='float-right mt-2'>
