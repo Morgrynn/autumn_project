@@ -52,6 +52,7 @@ I use [**Shields IO**](https://shields.io/) for making badges. It is a simple an
 Here is a random GIF as a placeholder.-->
 
 ![Random GIF](https://media.giphy.com/media/ZVik7pBtu9dNS/giphy.gif) 
+
 Our coders are working hard to bring you an awesome demo.
 
 # Table of contents
