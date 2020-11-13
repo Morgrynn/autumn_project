@@ -17,5 +17,8 @@
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
     "pg": "^8.4.2"
+  },
+  "devDependencies": {
+    "bcrypt": "^5.0.0"
   }
 }
