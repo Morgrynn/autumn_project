@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const cooler = require('../models/cooler_model');
-
+const power_supply = require('../models/power_supply_model');
 
 router.get('/:id?', function (req, res, next) {
   if (req.params.id) {
-    cooler.getById(req.params.id, function (err, rows) {
+    power_supply.getById(req.params.id, function (err, rows) {
       if (err) {
         res.json(err);
       } else {
@@ -13,7 +12,7 @@ router.get('/:id?', function (req, res, next) {
       }
     });
   } else {
-    cooler.get(function (err, rows) {
+    power_supply.get(function (err, rows) {
       if (err) {
         res.json(err);
       } else {
@@ -24,7 +23,7 @@ router.get('/:id?', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-  cooler.add(req.body, function (err, count) {
+  power_supply.add(req.body, function (err, count) {
     if (err) {
       res.json(err);
     } else {
@@ -34,7 +33,7 @@ router.post('/', function (req, res, next) {
 });
 
 router.delete('/:id', function (req, res, next) {
-  cooler.delete(req.params.id, function (err, count) {
+  power_supply.delete(req.params.id, function (err, count) {
     if (err) {
       res.json(err);
     } else {
@@ -44,7 +43,7 @@ router.delete('/:id', function (req, res, next) {
 });
 
 router.put('/:id', function (req, res, next) {
-  cooler.update(req.params.id, req.body, function (err, rows) {
+  power_supply.update(req.params.id, req.body, function (err, rows) {
     if (err) {
       res.json(err);
     } else {
@@ -53,8 +52,8 @@ router.put('/:id', function (req, res, next) {
   });
 });
 
-router.get('/cooler-name/:value?', function (req, res, next) {
-  cooler.searchByName(req.params.value, function (err, rows) {
+router.get('/power-name/:value?', function (req, res, next) {
+  power_supply.searchByName(req.params.value, function (err, rows) {
     if (err) {
       res.json(err);
     } else {

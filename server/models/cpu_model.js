@@ -9,7 +9,7 @@ const cpu = {
   },
   add: function (cpu, callback) {
     return db.query(
-      'insert into cpu_table(cpu_name, core_count, core_clock, boost_clock, tdp, integrated_graphics, smt, rating, price) values($1,$2,$3,$4,$5,$6,$7,$8,$9)',
+      'insert into cpu_table(cpu_name, core_count, core_clock, boost_clock, tdp, integrated_graphics, smt, rating, price, image) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)',
       [
         cpu.cpu_name,
         cpu.core_count,
@@ -20,6 +20,7 @@ const cpu = {
         cpu.smt,
         cpu.rating,
         cpu.price,
+        cpu.image,
       ],
       callback
     );
@@ -29,7 +30,7 @@ const cpu = {
   },
   update: function (id, cpu, callback) {
     return db.query(
-      'update cpu_table set cpu_name=$1, core_count=$2, core_clock=$3, boost_clock=$4, tdp=$5, integrated_graphics=$6, smt=$7, rating=$8, price=$9 where id=$10',
+      'update cpu_table set cpu_name=$1, core_count=$2, core_clock=$3, boost_clock=$4, tdp=$5, integrated_graphics=$6, smt=$7, rating=$8, price=$9, image=$10 where id=$11',
       [
         cpu.cpu_name,
         cpu.core_count,
@@ -40,6 +41,7 @@ const cpu = {
         cpu.smt,
         cpu.rating,
         cpu.price,
+        cpu.image,
         id,
       ],
       callback
@@ -48,7 +50,7 @@ const cpu = {
   searchByName: function (value, callback) {
     var nameLike = '%' + value + '%';
     return db.query(
-      'select * from cpu_table where cpu_name ILIKE $1 order by id desc',
+      'select * from cpu_table where cpu_name ILIKE $1 order by id asc',
       [nameLike],
       callback
     );

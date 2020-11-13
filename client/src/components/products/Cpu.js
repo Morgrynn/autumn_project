@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, CardGroup, Card } from 'react-bootstrap';
 import { FaStar } from 'react-icons/fa';
+const baseUrl = process.env.REACT_APP_BASEURL;
 
 const Star = ({ selected = false }) => (
   <FaStar color={selected ? 'yellow' : 'grey'} />
@@ -15,14 +16,17 @@ export default function Cpu({ productData }) {
         <Col></Col>
         <Col xs={9}>
           <div className='main-title text-center'>
-            Hello There! This is the CPU products page
             <CardGroup>
               {productData.map((item, index) => {
                 return (
                   <Card
                     key={index}
                     style={{ marginRight: '3px', marginLeft: '3px' }}>
-                    <Card.Img variant='top' src='holder.js/60px120' />
+                    <Card.Img
+                      variant='top'
+                      src={`${baseUrl}${item.image}`}
+                      alt={item.cpu_name}
+                    />
                     <Card.Body>
                       <Card.Title>{item.cpu_name}</Card.Title>
                       <Card.Text
