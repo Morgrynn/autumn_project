@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, Route, useHistory } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Main from './components/Main';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -13,6 +13,7 @@ import PowerSupply from './components/products/PowerSupply';
 import axios from 'axios';
 import Case from './components/products/Case';
 import Cooler from './components/products/Coolers';
+import ProductsPage from './components/products/ProductsPage';
 const baseUrl = process.env.REACT_APP_BASEURL;
 
 function App() {
@@ -24,6 +25,9 @@ function App() {
   const [caseData, setCaseData] = useState([]);
   const [coolerData, setCoolerData] = useState([]);
   const [powerData, setPowerData] = useState([]);
+  const [item, setItem] = useState([]);
+
+  // const history = useHistory();
 
   useEffect(() => {
     getProductCPU();
@@ -35,6 +39,9 @@ function App() {
     getProductCooler();
     getProductPower();
   }, []);
+
+  // ------------------------------------------
+  // Product calls from API
 
   const getProductCPU = () => {
     axios
@@ -96,7 +103,7 @@ function App() {
       .catch((error) => console.log(error));
   };
 
-  // TODO Add a link to this page from footer - and make footer
+  // TODO Add a link to these two pages from footer - and make footer
   const getProductCase = () => {
     axios
       .get(`${baseUrl}cases`)
@@ -117,6 +124,13 @@ function App() {
       .catch((error) => console.log(error));
   };
 
+  // ------------------------------------------
+  // Click on individual product
+
+  const handleProductClick = (item) => {
+    setItem(item);
+  };
+
   return (
     <div className='App'>
       <Main />
@@ -128,7 +142,13 @@ function App() {
           exact
           path='/cpu'
           render={(routeProps) => (
-            <Cpu productData={cpuData} {...routeProps} />
+            <Cpu
+              productData={cpuData}
+              baseUrl={baseUrl}
+              onClick={handleProductClick}
+              // product={pathName}
+              {...routeProps}
+            />
           )}></Route>
         <Route
           exact
@@ -171,6 +191,11 @@ function App() {
           path='/power'
           render={(routeProps) => (
             <PowerSupply productData={powerData} {...routeProps} />
+          )}></Route>
+        <Route
+          exact
+          render={(routeProps) => (
+            <ProductsPage item={item} baseUrl={baseUrl} {...routeProps} />
           )}></Route>
       </Switch>
     </div>

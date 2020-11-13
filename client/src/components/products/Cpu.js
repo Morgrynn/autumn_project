@@ -1,7 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Container, Row, Col, CardGroup, Card } from 'react-bootstrap';
 import { FaStar } from 'react-icons/fa';
-const baseUrl = process.env.REACT_APP_BASEURL;
 
 const Star = ({ selected = false }) => (
   <FaStar color={selected ? 'yellow' : 'grey'} />
@@ -9,7 +9,7 @@ const Star = ({ selected = false }) => (
 
 const createArray = (length) => [...Array(length)];
 
-export default function Cpu({ productData }) {
+export default function Cpu({ productData, onClick, baseUrl }) {
   return (
     <Container className='mt-5'>
       <Row>
@@ -21,42 +21,45 @@ export default function Cpu({ productData }) {
                 return (
                   <Card
                     key={index}
+                    onClick={() => onClick(item)}
                     style={{ marginRight: '3px', marginLeft: '3px' }}>
-                    <Card.Img
-                      variant='top'
-                      src={`${baseUrl}${item.image}`}
-                      alt={item.cpu_name}
-                    />
-                    <Card.Body>
-                      <Card.Title>{item.cpu_name}</Card.Title>
-                      <Card.Text
-                        style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
-                        Core Count {item.core_count}
-                      </Card.Text>
-                      <Card.Text
-                        style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
-                        Core Clock {item.core_clock}
-                      </Card.Text>
-                      <Card.Text
-                        style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
-                        Boost Clock {item.boost_clock}
-                      </Card.Text>
-                      <Card.Text
-                        style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
-                        TDP {item.tdp}
-                      </Card.Text>
-                      <Card.Text
-                        style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
-                        Integrated Graphics {item.integrated_graphics}
-                      </Card.Text>
-                      <Card.Text
-                        style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
-                        smt {item.smt}
-                      </Card.Text>
-                      <Card.Text style={{ marginBottom: '0.8rem' }}>
-                        Price €{item.price}
-                      </Card.Text>
-                    </Card.Body>
+                    <Link to={`cpu/${index}`}>
+                      <Card.Img
+                        variant='top'
+                        src={`${baseUrl}${item.image}`}
+                        alt={item.cpu_name}
+                      />
+                      <Card.Body>
+                        <Card.Title>{item.cpu_name}</Card.Title>
+                        <Card.Text
+                          style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
+                          Core Count {item.core_count}
+                        </Card.Text>
+                        <Card.Text
+                          style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
+                          Core Clock {item.core_clock}
+                        </Card.Text>
+                        <Card.Text
+                          style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
+                          Boost Clock {item.boost_clock}
+                        </Card.Text>
+                        <Card.Text
+                          style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
+                          TDP {item.tdp}
+                        </Card.Text>
+                        <Card.Text
+                          style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
+                          Integrated Graphics {item.integrated_graphics}
+                        </Card.Text>
+                        <Card.Text
+                          style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
+                          smt {item.smt}
+                        </Card.Text>
+                        <Card.Text style={{ marginBottom: '0.8rem' }}>
+                          Price €{item.price}
+                        </Card.Text>
+                      </Card.Body>
+                    </Link>
                     <Card.Footer
                       style={{ backgroundColor: 'rgba(3, 3, 3, 0.35)' }}>
                       <small className='text-muted'>
