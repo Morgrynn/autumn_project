@@ -67,6 +67,8 @@ export default function Main() {
 
       <LoginModal handleClose={handleLoginClose} handleShow={handleLoginShow}
                   showRegistration={showLogin} setLoggedIn={setLoggedIn}
+                  handleNotificationsSuccess={handleNotificationsSuccess}
+                  handleNotificationsDanger={handleNotificationsDanger}
       />
 
       <div className='main-header'>

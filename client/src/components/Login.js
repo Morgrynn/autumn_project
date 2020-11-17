@@ -21,8 +21,9 @@ export default function LoginModal(props) {
                     props.setLoggedIn(true)
                     console.log('logged in')
                     props.handleClose()
+                    resetForm()
                 } else {
-                    console.log('not logged in')
+                    props.handleNotificationsDanger('Wrong login credentials')
                     resetForm()
                 }
             })
