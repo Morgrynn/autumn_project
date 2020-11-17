@@ -17,6 +17,8 @@ export default function Main() {
 
   const [showRegistration, setShowRegistration] = useState(false);
 
+  const [showMain, setShowMain] = useState(true);
+
   const handleClose = () => setShowRegistration(false);
   const handleShow = () => setShowRegistration(true);
 
@@ -54,7 +56,6 @@ export default function Main() {
       width: 700
     })
   }
-
   return (
     <div>
       <ReactNotification />
@@ -75,8 +76,8 @@ export default function Main() {
             <Container>
               <Row>
                 <Col>
-                  <div className='mt-2'>
-                    <h1>LOGO</h1>
+                  <div className='mt-2' style={{cursor: "pointer"}}>
+                    <h1 onClick={() => setShowMain(true)}>LOGO</h1>
                   </div>
                 </Col>
                 <Col>
@@ -113,29 +114,31 @@ export default function Main() {
                   }
                 </Col>
               </Row>
-              <Row>
-                <Col xs={2}>
+              { showMain ?
 
-                </Col>
-                <Col className='mt-5'>
-                  <h2>UPGRADE!</h2>
-                  <div className='shop-text'>
-                    Get yourself a brand new PC <br /> at a great price
-                  </div>
-                  <Button
-                    className='mt-2'
-                    style={{ width: '155px' }}
-                    size='md'
-                    variant='secondary'>
-                    Shop now
-                  </Button>
-                </Col>
-                <Col className='p-1'>
-                  <div className=' main-picture'>
-                    <img className='laptop-pic' src={Laptop} alt='Logo' />
-                  </div>
-                </Col>
-              </Row>
+                  <Row className='mainInfo'>
+                    <Col xs={2}>
+
+                    </Col>
+                    <Col className='mt-5'>
+                      <h2>UPGRADE!</h2>
+                      <div className='shop-text'>
+                        Get yourself a brand new PC <br /> at a great price
+                      </div>
+                      <Button
+                          className='mt-2'
+                          style={{ width: '155px' }}
+                          size='md'
+                          variant='secondary'>
+                        Shop now
+                      </Button>
+                    </Col>
+                    <Col className='p-1'>
+                      <div className=' main-picture'>
+                        <img className='laptop-pic' src={Laptop} alt='Logo' />
+                      </div>
+                    </Col>
+                  </Row> : null }
               <Row>
                 <Col>
 
@@ -143,31 +146,31 @@ export default function Main() {
                 <Col xs={9}>
                   <div className='nav-category'>
                     <div className='nav-menu-item p-3 ml-3 nav-chosen-category'>
-                      <Link to='/'>Trending</Link>
+                      <Link to='/' onClick={() => setShowMain(false)}>Trending</Link>
                     </div>
                     <div className='nav-menu-item p-3 ml-2'>
-                      <Link to='/cpu'>CPU</Link>
+                      <Link to='/cpu' onClick={() => setShowMain(false)}>CPU</Link>
                     </div>
                     <div className='nav-menu-item p-3 ml-2'>
-                      <Link to='/motherboard'>Motherboards</Link>
+                      <Link to='/motherboard' onClick={() => setShowMain(false)}>Motherboards</Link>
                     </div>
                     <div className='nav-menu-item p-3 ml-2'>
-                      <Link to='/gpu'>GPU</Link>
+                      <Link to='/gpu' onClick={() => setShowMain(false)}>GPU</Link>
                     </div>
                     <div className='nav-menu-item p-3 ml-2'>
-                      <Link to='/memory'>Memory</Link>
+                      <Link to='/memory' onClick={() => setShowMain(false)}>Memory</Link>
                     </div>
                     <div className='nav-menu-item p-3 ml-2'>
-                      <Link to='/storage'>Storage</Link>
+                      <Link to='/storage' onClick={() => setShowMain(false)}>Storage</Link>
                     </div>
                     <div className='nav-menu-item p-3 ml-2'>
-                      <Link to='/power'>Power supply</Link>
+                      <Link to='/power' onClick={() => setShowMain(false)}>Power supply</Link>
                     </div>
                     <div className='nav-menu-item p-3 ml-2'>
-                      <Link to='/cooler'>Cooler</Link>
+                      <Link to='/cooler' onClick={() => setShowMain(false)}>Cooler</Link>
                     </div>
                     <div className='nav-menu-item p-3 ml-2'>
-                      <Link to='/cases'>Case</Link>
+                      <Link to='/cases' onClick={() => setShowMain(false)}>Case</Link>
                     </div>
                   </div>
                 </Col>
