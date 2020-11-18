@@ -17,13 +17,13 @@ export default function LoginModal(props) {
                 username: values.username,
                 password: values.password
             }).then((response) => {
-                if(response.data === true) {
+                if(response.data !== false) {
                     props.setLoggedIn(true)
-                    console.log('logged in')
+                    props.setCurrentUser(response.data[0])
                     props.handleClose()
                     resetForm()
                 } else {
-                    props.handleNotificationsDanger('Wrong login credentials')
+                    props.handleNotificationsDanger('Wrong username or password')
                     resetForm()
                 }
             })

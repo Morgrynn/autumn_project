@@ -12,7 +12,7 @@ router.post('/', (req, res) => {
                 if (rows.rows.length > 0) {
                     bcrypt.compare(req.body.password, rows.rows[0].password, (err, response) => {
                         if (response) {
-                            res.send(true)
+                            res.send(rows.rows)
                         } else {
                             res.send(false)
                         }

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Dropdown, Container, Row, Col, Button } from 'react-bootstrap';
 import './Main.css';
 import Laptop from '../images/laptop.png';
 import { Link } from 'react-router-dom';
@@ -14,6 +14,8 @@ export default function Main() {
 
 
   const [loggedIn, setLoggedIn] = React.useState(false)
+
+  const [currentUser, setCurrentUser] = React.useState({})
 
   const [showRegistration, setShowRegistration] = useState(false);
 
@@ -70,6 +72,7 @@ export default function Main() {
                   showRegistration={showLogin} setLoggedIn={setLoggedIn}
                   handleNotificationsSuccess={handleNotificationsSuccess}
                   handleNotificationsDanger={handleNotificationsDanger}
+                  setCurrentUser={setCurrentUser}
       />
 
       <div className='main-header'>
@@ -85,15 +88,20 @@ export default function Main() {
                 <Col>
                   {loggedIn
                       ? <div className='float-right mt-2'>
-                        <Button
-                            style={{width: '100px'}}
-                            className='mr-3'
-                            size='sm'
-                            variant='secondary'
-                            onClick={() => setLoggedIn(false)}>
-                          Logout
-                        </Button>
-                        <ShoppingCartIcon />
+                        <Dropdown>
+                          <Dropdown.Toggle
+                                           className='mr-3'
+                                           size='sm'
+                                           variant='secondary' id="dropdown-basic">
+                            {currentUser.username}
+                          </Dropdown.Toggle>
+
+                          <Dropdown.Menu>
+                            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                            <Dropdown.Item onClick={() => setLoggedIn(false)}>Logout</Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
                       </div>
                       :
                       <div className='float-right mt-2'>
