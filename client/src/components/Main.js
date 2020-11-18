@@ -4,8 +4,11 @@ import './Main.css';
 import Laptop from '../images/laptop.png';
 import { Link } from 'react-router-dom';
 import RegistrationModal from "./Registration";
+import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import LoginModal from "./Login";
+import ProfileModal from "./Profile";
 import ReactNotification, {store} from "react-notifications-component";
 import 'react-notifications-component/dist/theme.css'
 
@@ -28,6 +31,12 @@ export default function Main() {
 
   const handleLoginClose = () => setShowLogin(false);
   const handleLoginShow = () => setShowLogin(true);
+
+  const [showProfile, setShowProfile] = useState(false);
+
+  const handleProfileClose = () => setShowProfile(false);
+  const handleProfileShow = () => setShowProfile(true);
+
 
   const handleNotificationsSuccess = (message) => {
     store.addNotification({
@@ -75,6 +84,9 @@ export default function Main() {
                   setCurrentUser={setCurrentUser}
       />
 
+      <ProfileModal handleClose={handleProfileClose} handleShow={handleProfileShow}
+                    showProfile={showProfile} currentUser={currentUser} />
+
       <div className='main-header'>
         <Container>
           <Row>
@@ -97,9 +109,9 @@ export default function Main() {
                           </Dropdown.Toggle>
 
                           <Dropdown.Menu>
-                            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                            <Dropdown.Item onClick={() => setLoggedIn(false)}>Logout</Dropdown.Item>
+                            <Dropdown.Item onClick={() => handleProfileShow()}><AccountBoxIcon className='mr-2' /> Profile</Dropdown.Item>
+                            <Dropdown.Item href="#/action-2"><ShoppingCartIcon className='mr-2' />Shopping Cart</Dropdown.Item>
+                            <Dropdown.Item onClick={() => setLoggedIn(false)}> <PowerSettingsNewIcon className='mr-2'/>Logout</Dropdown.Item>
                           </Dropdown.Menu>
                         </Dropdown>
                       </div>
