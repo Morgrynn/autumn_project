@@ -1,86 +1,70 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col, CardGroup, Card } from 'react-bootstrap';
+import { Container, Table, Image, Row, Col } from 'react-bootstrap';
 import { FaStar } from 'react-icons/fa';
 
 const Star = ({ selected = false }) => (
-  <FaStar color={selected ? 'yellow' : 'grey'} />
+  <FaStar color={selected ? '#ff960c' : 'grey'} />
 );
 
 const createArray = (length) => [...Array(length)];
 
-export default function Cpu({ productData, onClick, baseUrl }) {
+export default function Cpu({ productData, onClick, baseUrl, location }) {
   return (
-    <Container className='mt-5'>
-      <Row>
-        <Col></Col>
-        <Col xs={9}>
-          <div className='main-title text-center'>
-            <CardGroup>
-              {productData.map((item, index) => {
-                return (
-                  <Card
-                    key={index}
-                    onClick={() => onClick(item)}
-                    style={{ marginRight: '3px', marginLeft: '3px' }}>
-                    <Link to={`cpu/${index}`}>
-                      <Card.Img
-                        variant='top'
-                        src={`${baseUrl}${item.image}`}
-                        alt={item.cpu_name}
-                      />
-                      <Card.Body>
-                        <Card.Title>{item.cpu_name}</Card.Title>
-                        <Card.Text
-                          style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
-                          Core Count {item.core_count}
-                        </Card.Text>
-                        <Card.Text
-                          style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
-                          Core Clock {item.core_clock}
-                        </Card.Text>
-                        <Card.Text
-                          style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
-                          Boost Clock {item.boost_clock}
-                        </Card.Text>
-                        <Card.Text
-                          style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
-                          TDP {item.tdp}
-                        </Card.Text>
-                        <Card.Text
-                          style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
-                          Integrated Graphics {item.integrated_graphics}
-                        </Card.Text>
-                        <Card.Text
-                          style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
-                          smt {item.smt}
-                        </Card.Text>
-                        <Card.Text style={{ marginBottom: '0.8rem' }}>
-                          Price €{item.price}
-                        </Card.Text>
-                      </Card.Body>
+    <Container>
+      <Table responsive bordered hover>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Core Count</th>
+            <th>Core Clock</th>
+            <th>Boost Clock</th>
+            <th>TDP</th>
+            <th>Integrated Graphics</th>
+            <th>SMT</th>
+            <th>Rating</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {productData.map((item, index) => {
+            return (
+              <tr key={index} onClick={() => onClick(item)}>
+                <td>
+                  <Container>
+                    <Link
+                      to={`${location.pathname}/${item.id}`}
+                      style={{ textDecoration: 'none', color: 'black' }}>
+                      <Row>
+                        <Col style={{ width: '171px' }}>
+                          <Image
+                            src={`${baseUrl}${item.image}`}
+                            thumbnail
+                            style={{ maxWidth: '75%' }}
+                          />
+                        </Col>
+                        <Col>{item.cpu_name}</Col>
+                      </Row>
                     </Link>
-                    <Card.Footer
-                      style={{ backgroundColor: 'rgba(3, 3, 3, 0.35)' }}>
-                      <small className='text-muted'>
-                        <>
-                          {createArray(5).map((n, i) => (
-                            <Star key={i} selected={item.rating > i} />
-                          ))}
-                          <p style={{ color: 'hsl(209.7, 92.7%, 21.4%)' }}>
-                            {item.rating} of {5} stars
-                          </p>
-                        </>
-                      </small>
-                    </Card.Footer>
-                  </Card>
-                );
-              })}
-            </CardGroup>
-          </div>
-        </Col>
-        <Col></Col>
-      </Row>
+                  </Container>
+                </td>
+                <td>{item.core_count}</td>
+                <td>{item.core_clock}</td>
+                <td>{item.boost_clock}</td>
+                <td>{item.tdp}</td>
+                <td>{item.integrated_graphics}</td>
+                <td>{item.smt}</td>
+                <td style={{ display: 'flex', borderBottom: 'none' }}>
+                  {createArray(5).map((n, i) => (
+                    <Star key={i} selected={item.rating > i} />
+                  ))}
+                </td>
+                <td>€{item.price}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </Table>
     </Container>
   );
 }

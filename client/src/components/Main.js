@@ -67,7 +67,7 @@ export default function Main() {
                       <Link to='/cpu'>CPU</Link>
                     </div>
                     <div className='nav-menu-item p-3 ml-2'>
-                      <Link to='/motherboard'>Motherboards</Link>
+                      <Link to='/motherboards'>Motherboards</Link>
                     </div>
                     <div className='nav-menu-item p-3 ml-2'>
                       <Link to='/gpu'>GPU</Link>

@@ -1,71 +1,66 @@
 import React from 'react';
-import { Container, Row, Col, CardGroup, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { Container, Table, Image, Row, Col } from 'react-bootstrap';
 import { FaStar } from 'react-icons/fa';
-const baseUrl = process.env.REACT_APP_BASEURL;
 
 const Star = ({ selected = false }) => (
-  <FaStar color={selected ? 'yellow' : 'grey'} />
+  <FaStar color={selected ? '#ff960c' : 'grey'} />
 );
 
 const createArray = (length) => [...Array(length)];
 
-export default function Cooler({ productData }) {
+export default function Cooler({ productData, baseUrl, onClick, location }) {
   return (
-    <Container className='mt-5'>
-      <Row>
-        <Col></Col>
-        <Col xs={9}>
-          <div className='main-title text-center'>
-            <CardGroup>
-              {productData.map((item, index) => {
-                return (
-                  <Card
-                    key={index}
-                    style={{ marginRight: '3px', marginLeft: '3px' }}>
-                    <Card.Img
-                      variant='top'
-                      src={`${baseUrl}${item.image}`}
-                      alt={item.cooler_name}
-                    />
-                    <Card.Body>
-                      <Card.Title>{item.cooler_name}</Card.Title>
-                      <Card.Text
-                        style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
-                        Fan RPM {item.fan_rpm}
-                      </Card.Text>
-                      <Card.Text
-                        style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
-                        Noise Level {item.noise_level}
-                      </Card.Text>
-                      <Card.Text
-                        style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
-                        Radiator Size {item.radiator_size}
-                      </Card.Text>
-                      <Card.Text style={{ marginBottom: '0.8rem' }}>
-                        Price €{item.price}
-                      </Card.Text>
-                    </Card.Body>
-                    <Card.Footer
-                      style={{ backgroundColor: 'rgba(3, 3, 3, 0.35)' }}>
-                      <small className='text-muted'>
-                        <>
-                          {createArray(5).map((n, i) => (
-                            <Star key={i} selected={item.rating > i} />
-                          ))}
-                          <p style={{ color: 'hsl(209.7, 92.7%, 21.4%)' }}>
-                            {item.rating} of {5} stars
-                          </p>
-                        </>
-                      </small>
-                    </Card.Footer>
-                  </Card>
-                );
-              })}
-            </CardGroup>
-          </div>
-        </Col>
-        <Col></Col>
-      </Row>
+    <Container>
+      <Table responsive bordered hover>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Fan RPM</th>
+            <th>Noise Level</th>
+            <th>Color</th>
+            <th>Radiator Size</th>
+            <th>Rating</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {productData.map((item, index) => {
+            return (
+              <tr key={index} onClick={() => onClick(item)}>
+                <td>
+                  <Container>
+                  <Link
+                      to={`${location.pathname}/${item.id}`}
+                      style={{ textDecoration: 'none', color: 'black' }}>
+                    <Row>
+                      <Col style={{ width: '171px' }}>
+                        <Image
+                          src={`${baseUrl}${item.image}`}
+                          thumbnail
+                          style={{ maxWidth: '75%' }}
+                        />
+                      </Col>
+                      <Col>{item.cooler_name}</Col>
+                    </Row>
+                    </Link>
+                  </Container>
+                </td>
+                <td>{item.fan_rpm}</td>
+                <td>{item.noise_level}</td>
+                <td>{item.color}</td>
+                <td>{item.radiator_size}</td>
+                <td style={{ display: 'flex', borderBottom: 'none' }}>
+                  {createArray(5).map((n, i) => (
+                    <Star key={i} selected={item.rating > i} />
+                  ))}
+                </td>
+                <td>€{item.price}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </Table>
     </Container>
   );
 }

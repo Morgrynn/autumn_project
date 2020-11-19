@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useHistory, useLocation } from 'react-router-dom';
 import Main from './components/Main';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -13,7 +13,14 @@ import PowerSupply from './components/products/PowerSupply';
 import axios from 'axios';
 import Case from './components/products/Case';
 import Cooler from './components/products/Coolers';
-import ProductsPage from './components/products/ProductsPage';
+import CpuProductPage from './components/products/singleProduct/CpuProductPage';
+import MboardProductPage from './components/products/singleProduct/MboardProductPage';
+import GpuProductPage from './components/products/singleProduct/GpuProductPage';
+import CoolerProductPage from './components/products/singleProduct/CoolerProductPage';
+import StorageProductPage from './components/products/singleProduct/StorageProductPage';
+import MemoryProductPage from './components/products/singleProduct/MemoryProductPage';
+import PowerSupplyProductPage from './components/products/singleProduct/PowerSupplyProductPage';
+import CaseProductPage from './components/products/singleProduct/CaseProductPage';
 const baseUrl = process.env.REACT_APP_BASEURL;
 
 function App() {
@@ -27,7 +34,9 @@ function App() {
   const [powerData, setPowerData] = useState([]);
   const [item, setItem] = useState([]);
 
-  // const history = useHistory();
+  // * Router dom references
+  const history = useHistory();
+  const location = useLocation();
 
   useEffect(() => {
     getProductCPU();
@@ -128,6 +137,7 @@ function App() {
   // Click on individual product
 
   const handleProductClick = (item) => {
+    // console.log(item);
     setItem(item);
   };
 
@@ -140,62 +150,141 @@ function App() {
         </Route>
         <Route
           exact
+          path='/cpu/:id'
+          render={(routeProps) => (
+            <CpuProductPage item={item} baseUrl={baseUrl} {...routeProps} />
+          )}></Route>
+        <Route
+          exact
+          path='/motherboards/:id'
+          render={(routeProps) => (
+            <MboardProductPage item={item} baseUrl={baseUrl} {...routeProps} />
+          )}></Route>
+        <Route
+          exact
+          path='/gpu/:id'
+          render={(routeProps) => (
+            <GpuProductPage item={item} baseUrl={baseUrl} {...routeProps} />
+          )}></Route>
+        <Route
+          exact
+          path='/cooler/:id'
+          render={(routeProps) => (
+            <CoolerProductPage item={item} baseUrl={baseUrl} {...routeProps} />
+          )}></Route>
+        <Route
+          exact
+          path='/storage/:id'
+          render={(routeProps) => (
+            <StorageProductPage item={item} baseUrl={baseUrl} {...routeProps} />
+          )}></Route>
+        <Route
+          exact
+          path='/memory/:id'
+          render={(routeProps) => (
+            <MemoryProductPage item={item} baseUrl={baseUrl} {...routeProps} />
+          )}></Route>
+        <Route
+          exact
+          path='/power/:id'
+          render={(routeProps) => (
+            <PowerSupplyProductPage item={item} baseUrl={baseUrl} {...routeProps} />
+          )}></Route>
+        <Route
+          exact
+          path='/cases/:id'
+          render={(routeProps) => (
+            <CaseProductPage item={item} baseUrl={baseUrl} {...routeProps} />
+          )}></Route>
+        <Route
+          exact
           path='/cpu'
+          location={location}
           render={(routeProps) => (
             <Cpu
               productData={cpuData}
               baseUrl={baseUrl}
               onClick={handleProductClick}
-              // product={pathName}
               {...routeProps}
             />
           )}></Route>
         <Route
           exact
-          path='/motherboard'
+          path='/motherboards'
+          location={location}
           render={(routeProps) => (
-            <Motherboard productData={motherboardData} {...routeProps} />
+            <Motherboard
+              productData={motherboardData}
+              onClick={handleProductClick}
+              baseUrl={baseUrl}
+              {...routeProps}
+            />
           )}></Route>
         <Route
           exact
           path='/gpu'
           render={(routeProps) => (
-            <Gpu productData={gpuData} {...routeProps} />
+            <Gpu
+              productData={gpuData}
+              baseUrl={baseUrl}
+              onClick={handleProductClick}
+              {...routeProps}
+            />
           )}></Route>
         <Route
           exact
           path='/memory'
           render={(routeProps) => (
-            <Memory productData={memoryData} {...routeProps} />
+            <Memory
+              productData={memoryData}
+              baseUrl={baseUrl}
+              onClick={handleProductClick}
+              {...routeProps}
+            />
           )}></Route>
         <Route
           exact
           path='/storage'
           render={(routeProps) => (
-            <Storage productData={storageData} {...routeProps} />
+            <Storage
+              productData={storageData}
+              baseUrl={baseUrl}
+              onClick={handleProductClick}
+              {...routeProps}
+            />
           )}></Route>
         <Route
           exact
           path='/cases'
           render={(routeProps) => (
-            <Case productData={caseData} {...routeProps} />
+            <Case
+              productData={caseData}
+              baseUrl={baseUrl}
+              onClick={handleProductClick}
+              {...routeProps}
+            />
           )}></Route>
         <Route
           exact
           path='/cooler'
           render={(routeProps) => (
-            <Cooler productData={coolerData} {...routeProps} />
+            <Cooler
+              productData={coolerData}
+              baseUrl={baseUrl}
+              onClick={handleProductClick}
+              {...routeProps}
+            />
           )}></Route>
         <Route
           exact
           path='/power'
           render={(routeProps) => (
-            <PowerSupply productData={powerData} {...routeProps} />
-          )}></Route>
-        <Route
-          exact
-          render={(routeProps) => (
-            <ProductsPage item={item} baseUrl={baseUrl} {...routeProps} />
+            <PowerSupply
+              productData={powerData}
+              baseUrl={baseUrl}
+              onClick={handleProductClick}
+              {...routeProps}
+            />
           )}></Route>
       </Switch>
     </div>
