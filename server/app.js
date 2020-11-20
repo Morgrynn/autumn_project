@@ -8,6 +8,9 @@ const helmet = require('helmet');
 const bodyParser = require('body-parser');
 // const db = require('../database');
 
+
+var registrationRouter = require('./routes/registration');
+var loginRouter = require('./routes/login')
 const indexRouter = require('./routes/index');
 const cpuRouter = require('./routes/cpu');
 const coolerRouter = require('./routes/cooler');
@@ -17,6 +20,7 @@ const memoryRouter = require('./routes/memory');
 const storageRouter = require('./routes/storage');
 const powerRouter = require('./routes/power');
 const casesRouter = require('./routes/cases');
+
 
 const app = express();
 
@@ -45,6 +49,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/cpu', cpuRouter);
 app.use('/cooler', coolerRouter);
+app.use('/register', registrationRouter)
+app.use('/login', loginRouter)
 app.use('/motherboards', motherboardRouter);
 app.use('/gpu', gpuRouter);
 app.use('/memory', memoryRouter);
