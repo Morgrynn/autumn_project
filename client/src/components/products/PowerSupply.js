@@ -1,79 +1,73 @@
 import React from 'react';
-import { Container, Row, Col, CardGroup, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { Container, Table, Image, Row, Col } from 'react-bootstrap';
 import { FaStar } from 'react-icons/fa';
-const baseUrl = process.env.REACT_APP_BASEURL;
 
 const Star = ({ selected = false }) => (
-  <FaStar color={selected ? 'yellow' : 'grey'} />
+  <FaStar color={selected ? '#ff960c' : 'grey'} />
 );
 
 const createArray = (length) => [...Array(length)];
 
-export default function PowerSupply({ productData }) {
+export default function PowerSupply({
+  productData,
+  baseUrl,
+  onClick,
+  location,
+}) {
   return (
-    <Container className='mt-5'>
-      <Row>
-        <Col></Col>
-        <Col xs={9}>
-          <div className='main-title text-center'>
-            <CardGroup>
-              {productData.map((item, index) => {
-                return (
-                  <Card
-                    key={index}
-                    style={{ marginRight: '3px', marginLeft: '3px' }}>
-                    <Card.Img
-                      variant='top'
-                      src={`${baseUrl}${item.image}`}
-                      alt={item.power_supply_name}
-                    />
-                    <Card.Body>
-                      <Card.Title>{item.power_supply_name}</Card.Title>
-                      <Card.Text
-                        style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
-                        Form Factor {item.form_factor}
-                      </Card.Text>
-                      <Card.Text
-                        style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
-                        Efficiency Rating {item.efficiency_rating}
-                      </Card.Text>
-                      <Card.Text
-                        style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
-                        Wattage {item.wattage}
-                      </Card.Text>
-                      <Card.Text
-                        style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
-                        Modular {item.modular}
-                      </Card.Text>
-                      <Card.Text
-                        style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
-                        Color {item.color}
-                      </Card.Text>
-                      <Card.Text style={{ marginBottom: '0.8rem' }}>
-                        Price €{item.price}
-                      </Card.Text>
-                    </Card.Body>
-                    <Card.Footer
-                      style={{ backgroundColor: 'rgba(3, 3, 3, 0.35)' }}>
-                      <small className='text-muted'>
-                        <>
-                          {createArray(5).map((n, i) => (
-                            <Star key={i} selected={item.rating > i} />
-                          ))}
-                          <p style={{ color: 'hsl(209.7, 92.7%, 21.4%)' }}>
-                            {item.rating} of {5} stars
-                          </p>
-                        </>
-                      </small>
-                    </Card.Footer>
-                  </Card>
-                );
-              })}
-            </CardGroup>
-          </div>
-        </Col>
-        <Col></Col>
-      </Row>
+    <Container>
+      <Table responsive bordered hover>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Form Factor</th>
+            <th>Efficiency Rating</th>
+            <th>Wattage</th>
+            <th>Modular</th>
+            <th>Color</th>
+            <th>Rating</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {productData.map((item, index) => {
+            return (
+              <tr key={index} onClick={() => onClick(item)}>
+                <td>
+                  <Container>
+                    <Link
+                      to={`${location.pathname}/${item.id}`}
+                      style={{ textDecoration: 'none', color: 'black' }}>
+                      <Row>
+                        <Col style={{ width: '171px' }}>
+                          <Image
+                            src={`${baseUrl}${item.image}`}
+                            thumbnail
+                            style={{ maxWidth: '75%' }}
+                          />
+                        </Col>
+                        <Col>{item.power_supply_name}</Col>
+                      </Row>
+                    </Link>
+                  </Container>
+                </td>
+                <td>{item.form_factor}</td>
+                <td>{item.efficiency_rating}</td>
+                <td>{item.wattage}</td>
+                <td>{item.modular}</td>
+                <td>{item.color}</td>
+                <td style={{ display: 'flex', borderBottom: 'none' }}>
+                  {createArray(5).map((n, i) => (
+                    <Star key={i} selected={item.rating > i} />
+                  ))}
+                </td>
+                <td>€{item.price}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </Table>
     </Container>
   );
 }

@@ -174,7 +174,7 @@ export default function Main() {
                       <Link to='/cpu' onClick={() => setShowMain(false)}>CPU</Link>
                     </div>
                     <div className='nav-menu-item p-3 ml-2'>
-                      <Link to='/motherboard' onClick={() => setShowMain(false)}>Motherboards</Link>
+                      <Link to='/motherboards' onClick={() => setShowMain(false)}>Motherboards</Link>
                     </div>
                     <div className='nav-menu-item p-3 ml-2'>
                       <Link to='/gpu' onClick={() => setShowMain(false)}>GPU</Link>

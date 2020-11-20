@@ -1,79 +1,69 @@
 import React from 'react';
-import { Container, Row, Col, CardGroup, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { Container, Table, Image, Row, Col } from 'react-bootstrap';
 import { FaStar } from 'react-icons/fa';
-const baseUrl = process.env.REACT_APP_BASEURL;
 
 const Star = ({ selected = false }) => (
-  <FaStar color={selected ? 'yellow' : 'grey'} />
+  <FaStar color={selected ? '#ff960c' : 'grey'} />
 );
 
 const createArray = (length) => [...Array(length)];
 
-export default function Motherboard({ productData }) {
+export default function Motherboard({ productData, onClick, baseUrl, location }) {
   return (
-    <Container className='mt-5'>
-      <Row>
-        <Col></Col>
-        <Col xs={9}>
-          <div className='main-title text-center'>
-            <CardGroup>
-              {productData.map((item, index) => {
-                return (
-                  <Card
-                    key={index}
-                    style={{ marginRight: '3px', marginLeft: '3px' }}>
-                    <Card.Img
-                      variant='top'
-                      src={`${baseUrl}${item.image}`}
-                      alt={item.motherboard_name}
-                    />
-                    <Card.Body>
-                      <Card.Title>{item.motherboard_name}</Card.Title>
-                      <Card.Text
-                        style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
-                        Socket / CPU {item.socket_cpu}
-                      </Card.Text>
-                      <Card.Text
-                        style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
-                        Form Factor {item.form_factor}
-                      </Card.Text>
-                      <Card.Text
-                        style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
-                        Memory Max {item.memory_max}
-                      </Card.Text>
-                      <Card.Text
-                        style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
-                        Memory Slots {item.memory_slots}
-                      </Card.Text>
-                      <Card.Text
-                        style={{ marginBottom: '0.8rem', fontSize: '0.8em' }}>
-                        Color {item.color}
-                      </Card.Text>
-                      <Card.Text style={{ marginBottom: '0.8rem' }}>
-                        Price €{item.price}
-                      </Card.Text>
-                    </Card.Body>
-                    <Card.Footer
-                      style={{ backgroundColor: 'rgba(3, 3, 3, 0.35)' }}>
-                      <small className='text-muted'>
-                        <>
-                          {createArray(5).map((n, i) => (
-                            <Star key={i} selected={item.rating > i} />
-                          ))}
-                          <p style={{ color: 'hsl(209.7, 92.7%, 21.4%)' }}>
-                            {item.rating} of {5} stars
-                          </p>
-                        </>
-                      </small>
-                    </Card.Footer>
-                  </Card>
-                );
-              })}
-            </CardGroup>
-          </div>
-        </Col>
-        <Col></Col>
-      </Row>
+    <Container>
+      <Table responsive bordered hover>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Socket / CPU</th>
+            <th>Form Factor</th>
+            <th>Memory Max</th>
+            <th>Memory Slots</th>
+            <th>Color</th>
+            <th>Rating</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {productData.map((item, index) => {
+            return (
+              <tr key={index} onClick={() => onClick(item)}>
+               
+                  <td>
+                    <Container>
+                    <Link
+                      to={`${location.pathname}/${item.id}`}
+                      style={{ textDecoration: 'none', color: 'black' }}>
+                      <Row>
+                        <Col style={{ width: '171px' }}>
+                          <Image
+                            src={`${baseUrl}${item.image}`}
+                            thumbnail
+                            style={{ maxWidth: '75%' }}
+                          />
+                        </Col>
+                        <Col>{item.motherboards_name}</Col>
+                      </Row>
+                      </Link>
+                    </Container>
+                  </td>
+                  <td>{item.socket_cpu}</td>
+                  <td>{item.form_factor}</td>
+                  <td>{item.memory_max}</td>
+                  <td>{item.memory_slots}</td>
+                  <td>{item.color}</td>
+                  <td style={{ display: 'flex', border: 'none' }}>
+                    {createArray(5).map((n, i) => (
+                      <Star key={i} selected={item.rating > i} />
+                    ))}
+                  </td>
+                  <td>€{item.price}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </Table>
     </Container>
   );
 }
