@@ -2,6 +2,7 @@ import React from "react";
 import {Modal, Button, Container, Col, Row, Form, Image} from "react-bootstrap";
 
 export default function ShoppingCartModal(props) {
+    let total = 0;
     return (
         <Modal show={props.showShoppingCart} onHide={props.handleClose}>
             <Modal.Header closeButton>
@@ -9,6 +10,7 @@ export default function ShoppingCartModal(props) {
             </Modal.Header>
             <Modal.Body>
                 {props.shoppingCart.map((item) => {
+                    total += parseFloat(item.price)
                     return(
                         <div>
                             <Container>
@@ -34,6 +36,7 @@ export default function ShoppingCartModal(props) {
                         </div>
                         )
                 })}
+                <p>total: {total.toFixed(2)}</p>
             </Modal.Body>
         </Modal>
     )
