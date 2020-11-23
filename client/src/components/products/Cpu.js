@@ -43,7 +43,7 @@ export default function Cpu({ productData, onClick, baseUrl, location, addItem }
                             style={{ maxWidth: '75%' }}
                           />
                         </Col>
-                        <Col>{item.cpu_name}</Col>
+                        <Col>{item.name}</Col>
                       </Row>
                     </Link>
                   </Container>

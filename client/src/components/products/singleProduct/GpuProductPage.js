@@ -16,7 +16,7 @@ export default function GpuProductsPage({ item, baseUrl }) {
       <Row>
       <Col md={{ span: 6, offset: 4}}>
       <Card border="secondary" style={{ width: '18rem' }}>
-        <Card.Title style={{ textAlign: 'center' }}>{item.gpu_name}</Card.Title>
+        <Card.Title style={{ textAlign: 'center' }}>{item.name}</Card.Title>
         <Card.Img variant='top' src={`${baseUrl}${item.image}`} />
         <ListGroup className="list-group-flush">
             <ListGroupItem>{item.chipset}</ListGroupItem>
