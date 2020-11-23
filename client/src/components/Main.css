@@ -17,6 +17,23 @@
 
 }
 
+.nav-menu input {
+    height: 45px;
+    width: 100%;
+    background-color: #FBFBFB;
+    border-radius: 30px;
+    border: 1px solid #969393;
+}
+
+/* Style the input field inside the navbar */
+.nav-menu input[type=text] {
+    text-align: left;
+    padding: 8px;
+    font-size: 16px;
+    border: none;
+}
+
+
 /* .nav-chosen-category {
     border-radius: 30px;
     background-color: #CEC7C7;
