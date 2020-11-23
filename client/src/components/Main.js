@@ -4,11 +4,12 @@ import './Main.css';
 import Laptop from '../images/laptop.png';
 import { Link } from 'react-router-dom';
 import RegistrationModal from "./Registration";
+import ShoppingCartModal from "./ShoppingCart";
+import LoginModal from "./Login";
+import ProfileModal from "./Profile";
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import LoginModal from "./Login";
-import ProfileModal from "./Profile";
 import ReactNotification, {store} from "react-notifications-component";
 import 'react-notifications-component/dist/theme.css'
 
@@ -17,25 +18,23 @@ export default function Main() {
 
 
   const [loggedIn, setLoggedIn] = React.useState(false)
-
   const [currentUser, setCurrentUser] = React.useState({})
+  const [shoppingCart, addToShoppingCart] = React.useState([])
 
   const [showRegistration, setShowRegistration] = useState(false);
-
   const [showMain, setShowMain] = useState(true);
+  const [showLogin, setShowLogin] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
+  const [showShoppingCart, setShowShoppingCart] = useState(false);
 
   const handleClose = () => setShowRegistration(false);
   const handleShow = () => setShowRegistration(true);
-
-  const [showLogin, setShowLogin] = useState(false);
-
   const handleLoginClose = () => setShowLogin(false);
   const handleLoginShow = () => setShowLogin(true);
-
-  const [showProfile, setShowProfile] = useState(false);
-
   const handleProfileClose = () => setShowProfile(false);
   const handleProfileShow = () => setShowProfile(true);
+  const handleShoppingCartClose = () => setShowShoppingCart(false);
+  const handleShoppingCartShow = () => setShowShoppingCart(true);
 
 
   const handleNotificationsSuccess = (message) => {
@@ -69,24 +68,28 @@ export default function Main() {
   }
   return (
     <div>
-      <ReactNotification />
+        <ReactNotification />
 
-      <RegistrationModal handleClose={handleClose} handleShow={handleShow}
-                         showRegistration={showRegistration} setLoggedIn={setLoggedIn}
-                         handleNotificationsSuccess={handleNotificationsSuccess}
-                         handleNotificationsDanger={handleNotificationsDanger}
-      />
+        <RegistrationModal handleClose={handleClose} handleShow={handleShow}
+                           showRegistration={showRegistration} setLoggedIn={setLoggedIn}
+                           handleNotificationsSuccess={handleNotificationsSuccess}
+                           handleNotificationsDanger={handleNotificationsDanger}
+        />
 
-      <LoginModal handleClose={handleLoginClose} handleShow={handleLoginShow}
-                  showRegistration={showLogin} setLoggedIn={setLoggedIn}
-                  handleNotificationsSuccess={handleNotificationsSuccess}
-                  handleNotificationsDanger={handleNotificationsDanger}
-                  setCurrentUser={setCurrentUser}
-      />
+        <LoginModal handleClose={handleLoginClose} handleShow={handleLoginShow}
+                    showRegistration={showLogin} setLoggedIn={setLoggedIn}
+                    handleNotificationsSuccess={handleNotificationsSuccess}
+                    handleNotificationsDanger={handleNotificationsDanger}
+                    setCurrentUser={setCurrentUser}
+        />
 
-      <ProfileModal handleClose={handleProfileClose} handleShow={handleProfileShow}
-                    showProfile={showProfile} currentUser={currentUser} />
+        <ProfileModal handleClose={handleProfileClose} handleShow={handleProfileShow}
+                      showProfile={showProfile} currentUser={currentUser}
+        />
 
+        <ShoppingCartModal handleClose={handleShoppingCartClose} handleShow={handleShoppingCartShow}
+                           showShoppingCart={showShoppingCart} currentUser={currentUser}
+        />
       <div className='main-header'>
         <Container>
           <Row>
@@ -100,7 +103,7 @@ export default function Main() {
                 <Col>
                   {loggedIn
                       ? <div className='float-right mt-2'>
-                        <Dropdown>
+                        <Dropdown className='d-inline'>
                           <Dropdown.Toggle
                                            className='mr-3'
                                            size='sm'
@@ -110,10 +113,11 @@ export default function Main() {
 
                           <Dropdown.Menu>
                             <Dropdown.Item onClick={() => handleProfileShow()}><AccountBoxIcon className='mr-2' /> Profile</Dropdown.Item>
-                            <Dropdown.Item href="#/action-2"><ShoppingCartIcon className='mr-2' />Shopping Cart</Dropdown.Item>
+                            <Dropdown.Item href="#/action-2"><ShoppingCartIcon className='mr-2' />History</Dropdown.Item>
                             <Dropdown.Item onClick={() => setLoggedIn(false)}> <PowerSettingsNewIcon className='mr-2'/>Logout</Dropdown.Item>
                           </Dropdown.Menu>
                         </Dropdown>
+                        <ShoppingCartIcon className='d-inline' onClick={() => handleShoppingCartShow()}/>
                       </div>
                       :
                       <div className='float-right mt-2'>

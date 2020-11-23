@@ -21,7 +21,7 @@ import StorageProductPage from './components/products/singleProduct/StorageProdu
 import MemoryProductPage from './components/products/singleProduct/MemoryProductPage';
 import PowerSupplyProductPage from './components/products/singleProduct/PowerSupplyProductPage';
 import CaseProductPage from './components/products/singleProduct/CaseProductPage';
-const baseUrl = process.env.REACT_APP_BASEURL;
+const baseUrl = 'http://localhost:5000/'
 
 function App() {
   const [cpuData, setCpuData] = useState([]);
