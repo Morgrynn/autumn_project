@@ -141,6 +141,13 @@ function App() {
     setItem(item);
   };
 
+  // Add to Cart button
+  // TODO this needs to be implemented but is linked to all products
+  // only functionality needed here
+  const handleAddItem = (item) => {
+    console.log('Added to cart', item);
+  };
+
   return (
     <div className='App'>
       <Main />
@@ -188,7 +195,11 @@ function App() {
           exact
           path='/power/:id'
           render={(routeProps) => (
-            <PowerSupplyProductPage item={item} baseUrl={baseUrl} {...routeProps} />
+            <PowerSupplyProductPage
+              item={item}
+              baseUrl={baseUrl}
+              {...routeProps}
+            />
           )}></Route>
         <Route
           exact
@@ -205,6 +216,7 @@ function App() {
               productData={cpuData}
               baseUrl={baseUrl}
               onClick={handleProductClick}
+              addItem={handleAddItem}
               {...routeProps}
             />
           )}></Route>
@@ -216,6 +228,7 @@ function App() {
             <Motherboard
               productData={motherboardData}
               onClick={handleProductClick}
+              addItem={handleAddItem}
               baseUrl={baseUrl}
               {...routeProps}
             />
@@ -228,6 +241,7 @@ function App() {
               productData={gpuData}
               baseUrl={baseUrl}
               onClick={handleProductClick}
+              addItem={handleAddItem}
               {...routeProps}
             />
           )}></Route>
@@ -239,6 +253,7 @@ function App() {
               productData={memoryData}
               baseUrl={baseUrl}
               onClick={handleProductClick}
+              addItem={handleAddItem}
               {...routeProps}
             />
           )}></Route>
@@ -250,6 +265,7 @@ function App() {
               productData={storageData}
               baseUrl={baseUrl}
               onClick={handleProductClick}
+              addItem={handleAddItem}
               {...routeProps}
             />
           )}></Route>
@@ -261,6 +277,7 @@ function App() {
               productData={caseData}
               baseUrl={baseUrl}
               onClick={handleProductClick}
+              addItem={handleAddItem}
               {...routeProps}
             />
           )}></Route>
@@ -272,6 +289,7 @@ function App() {
               productData={coolerData}
               baseUrl={baseUrl}
               onClick={handleProductClick}
+              addItem={handleAddItem}
               {...routeProps}
             />
           )}></Route>
@@ -283,6 +301,7 @@ function App() {
               productData={powerData}
               baseUrl={baseUrl}
               onClick={handleProductClick}
+              addItem={handleAddItem}
               {...routeProps}
             />
           )}></Route>

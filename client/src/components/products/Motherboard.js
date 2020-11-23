@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Table, Image, Row, Col } from 'react-bootstrap';
+import { Container, Table, Image, Row, Col, Button} from 'react-bootstrap';
 import { FaStar } from 'react-icons/fa';
 
 const Star = ({ selected = false }) => (
@@ -9,7 +9,7 @@ const Star = ({ selected = false }) => (
 
 const createArray = (length) => [...Array(length)];
 
-export default function Motherboard({ productData, onClick, baseUrl, location }) {
+export default function Motherboard({ productData, onClick, baseUrl, location, addItem}) {
   return (
     <Container>
       <Table responsive bordered hover>
@@ -59,6 +59,11 @@ export default function Motherboard({ productData, onClick, baseUrl, location })
                     ))}
                   </td>
                   <td>€{item.price}</td>
+                  <td>
+                  <Button variant='outline-dark' onClick={() => addItem(item)}>
+                    Add
+                  </Button>
+                </td>
               </tr>
             );
           })}
