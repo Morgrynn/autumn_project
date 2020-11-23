@@ -1,6 +1,5 @@
 import React from "react";
-import {Modal, Button, Container, Col, Row, Form} from "react-bootstrap";
-import './Profile.css'
+import {Modal, Button, Container, Col, Row, Form, Image} from "react-bootstrap";
 
 export default function ShoppingCartModal(props) {
     return (
@@ -8,15 +7,34 @@ export default function ShoppingCartModal(props) {
             <Modal.Header closeButton>
                 <Modal.Title>Shopping cart</Modal.Title>
             </Modal.Header>
-            <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={props.handleClose}>
-                    Close
-                </Button>
-                <Button variant="primary" onClick={props.handleClose}>
-                    Save Changes
-                </Button>
-            </Modal.Footer>
+            <Modal.Body>
+                {props.shoppingCart.map((item) => {
+                    return(
+                        <div>
+                            <Container>
+                                <Row>
+                                    <Col xs={3}>
+                                        <Image
+                                            src={`${'http://localhost:5000/'}${item.image}`}
+                                            thumbnail
+                                            style={{ maxWidth: '100%' }}
+
+                                        />
+                                    </Col>
+                                    <Col className='text-left'>
+                                        <h6 className='d-inline'>{item.cpu_name}</h6>
+                                    </Col>
+                                </Row>
+                            </Container>
+                            <div className='p-3'>
+
+                            </div>
+
+
+                        </div>
+                        )
+                })}
+            </Modal.Body>
         </Modal>
     )
 }

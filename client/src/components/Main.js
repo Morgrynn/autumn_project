@@ -14,7 +14,7 @@ import ReactNotification, {store} from "react-notifications-component";
 import 'react-notifications-component/dist/theme.css'
 
 
-export default function Main() {
+export default function Main(props) {
 
 
   const [loggedIn, setLoggedIn] = React.useState(false)
@@ -87,9 +87,10 @@ export default function Main() {
                       showProfile={showProfile} currentUser={currentUser}
         />
 
-        <ShoppingCartModal handleClose={handleShoppingCartClose} handleShow={handleShoppingCartShow}
+        <ShoppingCartModal shoppingCart={props.shoppingCart} handleClose={handleShoppingCartClose} handleShow={handleShoppingCartShow}
                            showShoppingCart={showShoppingCart} currentUser={currentUser}
         />
+
       <div className='main-header'>
         <Container>
           <Row>
@@ -136,6 +137,7 @@ export default function Main() {
                             onClick={handleShow}>
                           Register
                         </Button>
+                        <ShoppingCartIcon className='d-inline ml-2' style={{cursor: "pointer"}} onClick={() => handleShoppingCartShow()}/>
                       </div>
                   }
                 </Col>

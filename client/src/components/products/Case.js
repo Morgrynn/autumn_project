@@ -18,7 +18,7 @@ export default function Case({
 }) {
   return (
     <Container>
-      <Table responsive bordered hover>
+      <Table responsive  hover>
         <thead>
           <tr>
             <th>Name</th>
