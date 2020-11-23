@@ -48,7 +48,7 @@ export default function PowerSupply({
                             style={{ maxWidth: '75%' }}
                           />
                         </Col>
-                        <Col>{item.power_supply_name}</Col>
+                        <Col>{item.name}</Col>
                       </Row>
                     </Link>
                   </Container>

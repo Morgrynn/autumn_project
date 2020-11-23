@@ -47,7 +47,7 @@ export default function Cooler({
                             style={{ maxWidth: '75%' }}
                           />
                         </Col>
-                        <Col>{item.cooler_name}</Col>
+                        <Col>{item.name}</Col>
                       </Row>
                     </Link>
                   </Container>

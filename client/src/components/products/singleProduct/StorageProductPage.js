@@ -17,7 +17,7 @@ export default function StorageProductPage({ item, baseUrl }) {
         <Col md={{ span: 6, offset: 4 }}>
           <Card border='secondary' style={{ width: '18rem' }}>
             <Card.Title style={{ textAlign: 'center' }}>
-              {item.storage_name}
+              {item.name}
             </Card.Title>
             <Card.Img variant='top' src={`${baseUrl}${item.image}`} />
             <ListGroup className='list-group-flush'>
