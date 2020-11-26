@@ -10,10 +10,9 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import LoginModal from './Login';
 import ProfileModal from './Profile';
 import ReactNotification, { store } from 'react-notifications-component';
-import Search from './Search';
 import 'react-notifications-component/dist/theme.css';
 
-export default function Main({ handleSearch, products }) {
+export default function Main() {
   const [loggedIn, setLoggedIn] = React.useState(false);
 
   const [currentUser, setCurrentUser] = React.useState({});
@@ -233,7 +232,9 @@ export default function Main({ handleSearch, products }) {
               </Row>
               <Row className='mt-3 mb-3'>
                 <Col></Col>
-                <Search handleSearch={handleSearch} />
+                <Col xs={9}>
+                  <div className='nav-menu'></div>
+                </Col>
                 <Col></Col>
               </Row>
             </Container>

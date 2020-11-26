@@ -33,8 +33,7 @@ function App() {
   const [coolerData, setCoolerData] = useState([]);
   const [powerData, setPowerData] = useState([]);
   const [item, setItem] = useState([]);
-  const [search, setSearch] = useState('');
-  const [products, setProducts] = useState([]);
+  
 
   // * Router dom references
   const history = useHistory();
@@ -150,107 +149,19 @@ function App() {
     console.log('Added to cart', item);
   };
 
-  // ------------------------------------------
-  // Search function
-
-  const itemSearch = (event) => {
-    event.preventDefault();
-    const cpuAPI = `${baseUrl}cpu/cpu-name/${search}`;
-    const gpuAPI = `${baseUrl}gpu/gpu-name/${search}`;
-    const mbAPI = `${baseUrl}motherboards/motherboards-name/${search}`;
-    const coolerAPI = `${baseUrl}cooler/cooler-name/${search}`;
-    const caseAPI = `${baseUrl}cases/cases-name/${search}`;
-    const powerAPI = `${baseUrl}power/power-name/${search}`;
-    const memoryAPI = `${baseUrl}memory/memory-name/${search}`;
-    const storageAPI = `${baseUrl}storage/storage-name/${search}`;
-
-    const getCpu = axios.get(cpuAPI);
-    const getGpu = axios.get(gpuAPI);
-    const getMb = axios.get(mbAPI);
-    const getCooler = axios.get(coolerAPI);
-    const getCase = axios.get(caseAPI);
-    const getPower = axios.get(powerAPI);
-    const getMemory = axios.get(memoryAPI);
-    const getStorage = axios.get(storageAPI);
-
-    axios
-      .all([
-        getCpu,
-        getGpu,
-        getMb,
-        getCooler,
-        getCase,
-        getPower,
-        getMemory,
-        getStorage,
-      ])
-      .then(
-        axios.spread((...allData) => {
-          const allCpuNames = allData[0].data;
-          const allGpuNames = allData[1].data;
-          const allMbNames = allData[2].data;
-          const allCoolerNames = allData[3].data;
-          const allCaseNames = allData[4].data;
-          const allPowerNames = allData[5].data;
-          const allMemoryNames = allData[6].data;
-          const allStorageNames = allData[7].data;
-
-          if (allCpuNames.name !== 'error' && allCpuNames.length > 0) {
-            // console.log(allCpuNames);
-            setProducts(...allCpuNames);
-          }
-          if (allGpuNames.name !== 'error' && allGpuNames.length > 0) {
-            // console.log(allGpuNames);
-            setProducts(...allGpuNames);
-          }
-          if (allMbNames.name !== 'error' && allMbNames.length > 0) {
-            // console.log(allMbNames);
-            setProducts(...allMbNames);
-          }
-          if (allCoolerNames.name !== 'error' && allCoolerNames.length > 0) {
-            // console.log(allCoolerNames);
-            setProducts(...allCoolerNames);
-          }
-          if (allCaseNames.name !== 'error' && allCaseNames.length > 0) {
-            // console.log(allCaseNames);
-            setProducts(...allCaseNames);
-          }
-          if (allPowerNames.name !== 'error' && allPowerNames.length > 0) {
-            // console.log(allPowerNames);
-            setProducts(...allPowerNames);
-          }
-          if (allMemoryNames.name !== 'error' && allMemoryNames.length > 0) {
-            // console.log(allMemoryNames);
-            setProducts(...allMemoryNames);
-          }
-          if (allStorageNames.name !== 'error' && allStorageNames.length > 0) {
-            // console.log(allStorageNames);
-            setProducts(...allStorageNames);
-          }
-        })
-      );
-  };
-
-  const handleSearch = (e) => {
-    setSearch(e.target.value);
-    // console.log(itemSearch(search));
-    itemSearch(search);
-    console.log('Search: ', products);
-    // const filteredProducts = products.filter(product => )
-  };
 
   return (
     <div className='App'>
-      <Main handleSearch={handleSearch} products={products} />
+      <Main />
       <Switch>
         <Route exact path='/'>
-          <Trending products={products} baseUrl={baseUrl} />
+          <Trending baseUrl={baseUrl} />
         </Route>
         <Route
           exact
           path='/cpu/:id'
           render={(routeProps) => (
-            <CpuProductPage item={item} baseUrl={baseUrl} {...routeProps} />
+            <CpuProductPage item={item} baseUrl={baseUrl} addItem={handleAddItem} {...routeProps} />
           )}></Route>
         <Route
           exact
