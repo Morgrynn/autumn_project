@@ -33,7 +33,6 @@ function App() {
   const [coolerData, setCoolerData] = useState([]);
   const [powerData, setPowerData] = useState([]);
   const [item, setItem] = useState([]);
-  
 
   // * Router dom references
   const history = useHistory();
@@ -149,7 +148,6 @@ function App() {
     console.log('Added to cart', item);
   };
 
-
   return (
     <div className='App'>
       <Main />
@@ -161,37 +159,67 @@ function App() {
           exact
           path='/cpu/:id'
           render={(routeProps) => (
-            <CpuProductPage item={item} baseUrl={baseUrl} addItem={handleAddItem} {...routeProps} />
+            <CpuProductPage
+              item={item}
+              baseUrl={baseUrl}
+              addItem={handleAddItem}
+              {...routeProps}
+            />
           )}></Route>
         <Route
           exact
           path='/motherboards/:id'
           render={(routeProps) => (
-            <MboardProductPage item={item} baseUrl={baseUrl} {...routeProps} />
+            <MboardProductPage
+              item={item}
+              baseUrl={baseUrl}
+              addItem={handleAddItem}
+              {...routeProps}
+            />
           )}></Route>
         <Route
           exact
           path='/gpu/:id'
           render={(routeProps) => (
-            <GpuProductPage item={item} baseUrl={baseUrl} {...routeProps} />
+            <GpuProductPage
+              item={item}
+              baseUrl={baseUrl}
+              addItem={handleAddItem}
+              {...routeProps}
+            />
           )}></Route>
         <Route
           exact
           path='/cooler/:id'
           render={(routeProps) => (
-            <CoolerProductPage item={item} baseUrl={baseUrl} {...routeProps} />
+            <CoolerProductPage
+              item={item}
+              baseUrl={baseUrl}
+              addItem={handleAddItem}
+              {...routeProps}
+            />
           )}></Route>
         <Route
           exact
           path='/storage/:id'
           render={(routeProps) => (
-            <StorageProductPage item={item} baseUrl={baseUrl} {...routeProps} />
+            <StorageProductPage
+              item={item}
+              baseUrl={baseUrl}
+              addItem={handleAddItem}
+              {...routeProps}
+            />
           )}></Route>
         <Route
           exact
           path='/memory/:id'
           render={(routeProps) => (
-            <MemoryProductPage item={item} baseUrl={baseUrl} {...routeProps} />
+            <MemoryProductPage
+              item={item}
+              baseUrl={baseUrl}
+              addItem={handleAddItem}
+              {...routeProps}
+            />
           )}></Route>
         <Route
           exact
@@ -200,6 +228,7 @@ function App() {
             <PowerSupplyProductPage
               item={item}
               baseUrl={baseUrl}
+              addItem={handleAddItem}
               {...routeProps}
             />
           )}></Route>
@@ -207,7 +236,12 @@ function App() {
           exact
           path='/cases/:id'
           render={(routeProps) => (
-            <CaseProductPage item={item} baseUrl={baseUrl} {...routeProps} />
+            <CaseProductPage
+              item={item}
+              baseUrl={baseUrl}
+              addItem={handleAddItem}
+              {...routeProps}
+            />
           )}></Route>
         <Route
           exact
