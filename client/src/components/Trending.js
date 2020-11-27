@@ -2,8 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col, Table, Image } from 'react-bootstrap';
 
-export default function Home({ productData, baseUrl, location, onClick }) {
+export default function Home({ productData, baseUrl, onClick }) {
   let displaySearchedItems;
+
+  const pattern = /(\/gpu\/|\/cpu\/|\/motherboards\/|\/storage\/|\/memory\/|\/power\/|\/cooler\/|\/case\/)/g;
 
   if (productData.length === 0) {
     displaySearchedItems = (
@@ -28,7 +30,7 @@ export default function Home({ productData, baseUrl, location, onClick }) {
                   <td>
                     <Container>
                       <Link
-                        to={`${location.pathname}/${item.id}`}
+                        to={`${item.image.match(pattern)}${item.id}`}
                         style={{ textDecoration: 'none', color: 'black' }}>
                         <Row>
                           <Col style={{ width: '171px' }}>
