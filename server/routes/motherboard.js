@@ -52,7 +52,7 @@ router.put('/:id', function (req, res, next) {
   });
 });
 
-router.get('/motherboards-name/:value?', function (req, res, next) {
+router.get('/name/:value?', function (req, res, next) {
   motherboards.searchByName(req.params.value, function (err, rows) {
     if (err) {
       res.json(err);

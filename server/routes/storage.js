@@ -52,7 +52,7 @@ router.put('/:id', function (req, res, next) {
   });
 });
 
-router.get('/storage-name/:value?', function (req, res, next) {
+router.get('/name/:value?', function (req, res, next) {
   storage.searchByName(req.params.value, function (err, rows) {
     if (err) {
       res.json(err);

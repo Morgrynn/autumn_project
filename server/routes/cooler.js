@@ -53,7 +53,7 @@ router.put('/:id', function (req, res, next) {
   });
 });
 
-router.get('/cooler-name/:value?', function (req, res, next) {
+router.get('/name/:value?', function (req, res, next) {
   cooler.searchByName(req.params.value, function (err, rows) {
     if (err) {
       res.json(err);
