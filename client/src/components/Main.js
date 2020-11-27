@@ -11,9 +11,10 @@ import LoginModal from "./Login";
 import ProfileModal from "./Profile";
 import ReactNotification, {store} from "react-notifications-component";
 import 'react-notifications-component/dist/theme.css'
+import Search from './Search';
 
 
-export default function Main() {
+export default function Main({handleOnInputChange, value, onSubmitSearchForm }) {
 
 
   const [loggedIn, setLoggedIn] = React.useState(false)
@@ -201,17 +202,9 @@ export default function Main() {
                 </Col>
               </Row>
               <Row className='mt-3 mb-3'>
-                <Col>
-
-                </Col>
-                <Col xs={9}>
-                  <div className='nav-menu'>
-
-                  </div>
-                </Col>
-                <Col>
-
-                </Col>
+              <Col></Col>
+                <Search handleOnInputChange={handleOnInputChange} onSubmitSearchForm={onSubmitSearchForm} value={value} />
+                <Col></Col>
               </Row>
             </Container>
           </Row>
@@ -220,4 +213,3 @@ export default function Main() {
     </div>
   );
 }
-  
