@@ -5,7 +5,7 @@ import { Container, Row, Col, Table, Image } from 'react-bootstrap';
 export default function Home({ productData, baseUrl, onClick }) {
   let displaySearchedItems;
 
-  const pattern = /(\/gpu\/|\/cpu\/|\/motherboards\/|\/storage\/|\/memory\/|\/power\/|\/cooler\/|\/case\/)/g;
+  const pattern = /(\/gpu\/|\/cpu\/|\/motherboards\/|\/storage\/|\/memory\/|\/power\/|\/cooler\/|\/cases\/)/g;
 
   if (productData.length === 0) {
     displaySearchedItems = (
@@ -25,6 +25,7 @@ export default function Home({ productData, baseUrl, onClick }) {
         <Table>
           <tbody>
             {productData.map((item, index) => {
+              console.log('URL-> ', `${item.image.match(pattern)}${item.id}`);
               return (
                 <tr key={index} onClick={() => onClick(item)}>
                   <td>

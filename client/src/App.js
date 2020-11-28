@@ -159,6 +159,7 @@ function App() {
 
   const onSubmitSearchForm = async (e) => {
     e.preventDefault();
+    // Multiple api calls to backend
     const cpuAPI = `${baseUrl}cpu/name/${value}`;
     const gpuAPI = `${baseUrl}gpu/name/${value}`;
     const mbAPI = `${baseUrl}motherboards/name/${value}`;
@@ -175,6 +176,8 @@ function App() {
     const getPower = axios.get(powerAPI);
     const getMemory = axios.get(memoryAPI);
     const getStorage = axios.get(storageAPI);
+
+    // get all the api calls data and store in an array to access easier
     try {
       await axios
         .all([
