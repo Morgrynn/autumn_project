@@ -37,7 +37,7 @@ function App() {
   const [productData, setProductData] = useState([]);
 
   // * Router dom references
-  // const history = useHistory();
+  const borwserHistory = useHistory();
   const location = useLocation();
 
   useEffect(() => {
@@ -210,6 +210,7 @@ function App() {
               ...allStorageNames
             );
 
+            borwserHistory.push("/");
             setProductData(searchArr);
           })
         );
