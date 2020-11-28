@@ -3,10 +3,11 @@
 # CompStore
 
 <!-- Add buttons here -->
-![uses-javascript](https://badgen.net/badge/Uses/Javascript/f0db4f)
+<!-- ![uses-javascript](https://badgen.net/badge/Uses/Javascript/f0db4f) -->
 ![uses-Node](https://badgen.net/badge/Uses/NodeJS/80bd01)
 ![uses-Express](https://badgen.net/badge/Uses/ExpressJS/f0db4f)
-![uses-FaunaDB](https://badgen.net/badge/Uses/PostgreSQL/323fcb)
+![uses-Reactjs](https://badgen.net/badge/Uses/Reactjs/148ecb)
+![uses-PostgreSQL](https://badgen.net/badge/Uses/PostgreSQL/323fcb)
 ![uses-Heroku](https://badgen.net/badge/Uses/Heroku/5a1db2)
 ![npm](https://img.shields.io/npm/v/npm?style=plastic)
 
