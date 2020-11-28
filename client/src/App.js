@@ -213,7 +213,7 @@ function App() {
               ...allStorageNames
             );
 
-            browserHistory.push("/");
+            browserHistory.push('/');
             setProductData(searchArr);
           })
         );
@@ -222,12 +222,18 @@ function App() {
     }
   };
 
+  const clearSearch = () => {
+    // Temporary option to clear the searched fields
+    setProductData([]);
+  };
+
   return (
     <div className='App'>
       <Main
         value={value}
         handleOnInputChange={handleOnInputChange}
         onSubmitSearchForm={onSubmitSearchForm}
+        clearSearch={clearSearch}
       />
       <Switch>
         <Route exact path='/'>
