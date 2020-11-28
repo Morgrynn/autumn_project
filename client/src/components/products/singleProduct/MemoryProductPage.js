@@ -18,20 +18,6 @@ export default function MemoryProductPage({ item, baseUrl, addItem }) {
   return (
     <Container style={{ marginTop: '10px' }}>
       <Row>
-<<<<<<< HEAD
-        <Col md={{ span: 6, offset: 4 }}>
-          <Card border='secondary' style={{ width: '18rem' }}>
-            <Card.Title style={{ textAlign: 'center' }}>
-              {item.name}
-            </Card.Title>
-            <Card.Img variant='top' src={`${baseUrl}${item.image}`} />
-            <ListGroup className='list-group-flush'>
-              <ListGroupItem>{item.speed}</ListGroupItem>
-              <ListGroupItem>{item.modules}</ListGroupItem>
-              <ListGroupItem>€{item.price}</ListGroupItem>
-            </ListGroup>
-          </Card>
-=======
         <Col xs={6} md={4}>
           <div>
             <Image fluid src={`${baseUrl}${item.image}`} />
@@ -61,7 +47,6 @@ export default function MemoryProductPage({ item, baseUrl, addItem }) {
               <UserRatings />
             </Tab>
           </Tabs>
->>>>>>> feature/productinfo
         </Col>
       </Row>
     </Container>
