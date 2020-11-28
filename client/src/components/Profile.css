@@ -1,0 +1,10 @@
+.accountInfo p {
+    color: black;
+    border-bottom: 1px solid #DADCE0;
+}
+
+.profileCategory {
+    border: 1px solid #DADCE0;
+    border-radius: 4px;
+    padding: 10px;
+}

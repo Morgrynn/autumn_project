@@ -1,5 +1,5 @@
 /*
-=============== 
+===============
 Variables
 ===============
 */
@@ -45,7 +45,7 @@ Variables
   --fixed-width: 620px;
 }
 /*
-=============== 
+===============
 Global Styles
 ===============
 */
@@ -121,6 +121,10 @@ p {
 }
 /*  global classes */
 
+.star-rating {
+  font-size: 0.8rem;
+}
+
 /* section */
 .section {
   width: 90vw;
@@ -135,7 +139,7 @@ p {
 }
 
 /*
-=============== 
+===============
 Navbar
 ===============
 */
@@ -243,4 +247,3 @@ nav {
     color: var(--clr-primary-7);
   }
 }
-
