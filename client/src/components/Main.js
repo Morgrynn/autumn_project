@@ -16,6 +16,8 @@ import Search from './Search';
 
 export default function Main({handleOnInputChange, value, onSubmitSearchForm }) {
 
+  const [loggedIn, setLoggedIn] = React.useState(false)
+
   const [currentUser, setCurrentUser] = React.useState({});
 
   const [showRegistration, setShowRegistration] = useState(false);
