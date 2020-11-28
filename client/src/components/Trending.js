@@ -22,7 +22,7 @@ export default function Home({ productData, baseUrl, onClick }) {
   } else {
     displaySearchedItems = (
       <Container>
-        <Table>
+        <Table responsive borderless hover >
           <tbody>
             {productData.map((item, index) => {
               console.log('URL-> ', `${item.image.match(pattern)}${item.id}`);
@@ -34,14 +34,14 @@ export default function Home({ productData, baseUrl, onClick }) {
                         to={`${item.image.match(pattern)}${item.id}`}
                         style={{ textDecoration: 'none', color: 'black' }}>
                         <Row>
-                          <Col style={{ width: '171px' }}>
+                          <Col xs={{ span: 3, offset: 3 }} >
                             <Image
                               src={`${baseUrl}${item.image}`}
                               thumbnail
-                              style={{ maxWidth: '75%' }}
+                              style={{ width: '70px' }}
                             />
                           </Col>
-                          <Col>{item.name}</Col>
+                          <Col xs={6}>{item.name}</Col>
                         </Row>
                       </Link>
                     </Container>
