@@ -24,7 +24,7 @@ export default function ShoppingCartModal(props) {
                                         />
                                     </Col>
                                     <Col className='text-left'>
-                                        <h6 className='d-inline'>{item.cpu_name}</h6>
+                                        <h6 className='d-inline'>{item.name}</h6>
                                     </Col>
                                 </Row>
                             </Container>

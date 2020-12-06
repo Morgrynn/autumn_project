@@ -137,7 +137,16 @@ export default function Main(props) {
                             onClick={handleShow}>
                           Register
                         </Button>
+                        <div className='d-inline'>
                         <ShoppingCartIcon className='d-inline ml-2' style={{cursor: "pointer"}} onClick={() => handleShoppingCartShow()}/>
+                          {props.shoppingCart.length ?
+                              <span className='item-counter' style={{cursor: "pointer"}}
+                                    onClick={() => handleShoppingCartShow()}>
+                          <span>{props.shoppingCart.length}</span>
+                        </span> :
+                              <span></span>
+                          }
+                        </div>
                       </div>
                   }
                 </Col>
