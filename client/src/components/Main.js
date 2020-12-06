@@ -88,7 +88,7 @@ export default function Main(props) {
         />
 
         <ShoppingCartModal shoppingCart={props.shoppingCart} handleClose={handleShoppingCartClose} handleShow={handleShoppingCartShow}
-                           showShoppingCart={showShoppingCart} currentUser={currentUser}
+                           showShoppingCart={showShoppingCart} currentUser={currentUser} addToShoppingCart={props.addToShoppingCart}
         />
 
       <div className='main-header'>
@@ -144,7 +144,9 @@ export default function Main(props) {
                                     onClick={() => handleShoppingCartShow()}>
                           <span>{props.shoppingCart.length}</span>
                         </span> :
-                              <span></span>
+                              <span>
+
+                              </span>
                           }
                         </div>
                       </div>

@@ -1,8 +1,15 @@
 import React from "react";
-import {Modal, Button, Container, Col, Row, Form, Image} from "react-bootstrap";
+import {Button, Col, Container, Image, Modal, Row} from "react-bootstrap";
+import DeleteIcon from '@material-ui/icons/Delete';
 
 export default function ShoppingCartModal(props) {
     let total = 0;
+
+    const DeleteItem = (itemId) => {
+        console.log(props.shoppingCart)
+        const updatedShoppingCart = props.shoppingCart.filter((item) => item.id !== itemId);
+        props.addToShoppingCart(updatedShoppingCart)
+    }
     return (
         <Modal show={props.showShoppingCart} onHide={props.handleClose}>
             <Modal.Header closeButton>
@@ -24,7 +31,11 @@ export default function ShoppingCartModal(props) {
                                         />
                                     </Col>
                                     <Col className='text-left'>
-                                        <h6 className='d-inline'>{item.name}</h6>
+                                        <h6 className='d-inline'>{item.name}</h6><br/>
+                                        <h5 className='mt-1'><b>€{item.price}</b></h5>
+                                    </Col>
+                                    <Col>
+                                        <Button variant='danger' size='sm' onClick={() => DeleteItem(item.id)}> <DeleteIcon />Delete</Button>
                                     </Col>
                                 </Row>
                             </Container>

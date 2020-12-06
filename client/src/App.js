@@ -21,6 +21,7 @@ import StorageProductPage from './components/products/singleProduct/StorageProdu
 import MemoryProductPage from './components/products/singleProduct/MemoryProductPage';
 import PowerSupplyProductPage from './components/products/singleProduct/PowerSupplyProductPage';
 import CaseProductPage from './components/products/singleProduct/CaseProductPage';
+import nextId from "react-id-generator";
 const baseUrl = 'http://localhost:5000/'
 
 function App() {
@@ -146,13 +147,13 @@ function App() {
   // TODO this needs to be implemented but is linked to all products
   // only functionality needed here
   const handleAddItem = (item) => {
-    addToShoppingCart([...shoppingCart, item])
+    addToShoppingCart([...shoppingCart, {id: nextId(),image: item.image, price: item.price, name: item.name, qty: 0 }])
     console.log(shoppingCart)
   };
 
   return (
     <div className='App'>
-      <Main shoppingCart={shoppingCart}/>
+      <Main shoppingCart={shoppingCart} addToShoppingCart={addToShoppingCart}/>
       <Switch>
         <Route exact path='/'>
           <Trending />
