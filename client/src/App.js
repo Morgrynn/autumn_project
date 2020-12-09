@@ -239,7 +239,10 @@ function App() {
       <Switch>
         <Route exact path='/'>
           <Trending
-            productData={productData}
+            cpuData={cpuData}
+            gpuData={gpuData}
+            motherboardData={motherboardData}
+            memoryData={memoryData}
             baseUrl={baseUrl}
             location={location}
             onClick={handleProductClick}

@@ -1,59 +1,175 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Container, Row, Col, Table, Image } from 'react-bootstrap';
+// import { Link } from 'react-router-dom';
+import One from '../images/banner/one.png';
+import Two from '../images/banner/two.png';
+import Three from '../images/banner/three.png';
+import Four from '../images/banner/four.png';
+import {
+  Container,
+  Row,
+  Col,
+  Carousel,
+  Card,
+  CardGroup,
+} from 'react-bootstrap';
+import { FaStar } from 'react-icons/fa';
 
-export default function Home({ productData, baseUrl, onClick }) {
-  let displaySearchedItems;
+const Star = ({ selected = false }) => (
+  <FaStar color={selected ? '#ff960c' : 'grey'} />
+);
 
-  const pattern = /(\/gpu\/|\/cpu\/|\/motherboards\/|\/storage\/|\/memory\/|\/power\/|\/cooler\/|\/cases\/)/g;
+const createArray = (length) => [...Array(length)];
 
-  if (productData.length === 0) {
-    displaySearchedItems = (
-      <Container className='mt-5'>
-        <Row>
-          <Col></Col>
-          <Col xs={9}>
-            <div className='main-title text-center'>Trending</div>
-          </Col>
-          <Col></Col>
-        </Row>
-      </Container>
-    );
-  } else {
-    displaySearchedItems = (
-      <Container>
-        <Table responsive borderless hover >
-          <tbody>
-            {productData.map((item, index) => {
-              console.log('URL-> ', `${item.image.match(pattern)}${item.id}`);
-              return (
-                <tr key={index} onClick={() => onClick(item)}>
-                  <td>
-                    <Container>
-                      <Link
-                        to={`${item.image.match(pattern)}${item.id}`}
-                        style={{ textDecoration: 'none', color: 'black' }}>
-                        <Row>
-                          <Col xs={{ span: 3, offset: 3 }} >
-                            <Image
-                              src={`${baseUrl}${item.image}`}
-                              thumbnail
-                              style={{ width: '70px' }}
-                            />
-                          </Col>
-                          <Col xs={6}>{item.name}</Col>
-                        </Row>
-                      </Link>
-                    </Container>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
-      </Container>
-    );
-  }
-
-  return <>{displaySearchedItems}</>;
+export default function Trending({
+  cpuData,
+  gpuData,
+  motherboardData,
+  memoryData,
+  baseUrl,
+}) {
+  return (
+    <Container className='mt-5'>
+      <Row>
+        <Col></Col>
+        <Col xs={9}>
+          <Carousel>
+            <Carousel.Item style={{ height: '150px' }}>
+              <img
+                className='d-block w-100'
+                style={{ minHeight: '150px' }}
+                src={One}
+                alt='First slide'
+              />
+            </Carousel.Item>
+            <Carousel.Item style={{ height: '150px' }}>
+              <img
+                className='d-block w-100'
+                style={{ minHeight: '150px' }}
+                src={Two}
+                alt='Third slide'
+              />
+            </Carousel.Item>
+            <Carousel.Item style={{ height: '150px' }}>
+              <img
+                className='d-block w-100'
+                style={{ minHeight: '150px' }}
+                src={Three}
+                alt='Third slide'
+              />
+            </Carousel.Item>
+            <Carousel.Item style={{ height: '150px' }}>
+              <img
+                className='d-block w-100'
+                style={{ minHeight: '150px' }}
+                src={Four}
+                alt='Fourth slide'
+              />
+            </Carousel.Item>
+          </Carousel>
+        </Col>
+        <Col></Col>
+      </Row>
+      <Row style={{ marginTop: '10px' }}>
+        <Col></Col>
+        <Col xs={9}>
+          <Carousel>
+            <Carousel.Item>
+              <CardGroup>
+                {cpuData.slice(1, 4).map((item, index) => {
+                  return (
+                    <Card
+                      style={{ width: '18rem' }}
+                      key={index}
+                      border='primary'>
+                      <Card.Img variant='top' src={`${baseUrl}${item.image}`} />
+                      <Card.Body>
+                        <Card.Text>
+                          {createArray(5).map((n, i) => (
+                            <Star key={i} selected={item.rating > i} />
+                          ))}
+                        </Card.Text>
+                        <Card.Title>{item.name}</Card.Title>
+                        <Card.Title>{item.price}</Card.Title>
+                        <small className='text-muted'>Free Shipping</small>
+                      </Card.Body>
+                    </Card>
+                  );
+                })}
+              </CardGroup>
+            </Carousel.Item>
+            <Carousel.Item>
+              <CardGroup>
+                {gpuData.slice(1, 4).map((item, index) => {
+                  return (
+                    <Card
+                      style={{ width: '18rem' }}
+                      key={index}
+                      border='secondary'>
+                      <Card.Img variant='top' src={`${baseUrl}${item.image}`} />
+                      <Card.Body>
+                        <Card.Text>
+                          {createArray(5).map((n, i) => (
+                            <Star key={i} selected={item.rating > i} />
+                          ))}
+                        </Card.Text>
+                        <Card.Title>{item.name}</Card.Title>
+                        <Card.Title>{item.price}</Card.Title>
+                        <small className='text-muted'>Free Shipping</small>
+                      </Card.Body>
+                    </Card>
+                  );
+                })}
+              </CardGroup>
+            </Carousel.Item>
+            <Carousel.Item>
+              <CardGroup>
+                {motherboardData.slice(1, 4).map((item, index) => {
+                  return (
+                    <Card
+                      style={{ width: '18rem' }}
+                      key={index}
+                      border='success'>
+                      <Card.Img variant='top' src={`${baseUrl}${item.image}`} />
+                      <Card.Body>
+                        <Card.Text>
+                          {createArray(5).map((n, i) => (
+                            <Star key={i} selected={item.rating > i} />
+                          ))}
+                        </Card.Text>
+                        <Card.Title>{item.name}</Card.Title>
+                        <Card.Title>{item.price}</Card.Title>
+                        <small className='text-muted'>Free Shipping</small>
+                      </Card.Body>
+                    </Card>
+                  );
+                })}
+              </CardGroup>
+            </Carousel.Item>
+            <Carousel.Item>
+              <CardGroup>
+                {memoryData.slice(1, 4).map((item, index) => {
+                  return (
+                    <Card style={{ width: '18rem' }} key={index} border='info'>
+                      <Card.Img variant='top' src={`${baseUrl}${item.image}`} />
+                      <Card.Body>
+                        <Card.Text>
+                          {createArray(5).map((n, i) => (
+                            <Star key={i} selected={item.rating > i} />
+                          ))}
+                        </Card.Text>
+                        <Card.Title>{item.name}</Card.Title>
+                        <Card.Title>{item.price}</Card.Title>
+                        <small className='text-muted'>Free Shipping</small>
+                      </Card.Body>
+                    </Card>
+                  );
+                })}
+              </CardGroup>
+            </Carousel.Item>
+          </Carousel>
+        </Col>
+        <Col></Col>
+      </Row>
+    </Container>
+  );
 }
