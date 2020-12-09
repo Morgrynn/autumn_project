@@ -6,6 +6,7 @@ import './App.css';
 import Cpu from './components/products/Cpu';
 import Gpu from './components/products/Gpu';
 import Trending from './components/Trending';
+import SearchPage from './components/SearchPage';
 import Motherboard from './components/products/Motherboard';
 import Memory from './components/products/Memory';
 import Storage from './components/products/Storage';
@@ -213,7 +214,7 @@ function App() {
               ...allStorageNames
             );
 
-            browserHistory.push('/');
+            browserHistory.push('/search-page');
             setProductData(searchArr);
           })
         );
@@ -238,6 +239,14 @@ function App() {
       <Switch>
         <Route exact path='/'>
           <Trending
+            productData={productData}
+            baseUrl={baseUrl}
+            location={location}
+            onClick={handleProductClick}
+          />
+        </Route>
+        <Route exact path='/search-page'>
+          <SearchPage
             productData={productData}
             baseUrl={baseUrl}
             location={location}
