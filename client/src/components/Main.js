@@ -12,6 +12,7 @@ import ProfileModal from './Profile';
 import ReactNotification, { store } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 import Search from './Search';
+import { FaLaptopCode } from "react-icons/fa";
 
 export default function Main({
   handleOnInputChange,
@@ -106,7 +107,7 @@ export default function Main({
               <Row>
                 <Col>
                   <div className='mt-2' style={{ cursor: 'pointer' }}>
-                    <h1 onClick={() => setShowMain(true)}>LOGO</h1>
+                    <h1 onClick={() => setShowMain(true)}><FaLaptopCode style={{verticalAlign: '-10px'}} />PC Pal</h1>
                   </div>
                 </Col>
                 <Col>
