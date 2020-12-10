@@ -22,6 +22,8 @@ import StorageProductPage from './components/products/singleProduct/StorageProdu
 import MemoryProductPage from './components/products/singleProduct/MemoryProductPage';
 import PowerSupplyProductPage from './components/products/singleProduct/PowerSupplyProductPage';
 import CaseProductPage from './components/products/singleProduct/CaseProductPage';
+import About from './components/About';
+import Footer from './components/Footer';
 const baseUrl = process.env.REACT_APP_BASEURL;
 
 function App() {
@@ -442,7 +444,9 @@ function App() {
               {...routeProps}
             />
           )}></Route>
+          <Route exact path="/about"><About /></Route>
       </Switch>
+      <Footer />
     </div>
   );
 }

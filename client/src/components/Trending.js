@@ -32,7 +32,7 @@ export default function Trending({
       <Row>
         <Col></Col>
         <Col xs={9}>
-          <Carousel>
+          <Carousel interval={3500}>
             <Carousel.Item style={{ height: '150px' }}>
               <img
                 className='d-block w-100'
@@ -72,7 +72,7 @@ export default function Trending({
       <Row style={{ marginTop: '10px' }}>
         <Col></Col>
         <Col xs={9}>
-          <Carousel>
+          <Carousel interval={5500}>
             <Carousel.Item>
               <CardGroup>
                 {cpuData.slice(1, 4).map((item, index) => {
