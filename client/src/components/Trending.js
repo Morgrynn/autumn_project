@@ -72,7 +72,7 @@ export default function Trending({
       <Row style={{ marginTop: '10px' }}>
         <Col></Col>
         <Col xs={9}>
-          <Carousel interval={5500}>
+          <Carousel interval={5500} pause='hover'>
             <Carousel.Item>
               <CardGroup>
                 {cpuData.slice(1, 4).map((item, index) => {
@@ -81,17 +81,39 @@ export default function Trending({
                       style={{ width: '18rem' }}
                       key={index}
                       border='primary'>
-                      <Card.Img variant='top' src={`${baseUrl}${item.image}`} />
+                      <Card.Img
+                        height='168px'
+                        variant='top'
+                        style={{ maxHeight: '270px' }}
+                        src={`${baseUrl}${item.image}`}
+                      />
                       <Card.Body>
-                        <Card.Text>
-                          {createArray(5).map((n, i) => (
-                            <Star key={i} selected={item.rating > i} />
-                          ))}
-                        </Card.Text>
-                        <Card.Title>{item.name}</Card.Title>
-                        <Card.Title>{item.price}</Card.Title>
-                        <small className='text-muted'>Free Shipping</small>
+                        <div height='168px'>
+                          <Card.Text>
+                            {createArray(5).map((n, i) => (
+                              <Star key={i} selected={item.rating > i} />
+                            ))}
+                          </Card.Text>
+                          <Card.Title>{item.name}</Card.Title>
+                        </div>
                       </Card.Body>
+                      <Card.Footer>
+                        <Card.Title>€{item.price}</Card.Title>
+                        <Card.Text
+                          style={{
+                            position: 'relative',
+                            background: '#cc4e00',
+                            color: 'white',
+                            fontWeight: '700',
+                            fontSize: '11px',
+                            textAlign: 'left',
+                            paddingLeft: '3px',
+                            paddingRight: '3px',
+                          }}>
+                          Save: 10%
+                        </Card.Text>
+                        <small className='text-muted'>Free Shipping</small>
+                      </Card.Footer>
                     </Card>
                   );
                 })}
@@ -105,17 +127,39 @@ export default function Trending({
                       style={{ width: '18rem' }}
                       key={index}
                       border='secondary'>
-                      <Card.Img variant='top' src={`${baseUrl}${item.image}`} />
+                      <Card.Img
+                        height='168px'
+                        variant='top'
+                        style={{ maxHeight: '270px' }}
+                        src={`${baseUrl}${item.image}`}
+                      />
                       <Card.Body>
-                        <Card.Text>
-                          {createArray(5).map((n, i) => (
-                            <Star key={i} selected={item.rating > i} />
-                          ))}
-                        </Card.Text>
-                        <Card.Title>{item.name}</Card.Title>
-                        <Card.Title>{item.price}</Card.Title>
-                        <small className='text-muted'>Free Shipping</small>
+                        <div height='168px'>
+                          <Card.Text>
+                            {createArray(5).map((n, i) => (
+                              <Star key={i} selected={item.rating > i} />
+                            ))}
+                          </Card.Text>
+                          <Card.Title>{item.name}</Card.Title>
+                        </div>
                       </Card.Body>
+                      <Card.Footer>
+                        <Card.Title>€{item.price}</Card.Title>
+                        <Card.Text
+                          style={{
+                            position: 'relative',
+                            background: '#cc4e00',
+                            color: 'white',
+                            fontWeight: '700',
+                            fontSize: '11px',
+                            textAlign: 'left',
+                            paddingLeft: '3px',
+                            paddingRight: '3px',
+                          }}>
+                          Save: 10%
+                        </Card.Text>
+                        <small className='text-muted'>Free Shipping</small>
+                      </Card.Footer>
                     </Card>
                   );
                 })}
@@ -129,17 +173,39 @@ export default function Trending({
                       style={{ width: '18rem' }}
                       key={index}
                       border='success'>
-                      <Card.Img variant='top' src={`${baseUrl}${item.image}`} />
+                      <Card.Img
+                        height='168px'
+                        variant='top'
+                        style={{ maxHeight: '270px' }}
+                        src={`${baseUrl}${item.image}`}
+                      />
                       <Card.Body>
-                        <Card.Text>
-                          {createArray(5).map((n, i) => (
-                            <Star key={i} selected={item.rating > i} />
-                          ))}
-                        </Card.Text>
-                        <Card.Title>{item.name}</Card.Title>
-                        <Card.Title>{item.price}</Card.Title>
-                        <small className='text-muted'>Free Shipping</small>
+                        <div height='168px'>
+                          <Card.Text>
+                            {createArray(5).map((n, i) => (
+                              <Star key={i} selected={item.rating > i} />
+                            ))}
+                          </Card.Text>
+                          <Card.Title>{item.name}</Card.Title>
+                        </div>
                       </Card.Body>
+                      <Card.Footer>
+                        <Card.Title>€{item.price}</Card.Title>
+                        <Card.Text
+                          style={{
+                            position: 'relative',
+                            background: '#cc4e00',
+                            color: 'white',
+                            fontWeight: '700',
+                            fontSize: '11px',
+                            textAlign: 'left',
+                            paddingLeft: '3px',
+                            paddingRight: '3px',
+                          }}>
+                          Save: 10%
+                        </Card.Text>
+                        <small className='text-muted'>Free Shipping</small>
+                      </Card.Footer>
                     </Card>
                   );
                 })}
@@ -150,17 +216,39 @@ export default function Trending({
                 {memoryData.slice(1, 4).map((item, index) => {
                   return (
                     <Card style={{ width: '18rem' }} key={index} border='info'>
-                      <Card.Img variant='top' src={`${baseUrl}${item.image}`} />
+                      <Card.Img
+                        height='168px'
+                        variant='top'
+                        style={{ maxHeight: '270px' }}
+                        src={`${baseUrl}${item.image}`}
+                      />
                       <Card.Body>
-                        <Card.Text>
-                          {createArray(5).map((n, i) => (
-                            <Star key={i} selected={item.rating > i} />
-                          ))}
-                        </Card.Text>
-                        <Card.Title>{item.name}</Card.Title>
-                        <Card.Title>{item.price}</Card.Title>
-                        <small className='text-muted'>Free Shipping</small>
+                        <div height='168px'>
+                          <Card.Text>
+                            {createArray(5).map((n, i) => (
+                              <Star key={i} selected={item.rating > i} />
+                            ))}
+                          </Card.Text>
+                          <Card.Title>{item.name}</Card.Title>
+                        </div>
                       </Card.Body>
+                      <Card.Footer>
+                        <Card.Title>€{item.price}</Card.Title>
+                        <Card.Text
+                          style={{
+                            position: 'relative',
+                            background: '#cc4e00',
+                            color: 'white',
+                            fontWeight: '700',
+                            fontSize: '11px',
+                            textAlign: 'left',
+                            paddingLeft: '3px',
+                            paddingRight: '3px',
+                          }}>
+                          Save: 10%
+                        </Card.Text>
+                        <small className='text-muted'>Free Shipping</small>
+                      </Card.Footer>
                     </Card>
                   );
                 })}
