@@ -43,7 +43,7 @@ export default function Storage({ productData, baseUrl, onClick, location, addIt
                           style={{ maxWidth: '75%' }}
                         />
                       </Col>
-                      <Col>{item.storage_name}</Col>
+                      <Col>{item.name}</Col>
                     </Row>
                     </Link>
                   </Container>

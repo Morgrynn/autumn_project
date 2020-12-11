@@ -35,9 +35,11 @@ function App() {
   const [powerData, setPowerData] = useState([]);
   const [item, setItem] = useState([]);
   const [shoppingCart, addToShoppingCart] = React.useState([])
+  const [value, setValue] = useState('');
+  const [productData, setProductData] = useState([]);
 
   // * Router dom references
-  const history = useHistory();
+  const browserHistory = useHistory();
   const location = useLocation();
 
   useEffect(() => {
@@ -151,61 +153,162 @@ function App() {
     console.log(shoppingCart)
   };
 
+  // ------------------------------------------
+  // Search functionality
+
+  const handleOnInputChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  const onSubmitSearchForm = async (e) => {
+    e.preventDefault();
+    // Multiple api calls to backend
+    const cpuAPI = `${baseUrl}cpu/name/${value}`;
+    const gpuAPI = `${baseUrl}gpu/name/${value}`;
+    const mbAPI = `${baseUrl}motherboards/name/${value}`;
+    const coolerAPI = `${baseUrl}cooler/name/${value}`;
+    const caseAPI = `${baseUrl}cases/name/${value}`;
+    const powerAPI = `${baseUrl}power/name/${value}`;
+    const memoryAPI = `${baseUrl}memory/name/${value}`;
+    const storageAPI = `${baseUrl}storage/name/${value}`;
+    const getCpu = axios.get(cpuAPI);
+    const getGpu = axios.get(gpuAPI);
+    const getMb = axios.get(mbAPI);
+    const getCooler = axios.get(coolerAPI);
+    const getCase = axios.get(caseAPI);
+    const getPower = axios.get(powerAPI);
+    const getMemory = axios.get(memoryAPI);
+    const getStorage = axios.get(storageAPI);
+
+    // get all the api calls data and store in an array to access easier
+    try {
+      await axios
+        .all([
+          getCpu,
+          getGpu,
+          getMb,
+          getCooler,
+          getCase,
+          getPower,
+          getMemory,
+          getStorage,
+        ])
+        .then(
+          axios.spread((...allData) => {
+            const allCpuNames = allData[0].data;
+            const allGpuNames = allData[1].data;
+            const allMbNames = allData[2].data;
+            const allCoolerNames = allData[3].data;
+            const allCaseNames = allData[4].data;
+            const allPowerNames = allData[5].data;
+            const allMemoryNames = allData[6].data;
+            const allStorageNames = allData[7].data;
+
+            const searchArr = [];
+            searchArr.push(
+              ...allCpuNames,
+              ...allGpuNames,
+              ...allMbNames,
+              ...allCoolerNames,
+              ...allCaseNames,
+              ...allPowerNames,
+              ...allMemoryNames,
+              ...allStorageNames
+            );
+
+            browserHistory.push("/");
+            setProductData(searchArr);
+          })
+        );
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   return (
     <div className='App'>
-      <Main shoppingCart={shoppingCart} addToShoppingCart={addToShoppingCart}/>
+      <Main
+        shoppingCart={shoppingCart}
+        addToShoppingCart={addToShoppingCart}
+        value={value}
+        handleOnInputChange={handleOnInputChange}
+        onSubmitSearchForm={onSubmitSearchForm}
+      />
       <Switch>
         <Route exact path='/'>
-          <Trending />
+          <Trending
+            productData={productData}
+            baseUrl={baseUrl}
+            location={location}
+            onClick={handleProductClick}
+          />
         </Route>
         <Route
           exact
           path='/cpu/:id'
           render={(routeProps) => (
-            <CpuProductPage item={item} baseUrl={baseUrl} {...routeProps} />
-          )}>
-
-        </Route>
+            <CpuProductPage
+              item={item}
+              baseUrl={baseUrl}
+              addItem={handleAddItem}
+              {...routeProps}
+            />
+          )}></Route>
         <Route
           exact
           path='/motherboards/:id'
           render={(routeProps) => (
-            <MboardProductPage item={item} baseUrl={baseUrl} {...routeProps} />
-          )}>
-
-        </Route>
+            <MboardProductPage
+              item={item}
+              baseUrl={baseUrl}
+              addItem={handleAddItem}
+              {...routeProps}
+            />
+          )}></Route>
         <Route
           exact
           path='/gpu/:id'
           render={(routeProps) => (
-            <GpuProductPage item={item} baseUrl={baseUrl} {...routeProps} />
-          )}>
-
-        </Route>
+            <GpuProductPage
+              item={item}
+              baseUrl={baseUrl}
+              addItem={handleAddItem}
+              {...routeProps}
+            />
+          )}></Route>
         <Route
           exact
           path='/cooler/:id'
           render={(routeProps) => (
-            <CoolerProductPage item={item} baseUrl={baseUrl} {...routeProps} />
-          )}>
-
-        </Route>
+            <CoolerProductPage
+              item={item}
+              baseUrl={baseUrl}
+              addItem={handleAddItem}
+              {...routeProps}
+            />
+          )}></Route>
         <Route
           exact
           path='/storage/:id'
           render={(routeProps) => (
-            <StorageProductPage item={item} baseUrl={baseUrl} {...routeProps} />
-          )}>
-
-        </Route>
+            <StorageProductPage
+              item={item}
+              baseUrl={baseUrl}
+              addItem={handleAddItem}
+              {...routeProps}
+            />
+          )}></Route>
         <Route
           exact
           path='/memory/:id'
           render={(routeProps) => (
-            <MemoryProductPage item={item} baseUrl={baseUrl} {...routeProps} />
-          )}>
-
-        </Route>
+            <MemoryProductPage
+              item={item}
+              baseUrl={baseUrl}
+              addItem={handleAddItem}
+              {...routeProps}
+            />
+          )}></Route>
         <Route
           exact
           path='/power/:id'
@@ -213,6 +316,7 @@ function App() {
             <PowerSupplyProductPage
               item={item}
               baseUrl={baseUrl}
+              addItem={handleAddItem}
               {...routeProps}
             />
           )}>
@@ -222,10 +326,13 @@ function App() {
           exact
           path='/cases/:id'
           render={(routeProps) => (
-            <CaseProductPage item={item} baseUrl={baseUrl} {...routeProps} />
-          )}>
-
-        </Route>
+            <CaseProductPage
+              item={item}
+              baseUrl={baseUrl}
+              addItem={handleAddItem}
+              {...routeProps}
+            />
+          )}></Route>
         <Route
           exact
           path='/cpu'

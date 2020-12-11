@@ -43,7 +43,7 @@ export default function Motherboard({ productData, onClick, baseUrl, location, a
                             style={{ maxWidth: '75%' }}
                           />
                         </Col>
-                        <Col>{item.motherboards_name}</Col>
+                        <Col>{item.name}</Col>
                       </Row>
                       </Link>
                     </Container>

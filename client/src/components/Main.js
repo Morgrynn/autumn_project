@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Dropdown, Container, Row, Col, Button } from 'react-bootstrap';
 import './Main.css';
 import Laptop from '../images/laptop.png';
@@ -12,14 +12,17 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import ReactNotification, {store} from "react-notifications-component";
 import 'react-notifications-component/dist/theme.css'
+import Search from './Search';
 
 
-export default function Main(props) {
+
+export default function Main({handleOnInputChange, value, onSubmitSearchForm, shoppingCart, addToShoppingCart }) {
 
 
   const [loggedIn, setLoggedIn] = React.useState(false)
   const [currentUser, setCurrentUser] = React.useState({})
   const [shoppingCart, addToShoppingCart] = React.useState([])
+
 
   const [showRegistration, setShowRegistration] = useState(false);
   const [showMain, setShowMain] = useState(true);
@@ -36,36 +39,35 @@ export default function Main(props) {
   const handleShoppingCartClose = () => setShowShoppingCart(false);
   const handleShoppingCartShow = () => setShowShoppingCart(true);
 
-
   const handleNotificationsSuccess = (message) => {
     store.addNotification({
-      title: "Success!",
+      title: 'Success!',
       message: message,
-      type: "success",
+      type: 'success',
       container: 'top-right',
       insert: 'top',
       dismiss: {
         duration: 5000,
-        showIcon: true
+        showIcon: true,
       },
-      width: 700
-    })
-  }
+      width: 700,
+    });
+  };
 
   const handleNotificationsDanger = (message) => {
     store.addNotification({
-      title: "ERROR!",
+      title: 'ERROR!',
       message: message,
-      type: "danger",
+      type: 'danger',
       container: 'top-right',
       insert: 'top',
       dismiss: {
         duration: 5000,
-        showIcon: true
+        showIcon: true,
       },
-      width: 700
-    })
-  }
+      width: 700,
+    });
+  };
   return (
     <div>
         <ReactNotification />
@@ -87,8 +89,8 @@ export default function Main(props) {
                       showProfile={showProfile} currentUser={currentUser}
         />
 
-        <ShoppingCartModal shoppingCart={props.shoppingCart} handleClose={handleShoppingCartClose} handleShow={handleShoppingCartShow}
-                           showShoppingCart={showShoppingCart} currentUser={currentUser} addToShoppingCart={props.addToShoppingCart}
+        <ShoppingCartModal shoppingCart={shoppingCart} handleClose={handleShoppingCartClose} handleShow={handleShoppingCartShow}
+                           showShoppingCart={showShoppingCart} currentUser={currentUser} addToShoppingCart={addToShoppingCart}
         />
 
       <div className='main-header'>
@@ -97,7 +99,7 @@ export default function Main(props) {
             <Container>
               <Row>
                 <Col>
-                  <div className='mt-2' style={{cursor: "pointer"}}>
+                  <div className='mt-2' style={{ cursor: 'pointer' }}>
                     <h1 onClick={() => setShowMain(true)}>LOGO</h1>
                   </div>
                 </Col>
@@ -139,10 +141,10 @@ export default function Main(props) {
                         </Button>
                         <div className='d-inline'>
                         <ShoppingCartIcon className='d-inline ml-2' style={{cursor: "pointer"}} onClick={() => handleShoppingCartShow()}/>
-                          {props.shoppingCart.length ?
+                          {shoppingCart.length ?
                               <span className='item-counter' style={{cursor: "pointer"}}
                                     onClick={() => handleShoppingCartShow()}>
-                          <span>{props.shoppingCart.length}</span>
+                          <span>{shoppingCart.length}</span>
                         </span> :
                               <span>
 
@@ -165,70 +167,106 @@ export default function Main(props) {
                         Get yourself a brand new PC <br /> at a great price
                       </div>
                       <Button
-                          className='mt-2'
-                          style={{ width: '155px' }}
-                          size='md'
-                          variant='secondary'>
-                        Shop now
+                        style={{ width: '100px' }}
+                        size='sm'
+                        variant='outline-secondary'
+                        onClick={handleLoginShow}>
+                        Login
                       </Button>
-                    </Col>
-                    <Col className='p-1'>
-                      <div className=' main-picture'>
-                        <img className='laptop-pic' src={Laptop} alt='Logo' />
-                      </div>
-                    </Col>
-                  </Row> : null }
-              <Row>
-                <Col>
-
+                      <Button
+                        style={{ width: '100px' }}
+                        className='ml-3'
+                        size='sm'
+                        variant='secondary'
+                        onClick={handleShow}>
+                        Register
+                      </Button>
+                    </div>
+                  )}
                 </Col>
+              </Row>
+              {showMain ? (
+                <Row className='mainInfo'>
+                  <Col xs={2}></Col>
+                  <Col className='mt-5'>
+                    <h2>UPGRADE!</h2>
+                    <div className='shop-text'>
+                      Get yourself a brand new PC <br /> at a great price
+                    </div>
+                    <Button
+                      className='mt-2'
+                      style={{ width: '155px' }}
+                      size='md'
+                      variant='secondary'>
+                      Shop now
+                    </Button>
+                  </Col>
+                  <Col className='p-1'>
+                    <div className=' main-picture'>
+                      <img className='laptop-pic' src={Laptop} alt='Logo' />
+                    </div>
+                  </Col>
+                </Row>
+              ) : null}
+              <Row>
+                <Col></Col>
                 <Col xs={9}>
                   <div className='nav-category'>
                     <div className='nav-menu-item p-3 ml-3 nav-chosen-category'>
-                      <Link to='/' onClick={() => setShowMain(false)}>Trending</Link>
+                      <Link to='/' onClick={() => setShowMain(false)}>
+                        Trending
+                      </Link>
                     </div>
                     <div className='nav-menu-item p-3 ml-2'>
-                      <Link to='/cpu' onClick={() => setShowMain(false)}>CPU</Link>
+                      <Link to='/cpu' onClick={() => setShowMain(false)}>
+                        CPU
+                      </Link>
                     </div>
                     <div className='nav-menu-item p-3 ml-2'>
-                      <Link to='/motherboards' onClick={() => setShowMain(false)}>Motherboards</Link>
+                      <Link
+                        to='/motherboards'
+                        onClick={() => setShowMain(false)}>
+                        Motherboards
+                      </Link>
                     </div>
                     <div className='nav-menu-item p-3 ml-2'>
-                      <Link to='/gpu' onClick={() => setShowMain(false)}>GPU</Link>
+                      <Link to='/gpu' onClick={() => setShowMain(false)}>
+                        GPU
+                      </Link>
                     </div>
                     <div className='nav-menu-item p-3 ml-2'>
-                      <Link to='/memory' onClick={() => setShowMain(false)}>Memory</Link>
+                      <Link to='/memory' onClick={() => setShowMain(false)}>
+                        Memory
+                      </Link>
                     </div>
                     <div className='nav-menu-item p-3 ml-2'>
-                      <Link to='/storage' onClick={() => setShowMain(false)}>Storage</Link>
+                      <Link to='/storage' onClick={() => setShowMain(false)}>
+                        Storage
+                      </Link>
                     </div>
                     <div className='nav-menu-item p-3 ml-2'>
-                      <Link to='/power' onClick={() => setShowMain(false)}>Power supply</Link>
+                      <Link to='/power' onClick={() => setShowMain(false)}>
+                        Power supply
+                      </Link>
                     </div>
                     <div className='nav-menu-item p-3 ml-2'>
-                      <Link to='/cooler' onClick={() => setShowMain(false)}>Cooler</Link>
+                      <Link to='/cooler' onClick={() => setShowMain(false)}>
+                        Cooler
+                      </Link>
                     </div>
                     <div className='nav-menu-item p-3 ml-2'>
-                      <Link to='/cases' onClick={() => setShowMain(false)}>Case</Link>
+                      <Link to='/cases' onClick={() => setShowMain(false)}>
+                        Case
+                      </Link>
                     </div>
                   </div>
                 </Col>
-                <Col>
-
-                </Col>
+                <Col></Col>
               </Row>
               <Row className='mt-3 mb-3'>
-                <Col>
-
-                </Col>
-                <Col xs={9}>
-                  <div className='nav-menu'>
-
-                  </div>
-                </Col>
-                <Col>
-
-                </Col>
+              <Col></Col>
+                <Search handleOnInputChange={handleOnInputChange} onSubmitSearchForm={onSubmitSearchForm} value={value} />
+                <Col></Col>
               </Row>
             </Container>
           </Row>
@@ -237,4 +275,3 @@ export default function Main(props) {
     </div>
   );
 }
-  

@@ -9,9 +9,9 @@ const memory = {
   },
   add: function (memory, callback) {
     return db.query(
-      'insert into memory_table(memory_name, speed, modules, price_pergb, color, first_word_latency, cas_latency, rating, price, image) values($1,$2,$3,$4,$5,$6,$7,$8,$8,$9,$10)',
+      'insert into memory_table(name, speed, modules, price_pergb, color, first_word_latency, cas_latency, rating, price, image) values($1,$2,$3,$4,$5,$6,$7,$8,$8,$9,$10)',
       [
-        memory.memory_name,
+        memory.name,
         memory.speed,
         memory.modules,
         memory.price_pergb,
@@ -30,9 +30,9 @@ const memory = {
   },
   update: function (id, memory, callback) {
     return db.query(
-      'update memory_table set memory_name=$1, speed=$2, modules=$3, price_pergb=$4, color=$5, first_word_latency=$6, cas_latency=$7, rating=$8, price=$9 image=$10 where id=$11',
+      'update memory_table set name=$1, speed=$2, modules=$3, price_pergb=$4, color=$5, first_word_latency=$6, cas_latency=$7, rating=$8, price=$9 image=$10 where id=$11',
       [
-        memory.memory_name,
+        memory.name,
         memory.speed,
         memory.modules,
         memory.price_pergb,
@@ -50,7 +50,7 @@ const memory = {
   searchByName: function (value, callback) {
     var nameLike = '%' + value + '%';
     return db.query(
-      'select * from memory_table where memory_name ILIKE $1 order by id asc',
+      'select * from memory_table where name ILIKE $1 order by id asc',
       [nameLike],
       callback
     );

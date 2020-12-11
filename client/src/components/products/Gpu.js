@@ -43,7 +43,7 @@ export default function Gpu({ productData, onClick, baseUrl, location, addItem }
                           style={{ maxWidth: '75%' }}
                         />
                       </Col>
-                      <Col>{item.gpu_name}</Col>
+                      <Col>{item.name}</Col>
                     </Row>
                     </Link>
                   </Container>

@@ -43,7 +43,7 @@ export default function Memory({ productData, baseUrl, onClick, location, addIte
                             style={{ maxWidth: '75%' }}
                           />
                         </Col>
-                        <Col>{item.memory_name}</Col>
+                        <Col>{item.name}</Col>
                       </Row>
                     </Link>
                   </Container>

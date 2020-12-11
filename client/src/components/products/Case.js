@@ -48,7 +48,7 @@ export default function Case({
                             style={{ maxWidth: '75%' }}
                           />
                         </Col>
-                        <Col>{item.case_name}</Col>
+                        <Col>{item.name}</Col>
                       </Row>
                     </Link>
                   </Container>

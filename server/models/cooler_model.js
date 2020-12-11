@@ -9,9 +9,9 @@ const cooler = {
   },
   add: function (cooler, callback) {
     return db.query(
-      'insert into cooler_table(cooler_name, fan_rpm, noise_level, color, radiator_size, rating, price, image) values($1,$2,$3,$4,$5,$6,$7,$8)',
+      'insert into cooler_table(name, fan_rpm, noise_level, color, radiator_size, rating, price, image) values($1,$2,$3,$4,$5,$6,$7,$8)',
       [
-        cooler.cooler_name,
+        cooler.name,
         cooler.fan_rpm,
         cooler.noise_level,
         cooler.color,
@@ -28,9 +28,9 @@ const cooler = {
   },
   update: function (id, cooler, callback) {
     return db.query(
-      'update cooler_table set cooler_name=$1, fan_rpm=$2, noise_level=$3, color=$4, radiator_size=$5, rating=$6, price=$7, image=$8 where id=$9',
+      'update cooler_table set name=$1, fan_rpm=$2, noise_level=$3, color=$4, radiator_size=$5, rating=$6, price=$7, image=$8 where id=$9',
       [
-        cooler.cooler_name,
+        cooler.name,
         cooler.fan_rpm,
         cooler.noise_level,
         cooler.color,
@@ -46,7 +46,7 @@ const cooler = {
   searchByName: function (value, callback) {
     var nameLike = '%' + value + '%';
     return db.query(
-      'select * from cooler_table where cooler_name ILIKE $1 order by id asc',
+      'select * from cooler_table where name ILIKE $1 order by id asc',
       [nameLike],
       callback
     );
