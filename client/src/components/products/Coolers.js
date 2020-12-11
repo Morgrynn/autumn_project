@@ -19,7 +19,7 @@ export default function Cooler({
 }) {
   return (
     <Container>
-      <Table responsive bordered hover>
+      <Table responsive hover>
         <thead>
           <tr>
             <th>Name</th>
