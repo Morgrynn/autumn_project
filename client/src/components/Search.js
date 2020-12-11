@@ -8,19 +8,12 @@ export default function Search({
   onSubmitSearchForm,
 }) {
   return (
-    // <Col xs={9}>
-    // <form onSubmit={itemSearch}>
-    //   <div className='nav-menu'>
-    //     <input type='text' placeholder='Search ...' onChange={handleSearch} />
-    //   </div>
-    //   </form>
-    // </Col>
     <Col xs={9}>
       <Form onSubmit={onSubmitSearchForm}>
         <Form.Group>
           <InputGroup className='mb-3'>
             <FormControl
-              placeholder='Search ...'
+              placeholder='Search...'
               aria-label='Search'
               aria-describedby='basic-addon2'
               value={value}

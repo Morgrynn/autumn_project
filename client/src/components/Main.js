@@ -4,38 +4,42 @@ import './Main.css';
 import Laptop from '../images/laptop.png';
 import { Link } from 'react-router-dom';
 import RegistrationModal from './Registration';
+import ShoppingCartModal from './ShoppingCart';
+import LoginModal from './Login';
+import ProfileModal from './Profile';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import LoginModal from "./Login";
-import ProfileModal from "./Profile";
-import ReactNotification, {store} from "react-notifications-component";
-import 'react-notifications-component/dist/theme.css'
+import ReactNotification, { store } from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
 import Search from './Search';
+import { FaLaptopCode } from 'react-icons/fa';
 
-
-export default function Main({handleOnInputChange, value, onSubmitSearchForm }) {
-
-  const [loggedIn, setLoggedIn] = React.useState(false)
-
+export default function Main({
+  handleOnInputChange,
+  clearSearch,
+  value,
+  onSubmitSearchForm,
+  shoppingCart,
+  addToShoppingCart,
+}) {
+  const [loggedIn, setLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
 
   const [showRegistration, setShowRegistration] = useState(false);
-
   const [showMain, setShowMain] = useState(true);
+  const [showLogin, setShowLogin] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
+  const [showShoppingCart, setShowShoppingCart] = useState(false);
 
   const handleClose = () => setShowRegistration(false);
   const handleShow = () => setShowRegistration(true);
-
-  const [showLogin, setShowLogin] = useState(false);
-
   const handleLoginClose = () => setShowLogin(false);
   const handleLoginShow = () => setShowLogin(true);
-
-  const [showProfile, setShowProfile] = useState(false);
-
   const handleProfileClose = () => setShowProfile(false);
   const handleProfileShow = () => setShowProfile(true);
+  const handleShoppingCartClose = () => setShowShoppingCart(false);
+  const handleShoppingCartShow = () => setShowShoppingCart(true);
 
   const handleNotificationsSuccess = (message) => {
     store.addNotification({
@@ -96,6 +100,15 @@ export default function Main({handleOnInputChange, value, onSubmitSearchForm }) 
         currentUser={currentUser}
       />
 
+      <ShoppingCartModal
+        shoppingCart={shoppingCart}
+        handleClose={handleShoppingCartClose}
+        handleShow={handleShoppingCartShow}
+        showShoppingCart={showShoppingCart}
+        currentUser={currentUser}
+        addToShoppingCart={addToShoppingCart}
+      />
+
       <div className='main-header'>
         <Container>
           <Row>
@@ -103,13 +116,16 @@ export default function Main({handleOnInputChange, value, onSubmitSearchForm }) 
               <Row>
                 <Col>
                   <div className='mt-2' style={{ cursor: 'pointer' }}>
-                    <h1 onClick={() => setShowMain(true)}>LOGO</h1>
+                    <h1 onClick={() => setShowMain(true)}>
+                      <FaLaptopCode style={{ verticalAlign: '-10px' }} />
+                      PC Pal
+                    </h1>
                   </div>
                 </Col>
                 <Col>
                   {loggedIn ? (
                     <div className='float-right mt-2'>
-                      <Dropdown>
+                      <Dropdown className='d-inline'>
                         <Dropdown.Toggle
                           className='mr-3'
                           size='sm'
@@ -124,7 +140,7 @@ export default function Main({handleOnInputChange, value, onSubmitSearchForm }) 
                           </Dropdown.Item>
                           <Dropdown.Item href='#/action-2'>
                             <ShoppingCartIcon className='mr-2' />
-                            Shopping Cart
+                            History
                           </Dropdown.Item>
                           <Dropdown.Item onClick={() => setLoggedIn(false)}>
                             {' '}
@@ -133,6 +149,10 @@ export default function Main({handleOnInputChange, value, onSubmitSearchForm }) 
                           </Dropdown.Item>
                         </Dropdown.Menu>
                       </Dropdown>
+                      <ShoppingCartIcon
+                        className='d-inline'
+                        onClick={() => handleShoppingCartShow()}
+                      />
                     </div>
                   ) : (
                     <div className='float-right mt-2'>
@@ -151,6 +171,23 @@ export default function Main({handleOnInputChange, value, onSubmitSearchForm }) 
                         onClick={handleShow}>
                         Register
                       </Button>
+                      <div className='d-inline'>
+                        <ShoppingCartIcon
+                          className='d-inline ml-2'
+                          style={{ cursor: 'pointer' }}
+                          onClick={() => handleShoppingCartShow()}
+                        />
+                        {shoppingCart.length ? (
+                          <span
+                            className='item-counter'
+                            style={{ cursor: 'pointer' }}
+                            onClick={() => handleShoppingCartShow()}>
+                            <span>{shoppingCart.length}</span>
+                          </span>
+                        ) : (
+                          <span></span>
+                        )}
+                      </div>
                     </div>
                   )}
                 </Col>
@@ -183,7 +220,12 @@ export default function Main({handleOnInputChange, value, onSubmitSearchForm }) 
                 <Col xs={9}>
                   <div className='nav-category'>
                     <div className='nav-menu-item p-3 ml-3 nav-chosen-category'>
-                      <Link to='/' onClick={() => setShowMain(false)}>
+                      <Link
+                        to='/'
+                        onClick={() => {
+                          setShowMain(false);
+                          clearSearch();
+                        }}>
                         Trending
                       </Link>
                     </div>
@@ -234,8 +276,12 @@ export default function Main({handleOnInputChange, value, onSubmitSearchForm }) 
                 <Col></Col>
               </Row>
               <Row className='mt-3 mb-3'>
-              <Col></Col>
-                <Search handleOnInputChange={handleOnInputChange} onSubmitSearchForm={onSubmitSearchForm} value={value} />
+                <Col></Col>
+                <Search
+                  handleOnInputChange={handleOnInputChange}
+                  onSubmitSearchForm={onSubmitSearchForm}
+                  value={value}
+                />
                 <Col></Col>
               </Row>
             </Container>

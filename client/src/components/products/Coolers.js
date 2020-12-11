@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Table, Image, Row, Col, Button } from 'react-bootstrap';
 import { FaStar } from 'react-icons/fa';
+import { RiShoppingCartFill } from 'react-icons/ri';
 
 const Star = ({ selected = false }) => (
   <FaStar color={selected ? '#ff960c' : 'grey'} />
@@ -18,7 +19,7 @@ export default function Cooler({
 }) {
   return (
     <Container>
-      <Table responsive bordered hover>
+      <Table responsive hover>
         <thead>
           <tr>
             <th>Name</th>
@@ -28,6 +29,9 @@ export default function Cooler({
             <th>Radiator Size</th>
             <th>Rating</th>
             <th>Price</th>
+            <th style={{ textAlign: 'center'}}><RiShoppingCartFill
+              style={{ marginRight: '3px', marginBottom: '3px' }}
+            /></th>
           </tr>
         </thead>
         <tbody>

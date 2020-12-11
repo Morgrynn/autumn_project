@@ -74,3 +74,11 @@
 .mainInfo {
     display: none;
 }
+
+.item-counter {
+    color: white;
+    padding: 3px 8px 3px 8px;
+    border-radius: 50%;
+    margin-left: -6px;
+    background-color: red;
+}
