@@ -38,6 +38,7 @@ function App() {
   const [item, setItem] = useState([]);
   const [value, setValue] = useState('');
   const [productData, setProductData] = useState([]);
+  const [checked, setChecked] = useState(false);
 
   // * Router dom references
   const browserHistory = useHistory();
@@ -230,6 +231,12 @@ function App() {
     setProductData([]);
   };
 
+  // Checkbox filter functionality
+  const toggleHandler = (event) => {
+    setChecked(event.currentTarget.checked);
+    console.log('Check >> ', checked);
+  };
+
   return (
     <div className='App'>
       <Main
@@ -353,6 +360,8 @@ function App() {
           render={(routeProps) => (
             <Cpu
               productData={cpuData}
+              checked={checked}
+              toggleHandler={toggleHandler}
               baseUrl={baseUrl}
               onClick={handleProductClick}
               addItem={handleAddItem}
@@ -444,7 +453,9 @@ function App() {
               {...routeProps}
             />
           )}></Route>
-          <Route exact path="/about"><About /></Route>
+        <Route exact path='/about'>
+          <About />
+        </Route>
       </Switch>
       <Footer />
     </div>
