@@ -21,7 +21,6 @@ export default function Main({handleOnInputChange, value, onSubmitSearchForm, sh
 
   const [loggedIn, setLoggedIn] = React.useState(false)
   const [currentUser, setCurrentUser] = React.useState({})
-  const [shoppingCart, addToShoppingCart] = React.useState([])
 
 
   const [showRegistration, setShowRegistration] = useState(false);
@@ -167,47 +166,19 @@ export default function Main({handleOnInputChange, value, onSubmitSearchForm, sh
                         Get yourself a brand new PC <br /> at a great price
                       </div>
                       <Button
-                        style={{ width: '100px' }}
-                        size='sm'
-                        variant='outline-secondary'
-                        onClick={handleLoginShow}>
-                        Login
+                          className='mt-2'
+                          style={{ width: '155px' }}
+                          size='md'
+                          variant='secondary'>
+                        Shop now
                       </Button>
-                      <Button
-                        style={{ width: '100px' }}
-                        className='ml-3'
-                        size='sm'
-                        variant='secondary'
-                        onClick={handleShow}>
-                        Register
-                      </Button>
-                    </div>
-                  )}
-                </Col>
-              </Row>
-              {showMain ? (
-                <Row className='mainInfo'>
-                  <Col xs={2}></Col>
-                  <Col className='mt-5'>
-                    <h2>UPGRADE!</h2>
-                    <div className='shop-text'>
-                      Get yourself a brand new PC <br /> at a great price
-                    </div>
-                    <Button
-                      className='mt-2'
-                      style={{ width: '155px' }}
-                      size='md'
-                      variant='secondary'>
-                      Shop now
-                    </Button>
-                  </Col>
-                  <Col className='p-1'>
-                    <div className=' main-picture'>
-                      <img className='laptop-pic' src={Laptop} alt='Logo' />
-                    </div>
-                  </Col>
-                </Row>
-              ) : null}
+                    </Col>
+                    <Col className='p-1'>
+                      <div className=' main-picture'>
+                        <img className='laptop-pic' src={Laptop} alt='Logo' />
+                      </div>
+                    </Col>
+                  </Row> : null }
               <Row>
                 <Col></Col>
                 <Col xs={9}>
