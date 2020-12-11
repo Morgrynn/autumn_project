@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Table, Image, Row, Col, Button} from 'react-bootstrap';
 import { FaStar } from 'react-icons/fa';
+import { RiShoppingCartFill } from 'react-icons/ri';
 
 const Star = ({ selected = false }) => (
   <FaStar color={selected ? '#ff960c' : 'grey'} />
@@ -23,6 +24,9 @@ export default function Motherboard({ productData, onClick, baseUrl, location, a
             <th>Color</th>
             <th>Rating</th>
             <th>Price</th>
+            <th style={{ textAlign: 'center'}}><RiShoppingCartFill
+              style={{ marginRight: '3px', marginBottom: '3px' }}
+            /></th>
           </tr>
         </thead>
         <tbody>

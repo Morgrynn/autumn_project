@@ -6,6 +6,7 @@ import './App.css';
 import Cpu from './components/products/Cpu';
 import Gpu from './components/products/Gpu';
 import Trending from './components/Trending';
+import SearchPage from './components/SearchPage';
 import Motherboard from './components/products/Motherboard';
 import Memory from './components/products/Memory';
 import Storage from './components/products/Storage';
@@ -21,8 +22,12 @@ import StorageProductPage from './components/products/singleProduct/StorageProdu
 import MemoryProductPage from './components/products/singleProduct/MemoryProductPage';
 import PowerSupplyProductPage from './components/products/singleProduct/PowerSupplyProductPage';
 import CaseProductPage from './components/products/singleProduct/CaseProductPage';
+import About from './components/About';
+import Footer from './components/Footer';
+const baseUrl = process.env.REACT_APP_BASEURL;
 import nextId from "react-id-generator";
-const baseUrl = 'http://localhost:5000/'
+
+
 
 function App() {
   const [cpuData, setCpuData] = useState([]);
@@ -37,6 +42,7 @@ function App() {
   const [shoppingCart, addToShoppingCart] = React.useState([])
   const [value, setValue] = useState('');
   const [productData, setProductData] = useState([]);
+  const [checked, setChecked] = useState(false);
 
   // * Router dom references
   const browserHistory = useHistory();
@@ -216,13 +222,24 @@ function App() {
               ...allStorageNames
             );
 
-            browserHistory.push("/");
+            browserHistory.push('/search-page');
             setProductData(searchArr);
           })
         );
     } catch (error) {
       console.error(error.message);
     }
+  };
+
+  const clearSearch = () => {
+    // Temporary option to clear the searched fields
+    setProductData([]);
+  };
+
+  // Checkbox filter functionality
+  const toggleHandler = (event) => {
+    setChecked(event.currentTarget.checked);
+    console.log('Check >> ', checked);
   };
 
   return (
@@ -233,10 +250,22 @@ function App() {
         value={value}
         handleOnInputChange={handleOnInputChange}
         onSubmitSearchForm={onSubmitSearchForm}
+        clearSearch={clearSearch}
       />
       <Switch>
         <Route exact path='/'>
           <Trending
+            cpuData={cpuData}
+            gpuData={gpuData}
+            motherboardData={motherboardData}
+            memoryData={memoryData}
+            baseUrl={baseUrl}
+            location={location}
+            onClick={handleProductClick}
+          />
+        </Route>
+        <Route exact path='/search-page'>
+          <SearchPage
             productData={productData}
             baseUrl={baseUrl}
             location={location}
@@ -340,6 +369,8 @@ function App() {
           render={(routeProps) => (
             <Cpu
               productData={cpuData}
+              checked={checked}
+              toggleHandler={toggleHandler}
               baseUrl={baseUrl}
               onClick={handleProductClick}
               addItem={handleAddItem}
@@ -444,10 +475,12 @@ function App() {
               addItem={handleAddItem}
               {...routeProps}
             />
-          )}>
-
+          )}></Route>
+        <Route exact path='/about'>
+          <About />
         </Route>
       </Switch>
+      <Footer />
     </div>
   );
 }

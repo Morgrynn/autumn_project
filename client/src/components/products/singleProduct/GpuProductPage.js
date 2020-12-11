@@ -15,7 +15,6 @@ import DescriptionList from './DescriptionList';
 import UserRatings from './UserRatings';
 
 export default function GpuProductsPage({ item, baseUrl, addItem }) {
-  const [key, setKey] = useState('product');
   return (
     <Container style={{ marginTop: '10px' }}>
       <Row>
@@ -40,7 +39,7 @@ export default function GpuProductsPage({ item, baseUrl, addItem }) {
       </Row>
       <Row style={{ marginTop: '5px' }}>
         <Col>
-          <Tabs activeKey={key} onSelect={(k) => setKey(k)}>
+        <Tabs defaultActiveKey="product" transition={false}>
             <Tab eventKey='product' title='Product Description'>
               <DescriptionList />
             </Tab>

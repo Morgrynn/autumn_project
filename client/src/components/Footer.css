@@ -1,0 +1,90 @@
+.footer-container {
+    background-color: #191b2b;
+    margin-top: 10px;
+}
+
+.footer-logo {
+    margin-top: 8px;
+    color: #ffffff;
+    padding-left: 3rem;
+}
+
+.footer-section {
+    margin-top: 8px;
+    color: #ffffff;
+    padding-left: 3rem;
+  
+}
+
+.footer-section h4 {
+    color: #ffffff;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.footer-section div p {
+    margin: none;
+    padding: none;
+  
+}
+
+.footer-section .service {
+    margin-top: 8px;
+    color: #9c9187;
+}
+
+.footer-buisness p {
+    margin: none;
+    padding: none;
+    margin-bottom: 0;
+    color: #9c9187;
+}
+
+.footer-times {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 18px;
+    width: 110px;
+    margin: 6px 0 0;
+}
+
+.footer-times .top {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.footer-times .times-block {
+    display: block;
+    float: left;
+    clear: both;
+    width: 110px;
+    color: #9c9187;
+}
+
+.buisness-hours-date {
+    float: left;
+}
+
+.buisness-hours-date, .buisness-hours-time {
+    display: inline-block;
+    width: 50%;
+    color: #9c9187;
+}
+
+.buisness-hours-time {
+    text-align: center;
+}
+
+
+.footer-bottom {
+    text-align: center;
+    font-size: 0.75rem;
+    padding-top: 1rem;
+}
+
+.footer-bottom p {
+    margin-bottom: 1.25rem;
+    color: #ffffff;
+}

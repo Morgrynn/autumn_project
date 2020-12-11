@@ -13,7 +13,7 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import ReactNotification, {store} from "react-notifications-component";
 import 'react-notifications-component/dist/theme.css'
 import Search from './Search';
-
+import { FaLaptopCode } from "react-icons/fa";
 
 
 export default function Main({handleOnInputChange, value, onSubmitSearchForm, shoppingCart, addToShoppingCart }) {
@@ -99,7 +99,7 @@ export default function Main({handleOnInputChange, value, onSubmitSearchForm, sh
               <Row>
                 <Col>
                   <div className='mt-2' style={{ cursor: 'pointer' }}>
-                    <h1 onClick={() => setShowMain(true)}>LOGO</h1>
+                    <h1 onClick={() => setShowMain(true)}><FaLaptopCode style={{verticalAlign: '-10px'}} />PC Pal</h1>
                   </div>
                 </Col>
                 <Col>
@@ -184,7 +184,12 @@ export default function Main({handleOnInputChange, value, onSubmitSearchForm, sh
                 <Col xs={9}>
                   <div className='nav-category'>
                     <div className='nav-menu-item p-3 ml-3 nav-chosen-category'>
-                      <Link to='/' onClick={() => setShowMain(false)}>
+                      <Link
+                        to='/'
+                        onClick={() => {
+                          setShowMain(false);
+                          clearSearch();
+                        }}>
                         Trending
                       </Link>
                     </div>
@@ -235,8 +240,12 @@ export default function Main({handleOnInputChange, value, onSubmitSearchForm, sh
                 <Col></Col>
               </Row>
               <Row className='mt-3 mb-3'>
-              <Col></Col>
-                <Search handleOnInputChange={handleOnInputChange} onSubmitSearchForm={onSubmitSearchForm} value={value} />
+                <Col></Col>
+                <Search
+                  handleOnInputChange={handleOnInputChange}
+                  onSubmitSearchForm={onSubmitSearchForm}
+                  value={value}
+                />
                 <Col></Col>
               </Row>
             </Container>
