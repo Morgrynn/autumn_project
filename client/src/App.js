@@ -24,10 +24,8 @@ import PowerSupplyProductPage from './components/products/singleProduct/PowerSup
 import CaseProductPage from './components/products/singleProduct/CaseProductPage';
 import About from './components/About';
 import Footer from './components/Footer';
+import nextId from 'react-id-generator';
 const baseUrl = process.env.REACT_APP_BASEURL;
-import nextId from "react-id-generator";
-
-
 
 function App() {
   const [cpuData, setCpuData] = useState([]);
@@ -39,7 +37,7 @@ function App() {
   const [coolerData, setCoolerData] = useState([]);
   const [powerData, setPowerData] = useState([]);
   const [item, setItem] = useState([]);
-  const [shoppingCart, addToShoppingCart] = React.useState([])
+  const [shoppingCart, addToShoppingCart] = React.useState([]);
   const [value, setValue] = useState('');
   const [productData, setProductData] = useState([]);
   const [checked, setChecked] = useState(false);
@@ -155,8 +153,17 @@ function App() {
   // TODO this needs to be implemented but is linked to all products
   // only functionality needed here
   const handleAddItem = (item) => {
-    addToShoppingCart([...shoppingCart, {id: nextId(),image: item.image, price: item.price, name: item.name, qty: 0 }])
-    console.log(shoppingCart)
+    addToShoppingCart([
+      ...shoppingCart,
+      {
+        id: nextId(),
+        image: item.image,
+        price: item.price,
+        name: item.name,
+        qty: 0,
+      },
+    ]);
+    console.log(shoppingCart);
   };
 
   // ------------------------------------------
@@ -348,9 +355,7 @@ function App() {
               addItem={handleAddItem}
               {...routeProps}
             />
-          )}>
-
-        </Route>
+          )}></Route>
         <Route
           exact
           path='/cases/:id'
@@ -376,9 +381,7 @@ function App() {
               addItem={handleAddItem}
               {...routeProps}
             />
-          )}>
-
-        </Route>
+          )}></Route>
         <Route
           exact
           path='/motherboards'
@@ -391,9 +394,7 @@ function App() {
               baseUrl={baseUrl}
               {...routeProps}
             />
-          )}>
-
-        </Route>
+          )}></Route>
         <Route
           exact
           path='/gpu'
@@ -405,9 +406,7 @@ function App() {
               addItem={handleAddItem}
               {...routeProps}
             />
-          )}>
-
-        </Route>
+          )}></Route>
         <Route
           exact
           path='/memory'
@@ -419,9 +418,7 @@ function App() {
               addItem={handleAddItem}
               {...routeProps}
             />
-          )}>
-
-        </Route>
+          )}></Route>
         <Route
           exact
           path='/storage'
@@ -433,9 +430,7 @@ function App() {
               addItem={handleAddItem}
               {...routeProps}
             />
-          )}>
-
-        </Route>
+          )}></Route>
         <Route
           exact
           path='/cases'
@@ -447,9 +442,7 @@ function App() {
               addItem={handleAddItem}
               {...routeProps}
             />
-          )}>
-
-        </Route>
+          )}></Route>
         <Route
           exact
           path='/cooler'
@@ -461,9 +454,7 @@ function App() {
               addItem={handleAddItem}
               {...routeProps}
             />
-          )}>
-
-        </Route>
+          )}></Route>
         <Route
           exact
           path='/power'

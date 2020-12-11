@@ -3,25 +3,28 @@ import { Dropdown, Container, Row, Col, Button } from 'react-bootstrap';
 import './Main.css';
 import Laptop from '../images/laptop.png';
 import { Link } from 'react-router-dom';
-import RegistrationModal from "./Registration";
-import ShoppingCartModal from "./ShoppingCart";
-import LoginModal from "./Login";
-import ProfileModal from "./Profile";
+import RegistrationModal from './Registration';
+import ShoppingCartModal from './ShoppingCart';
+import LoginModal from './Login';
+import ProfileModal from './Profile';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import ReactNotification, {store} from "react-notifications-component";
-import 'react-notifications-component/dist/theme.css'
+import ReactNotification, { store } from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
 import Search from './Search';
-import { FaLaptopCode } from "react-icons/fa";
+import { FaLaptopCode } from 'react-icons/fa';
 
-
-export default function Main({handleOnInputChange, value, onSubmitSearchForm, shoppingCart, addToShoppingCart }) {
-
-
-  const [loggedIn, setLoggedIn] = React.useState(false)
-  const [currentUser, setCurrentUser] = React.useState({})
-
+export default function Main({
+  handleOnInputChange,
+  clearSearch,
+  value,
+  onSubmitSearchForm,
+  shoppingCart,
+  addToShoppingCart,
+}) {
+  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [currentUser, setCurrentUser] = React.useState({});
 
   const [showRegistration, setShowRegistration] = useState(false);
   const [showMain, setShowMain] = useState(true);
@@ -69,28 +72,42 @@ export default function Main({handleOnInputChange, value, onSubmitSearchForm, sh
   };
   return (
     <div>
-        <ReactNotification />
+      <ReactNotification />
 
-        <RegistrationModal handleClose={handleClose} handleShow={handleShow}
-                           showRegistration={showRegistration} setLoggedIn={setLoggedIn}
-                           handleNotificationsSuccess={handleNotificationsSuccess}
-                           handleNotificationsDanger={handleNotificationsDanger}
-        />
+      <RegistrationModal
+        handleClose={handleClose}
+        handleShow={handleShow}
+        showRegistration={showRegistration}
+        setLoggedIn={setLoggedIn}
+        handleNotificationsSuccess={handleNotificationsSuccess}
+        handleNotificationsDanger={handleNotificationsDanger}
+      />
 
-        <LoginModal handleClose={handleLoginClose} handleShow={handleLoginShow}
-                    showRegistration={showLogin} setLoggedIn={setLoggedIn}
-                    handleNotificationsSuccess={handleNotificationsSuccess}
-                    handleNotificationsDanger={handleNotificationsDanger}
-                    setCurrentUser={setCurrentUser}
-        />
+      <LoginModal
+        handleClose={handleLoginClose}
+        handleShow={handleLoginShow}
+        showRegistration={showLogin}
+        setLoggedIn={setLoggedIn}
+        handleNotificationsSuccess={handleNotificationsSuccess}
+        handleNotificationsDanger={handleNotificationsDanger}
+        setCurrentUser={setCurrentUser}
+      />
 
-        <ProfileModal handleClose={handleProfileClose} handleShow={handleProfileShow}
-                      showProfile={showProfile} currentUser={currentUser}
-        />
+      <ProfileModal
+        handleClose={handleProfileClose}
+        handleShow={handleProfileShow}
+        showProfile={showProfile}
+        currentUser={currentUser}
+      />
 
-        <ShoppingCartModal shoppingCart={shoppingCart} handleClose={handleShoppingCartClose} handleShow={handleShoppingCartShow}
-                           showShoppingCart={showShoppingCart} currentUser={currentUser} addToShoppingCart={addToShoppingCart}
-        />
+      <ShoppingCartModal
+        shoppingCart={shoppingCart}
+        handleClose={handleShoppingCartClose}
+        handleShow={handleShoppingCartShow}
+        showShoppingCart={showShoppingCart}
+        currentUser={currentUser}
+        addToShoppingCart={addToShoppingCart}
+      />
 
       <div className='main-header'>
         <Container>
@@ -99,86 +116,105 @@ export default function Main({handleOnInputChange, value, onSubmitSearchForm, sh
               <Row>
                 <Col>
                   <div className='mt-2' style={{ cursor: 'pointer' }}>
-                    <h1 onClick={() => setShowMain(true)}><FaLaptopCode style={{verticalAlign: '-10px'}} />PC Pal</h1>
+                    <h1 onClick={() => setShowMain(true)}>
+                      <FaLaptopCode style={{ verticalAlign: '-10px' }} />
+                      PC Pal
+                    </h1>
                   </div>
                 </Col>
                 <Col>
-                  {loggedIn
-                      ? <div className='float-right mt-2'>
-                        <Dropdown className='d-inline'>
-                          <Dropdown.Toggle
-                                           className='mr-3'
-                                           size='sm'
-                                           variant='secondary' id="dropdown-basic">
-                            {currentUser.username}
-                          </Dropdown.Toggle>
+                  {loggedIn ? (
+                    <div className='float-right mt-2'>
+                      <Dropdown className='d-inline'>
+                        <Dropdown.Toggle
+                          className='mr-3'
+                          size='sm'
+                          variant='secondary'
+                          id='dropdown-basic'>
+                          {currentUser.username}
+                        </Dropdown.Toggle>
 
-                          <Dropdown.Menu>
-                            <Dropdown.Item onClick={() => handleProfileShow()}><AccountBoxIcon className='mr-2' /> Profile</Dropdown.Item>
-                            <Dropdown.Item href="#/action-2"><ShoppingCartIcon className='mr-2' />History</Dropdown.Item>
-                            <Dropdown.Item onClick={() => setLoggedIn(false)}> <PowerSettingsNewIcon className='mr-2'/>Logout</Dropdown.Item>
-                          </Dropdown.Menu>
-                        </Dropdown>
-                        <ShoppingCartIcon className='d-inline' onClick={() => handleShoppingCartShow()}/>
+                        <Dropdown.Menu>
+                          <Dropdown.Item onClick={() => handleProfileShow()}>
+                            <AccountBoxIcon className='mr-2' /> Profile
+                          </Dropdown.Item>
+                          <Dropdown.Item href='#/action-2'>
+                            <ShoppingCartIcon className='mr-2' />
+                            History
+                          </Dropdown.Item>
+                          <Dropdown.Item onClick={() => setLoggedIn(false)}>
+                            {' '}
+                            <PowerSettingsNewIcon className='mr-2' />
+                            Logout
+                          </Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                      <ShoppingCartIcon
+                        className='d-inline'
+                        onClick={() => handleShoppingCartShow()}
+                      />
+                    </div>
+                  ) : (
+                    <div className='float-right mt-2'>
+                      <Button
+                        style={{ width: '100px' }}
+                        size='sm'
+                        variant='outline-secondary'
+                        onClick={handleLoginShow}>
+                        Login
+                      </Button>
+                      <Button
+                        style={{ width: '100px' }}
+                        className='ml-3'
+                        size='sm'
+                        variant='secondary'
+                        onClick={handleShow}>
+                        Register
+                      </Button>
+                      <div className='d-inline'>
+                        <ShoppingCartIcon
+                          className='d-inline ml-2'
+                          style={{ cursor: 'pointer' }}
+                          onClick={() => handleShoppingCartShow()}
+                        />
+                        {shoppingCart.length ? (
+                          <span
+                            className='item-counter'
+                            style={{ cursor: 'pointer' }}
+                            onClick={() => handleShoppingCartShow()}>
+                            <span>{shoppingCart.length}</span>
+                          </span>
+                        ) : (
+                          <span></span>
+                        )}
                       </div>
-                      :
-                      <div className='float-right mt-2'>
-                        <Button
-                            style={{width: '100px'}}
-                            size='sm'
-                            variant='outline-secondary'
-                            onClick={handleLoginShow}>
-                          Login
-                        </Button>
-                        <Button
-                            style={{width: '100px'}}
-                            className='ml-3'
-                            size='sm'
-                            variant='secondary'
-                            onClick={handleShow}>
-                          Register
-                        </Button>
-                        <div className='d-inline'>
-                        <ShoppingCartIcon className='d-inline ml-2' style={{cursor: "pointer"}} onClick={() => handleShoppingCartShow()}/>
-                          {shoppingCart.length ?
-                              <span className='item-counter' style={{cursor: "pointer"}}
-                                    onClick={() => handleShoppingCartShow()}>
-                          <span>{shoppingCart.length}</span>
-                        </span> :
-                              <span>
-
-                              </span>
-                          }
-                        </div>
-                      </div>
-                  }
+                    </div>
+                  )}
                 </Col>
               </Row>
-              { showMain ?
-
-                  <Row className='mainInfo'>
-                    <Col xs={2}>
-
-                    </Col>
-                    <Col className='mt-5'>
-                      <h2>UPGRADE!</h2>
-                      <div className='shop-text'>
-                        Get yourself a brand new PC <br /> at a great price
-                      </div>
-                      <Button
-                          className='mt-2'
-                          style={{ width: '155px' }}
-                          size='md'
-                          variant='secondary'>
-                        Shop now
-                      </Button>
-                    </Col>
-                    <Col className='p-1'>
-                      <div className=' main-picture'>
-                        <img className='laptop-pic' src={Laptop} alt='Logo' />
-                      </div>
-                    </Col>
-                  </Row> : null }
+              {showMain ? (
+                <Row className='mainInfo'>
+                  <Col xs={2}></Col>
+                  <Col className='mt-5'>
+                    <h2>UPGRADE!</h2>
+                    <div className='shop-text'>
+                      Get yourself a brand new PC <br /> at a great price
+                    </div>
+                    <Button
+                      className='mt-2'
+                      style={{ width: '155px' }}
+                      size='md'
+                      variant='secondary'>
+                      Shop now
+                    </Button>
+                  </Col>
+                  <Col className='p-1'>
+                    <div className=' main-picture'>
+                      <img className='laptop-pic' src={Laptop} alt='Logo' />
+                    </div>
+                  </Col>
+                </Row>
+              ) : null}
               <Row>
                 <Col></Col>
                 <Col xs={9}>
