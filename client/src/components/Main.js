@@ -109,6 +109,8 @@ export default function Main({
         handleShow={handleProfileShow}
         showProfile={showProfile}
         currentUser={currentUser}
+        handleNotificationsSuccess={handleNotificationsSuccess}
+        handleNotificationsDanger={handleNotificationsDanger}
       />
 
       <ShoppingCartModal

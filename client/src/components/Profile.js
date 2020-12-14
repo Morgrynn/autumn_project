@@ -8,7 +8,7 @@ import Axios from "axios";
 
 export default function ProfileModal(props) {
 
-    const {handleSubmit, handleChange, values, touched, errors, handleBlur} = useFormik({
+    const {handleSubmit, handleChange, values, touched, errors, handleBlur, resetForm} = useFormik({
         initialValues: {
             oldPassword: '',
             newPassword: ''
@@ -24,10 +24,13 @@ export default function ProfileModal(props) {
                 oldPassword: values.oldPassword,
                 newPassword: values.newPassword
             }).then((response) => {
+                console.log(response)
                 if (response.data === false) {
                     props.handleNotificationsDanger('Wrong password')
+                    resetForm()
                 } else {
                     props.handleNotificationsSuccess('Your password was updated!')
+                    resetForm();
                 }
             })
         }

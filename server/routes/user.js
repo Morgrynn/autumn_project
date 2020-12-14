@@ -25,13 +25,19 @@ router.post('/change_password', ((req, res) => {
             console.log(err)
         }
         bcrypt.compare(req.body.oldPassword, rows.rows[0].password, (err, response) => {
-            console.log(response)
             if (response === true) {
                 bcrypt.hash(req.body.newPassword, 10, (err, hash) => {
-                    user.changePassword(req.body.username, hash, (err, result) => {
-                        console.log('123')
-                    })
+                    if(err) {
+                        console.log(err)
+                    } else {
+                        user.changePassword(req.body.username, hash, (err, result) => {
+                        })
+                        res.send(true)
+                    }
+
                 })
+            } else {
+                res.send(false)
             }
         })
     })
