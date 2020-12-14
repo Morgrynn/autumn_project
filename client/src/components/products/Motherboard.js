@@ -33,7 +33,6 @@ export default function Motherboard({ productData, onClick, baseUrl, location, a
           {productData.map((item, index) => {
             return (
               <tr key={index} onClick={() => onClick(item)}>
-               
                   <td>
                     <Container>
                     <Link

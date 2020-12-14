@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Table, Image, Row, Col, Button} from 'react-bootstrap';
+import { Container, Table, Image, Row, Col, Button } from 'react-bootstrap';
 import { FaStar } from 'react-icons/fa';
 import { RiShoppingCartFill } from 'react-icons/ri';
 
@@ -10,7 +10,13 @@ const Star = ({ selected = false }) => (
 
 const createArray = (length) => [...Array(length)];
 
-export default function Memory({ productData, baseUrl, onClick, location, addItem }) {
+export default function Memory({
+  productData,
+  baseUrl,
+  onClick,
+  location,
+  addItem,
+}) {
   return (
     <Container>
       <Table responsive bordered hover>
@@ -25,9 +31,11 @@ export default function Memory({ productData, baseUrl, onClick, location, addIte
             <th>CAS Latency</th>
             <th>Rating</th>
             <th>Price</th>
-            <th style={{ textAlign: 'center'}}><RiShoppingCartFill
-              style={{ marginRight: '3px', marginBottom: '3px' }}
-            /></th>
+            <th style={{ textAlign: 'center' }}>
+              <RiShoppingCartFill
+                style={{ marginRight: '3px', marginBottom: '3px' }}
+              />
+            </th>
           </tr>
         </thead>
         <tbody>
