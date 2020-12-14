@@ -41,6 +41,7 @@ function App() {
   const [value, setValue] = useState('');
   const [productData, setProductData] = useState([]);
   const [checked, setChecked] = useState(false);
+  const [filteredData, setFilteredData] = useState([]);
 
   // * Router dom references
   const browserHistory = useHistory();
@@ -64,8 +65,9 @@ function App() {
     axios
       .get(`${baseUrl}cpu`)
       .then((res) => {
-        console.log('Cpu Data: ', res.data);
+        // console.log('Cpu Data: ', res.data);
         setCpuData(res.data);
+        setFilteredData(cpuData);
       })
       .catch((error) => console.log(error));
   };
@@ -74,7 +76,7 @@ function App() {
     axios
       .get(`${baseUrl}gpu`)
       .then((res) => {
-        console.log('Gpu Data: ', res.data);
+        // console.log('Gpu Data: ', res.data);
         setGpuData(res.data);
       })
       .catch((error) => console.log(error));
@@ -84,7 +86,7 @@ function App() {
     axios
       .get(`${baseUrl}motherboards`)
       .then((res) => {
-        console.log('MBoard Data: ', res.data);
+        // console.log('MBoard Data: ', res.data);
         setMotherboardData(res.data);
       })
       .catch((error) => console.log(error));
@@ -94,7 +96,7 @@ function App() {
     axios
       .get(`${baseUrl}memory`)
       .then((res) => {
-        console.log('Memory Data: ', res.data);
+        // console.log('Memory Data: ', res.data);
         setMemoryData(res.data);
       })
       .catch((error) => console.log(error));
@@ -104,7 +106,7 @@ function App() {
     axios
       .get(`${baseUrl}storage`)
       .then((res) => {
-        console.log('Storage Data: ', res.data);
+        // console.log('Storage Data: ', res.data);
         setStorageData(res.data);
       })
       .catch((error) => console.log(error));
@@ -114,7 +116,7 @@ function App() {
     axios
       .get(`${baseUrl}power`)
       .then((res) => {
-        console.log('Power Data: ', res.data);
+        // console.log('Power Data: ', res.data);
         setPowerData(res.data);
       })
       .catch((error) => console.log(error));
@@ -125,7 +127,7 @@ function App() {
     axios
       .get(`${baseUrl}cases`)
       .then((res) => {
-        console.log('Cases Data: ', res.data);
+        // console.log('Cases Data: ', res.data);
         setCaseData(res.data);
       })
       .catch((error) => console.log(error));
@@ -135,7 +137,7 @@ function App() {
     axios
       .get(`${baseUrl}cooler`)
       .then((res) => {
-        console.log('Cooler Data: ', res.data);
+        // console.log('Cooler Data: ', res.data);
         setCoolerData(res.data);
       })
       .catch((error) => console.log(error));
@@ -245,9 +247,23 @@ function App() {
 
   // Checkbox filter functionality
   const toggleHandler = (event) => {
+    const val = event.currentTarget.value;
     setChecked(event.currentTarget.checked);
-    console.log('Check >> ', checked);
+    let data = [...cpuData];
+    const filterItems = data.filter((item) => {
+      const str = item.name;
+      const sub = str.substr(0, 5);
+      return sub.toLowerCase().includes(val);
+    });
+    if (!checked) {
+      setFilteredData(filterItems);
+      setChecked(false);
+    }
   };
+
+  const resetCpuData = () => {
+    setFilteredData(cpuData);
+  }
 
   return (
     <div className='App'>
@@ -258,6 +274,7 @@ function App() {
         handleOnInputChange={handleOnInputChange}
         onSubmitSearchForm={onSubmitSearchForm}
         clearSearch={clearSearch}
+        resetCpuData={resetCpuData}
       />
       <Switch>
         <Route exact path='/'>
@@ -374,6 +391,7 @@ function App() {
           render={(routeProps) => (
             <Cpu
               productData={cpuData}
+              filteredData={filteredData}
               checked={checked}
               toggleHandler={toggleHandler}
               baseUrl={baseUrl}

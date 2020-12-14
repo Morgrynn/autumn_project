@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import {
   Container,
   ListGroup,
-  Form,
   Table,
   Image,
   Row,
@@ -23,6 +22,7 @@ const createArray = (length) => [...Array(length)];
 
 export default function Cpu({
   productData,
+  filteredData,
   onClick,
   baseUrl,
   location,
@@ -42,10 +42,19 @@ export default function Cpu({
               }}>
               Filter
             </h4>
-            {console.log('PD -> ', productData)}
-            <ButtonGroup toggle classNames='mb-2'>
+            <ButtonGroup toggle vertical classNames='mb-2'>
+              {/* <ToggleButton
+                type='checkbox'
+                variant='secondary'
+                checked={checked}
+                value='all'
+                prechecked
+                onChange={toggleHandler}>
+                All
+              </ToggleButton> */}
               <ToggleButton
                 type='checkbox'
+                variant='secondary'
                 checked={checked}
                 value='amd'
                 onChange={toggleHandler}>
@@ -53,6 +62,7 @@ export default function Cpu({
               </ToggleButton>
               <ToggleButton
                 type='checkbox'
+                variant='secondary'
                 checked={checked}
                 value='intel'
                 onChange={toggleHandler}>
@@ -82,50 +92,7 @@ export default function Cpu({
               </tr>
             </thead>
             <tbody>
-              {productData.map((item, index) => {
-                if (!checked) {
-                  return (
-                    <tr key={index} onClick={() => onClick(item)}>
-                      <td>
-                        <Container>
-                          <Link
-                            to={`${location.pathname}/${item.id}`}
-                            style={{ textDecoration: 'none', color: 'black' }}>
-                            <Row>
-                              <Col style={{ width: '171px' }}>
-                                <Image
-                                  src={`${baseUrl}${item.image}`}
-                                  thumbnail
-                                  style={{ maxWidth: '75%' }}
-                                />
-                              </Col>
-                              <Col>{item.name}</Col>
-                            </Row>
-                          </Link>
-                        </Container>
-                      </td>
-                      <td>{item.core_count}</td>
-                      <td>{item.core_clock}</td>
-                      <td>{item.boost_clock}</td>
-                      <td>{item.tdp}</td>
-                      <td>{item.integrated_graphics}</td>
-                      <td>{item.smt}</td>
-                      <td style={{ display: 'flex', borderBottom: 'none' }}>
-                        {createArray(5).map((n, i) => (
-                          <Star key={i} selected={item.rating > i} />
-                        ))}
-                      </td>
-                      <td>€{item.price}</td>
-                      <td>
-                        <Button
-                          variant='outline-dark'
-                          onClick={() => addItem(item)}>
-                          Add
-                        </Button>
-                      </td>
-                    </tr>
-                  );
-                }
+              {filteredData.map((item, index) => {
                 return (
                   <tr key={index} onClick={() => onClick(item)}>
                     <td>

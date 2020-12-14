@@ -22,6 +22,7 @@ export default function Main({
   onSubmitSearchForm,
   shoppingCart,
   addToShoppingCart,
+  resetCpuData,
 }) {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
@@ -230,7 +231,12 @@ export default function Main({
                       </Link>
                     </div>
                     <div className='nav-menu-item p-3 ml-2'>
-                      <Link to='/cpu' onClick={() => setShowMain(false)}>
+                      <Link
+                        to='/cpu'
+                        onClick={() => {
+                          setShowMain(false);
+                          resetCpuData();
+                        }}>
                         CPU
                       </Link>
                     </div>
