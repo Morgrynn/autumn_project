@@ -20,32 +20,20 @@ export default function ProfileModal(props) {
                         </Col>
                         <Col>
                             <div className='profileCategory clearfix'>
-                                <h5>Change email</h5>
+                                <h5>Change password</h5>
                                 <Form.Group>
                                     <br/>
-                                    <Form.Control size="sm" type="text" placeholder={props.currentUser.email} />
+                                    <Form.Control size="sm" type="text" placeholder="Old password" />
+                                    <br/>
+                                    <Form.Control size="sm" type="text" placeholder="New password" />
                                     <br/>
                                     <Button className='float-right'>Save</Button>
+
                                 </Form.Group>
                             </div>
                         </Col>
                     </Row>
-                    <Row className='text-center'>
-                        <Col>
-                            <div className='profileCategory clearfix mt-2'>
-                            <h5>Change password</h5>
-                            <Form.Group>
-                                <br/>
-                                <Form.Control size="sm" type="text" placeholder="Old password" />
-                                <br/>
-                                <Form.Control size="sm" type="text" placeholder="New password" />
-                                <br/>
-                                <Button className='float-right'>Save</Button>
 
-                            </Form.Group>
-                            </div>
-                        </Col>
-                    </Row>
                 </Container>
             </Modal.Body>
         </Modal>

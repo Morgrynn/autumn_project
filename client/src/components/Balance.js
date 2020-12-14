@@ -10,9 +10,11 @@ export default function BalanceModal(props) {
         Axios.post('http://localhost:5000/user/add_balance', {
             username: props.currentUser.username,
             amount: sum
-        }).then(
-            props.setShowBalance(false),
-            props.handleNotificationsSuccess('Balance has been added')
+        }).then((response) => {
+                props.setShowBalance(false)
+                props.handleNotificationsSuccess('Balance has been added')
+                props.setCurrentUser(response.data[0])
+            }
         )
     }
 
@@ -31,7 +33,7 @@ export default function BalanceModal(props) {
                                     <br/>
                                     <Form.Control size="sm" type="text" placeholder='Amount' value={amount} onChange={e => setAmount(e.target.value)}/>
                                     <br/>
-                                    <Button className='float-right' onClick={() => addBalance(amount)}>Pay</Button>
+                                    <Button className='float-right' onClick={() => addBalance(amount)}>Add</Button>
                                 </Form.Group>
                             </div>
                         </Col>

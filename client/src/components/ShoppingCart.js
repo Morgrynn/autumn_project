@@ -1,6 +1,7 @@
 import React from "react";
 import {Button, Col, Container, Image, Modal, Row} from "react-bootstrap";
 import DeleteIcon from '@material-ui/icons/Delete';
+import Axios from "axios";
 
 export default function ShoppingCartModal(props) {
     let total = 0;
@@ -14,6 +15,16 @@ export default function ShoppingCartModal(props) {
     const payment = (sum) => {
         if (sum > props.currentUser.balance) {
             props.handleNotificationsDanger('Not enough money on the balance')
+        } else {
+            Axios.post('http://localhost:5000/user/pay', {
+                username: props.currentUser.username,
+                amount: sum
+            }).then((response) => {
+                props.handleNotificationsSuccess('Payment success!')
+                props.addToShoppingCart([])
+                props.setCurrentUser(response.data[0])
+            })
+
         }
     }
 
@@ -61,7 +72,7 @@ export default function ShoppingCartModal(props) {
                     <Button variant='danger' onClick={() => props.addToShoppingCart([])}>Clear cart</Button>
                         {props.loggedIn ?
                             <Button className='float-right' onClick={() => {
-                                payment(total)
+                                payment(Math.round(total))
                                 props.handleClose()
                             }
                             }>Pay</Button>

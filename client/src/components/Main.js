@@ -81,6 +81,7 @@ export default function Main({
           setShowBalance={setShowBalance}
           showBalance={showBalance}
           currentUser={currentUser}
+          setCurrentUser={setCurrentUser}
           handleNotificationsSuccess={handleNotificationsSuccess}
       />
 
@@ -113,12 +114,14 @@ export default function Main({
       <ShoppingCartModal
         loggedIn={loggedIn}
         handleNotificationsDanger={handleNotificationsDanger}
+        handleNotificationsSuccess={handleNotificationsSuccess}
         handleLoginShow={handleLoginShow}
         shoppingCart={shoppingCart}
         handleClose={handleShoppingCartClose}
         handleShow={handleShoppingCartShow}
         showShoppingCart={showShoppingCart}
         currentUser={currentUser}
+        setCurrentUser={setCurrentUser}
         addToShoppingCart={addToShoppingCart}
       />
 
