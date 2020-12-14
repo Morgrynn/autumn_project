@@ -246,7 +246,7 @@ export default function Main({
                 <Col></Col>
                 <Col xs={9}>
                   <div className='nav-category'>
-                    <div className='nav-menu-item p-3 ml-3 nav-chosen-category'>
+                    <div className='nav-menu-item p-2 ml-3 nav-chosen-category'>
                       <Link
                         to='/'
                         onClick={() => {
@@ -256,44 +256,44 @@ export default function Main({
                         Trending
                       </Link>
                     </div>
-                    <div className='nav-menu-item p-3 ml-2'>
+                    <div className='nav-menu-item p-2 ml-2'>
                       <Link to='/cpu' onClick={() => setShowMain(false)}>
                         CPU
                       </Link>
                     </div>
-                    <div className='nav-menu-item p-3 ml-2'>
+                    <div className='nav-menu-item p-2 ml-2'>
                       <Link
                         to='/motherboards'
                         onClick={() => setShowMain(false)}>
                         Motherboards
                       </Link>
                     </div>
-                    <div className='nav-menu-item p-3 ml-2'>
+                    <div className='nav-menu-item p-2 ml-2'>
                       <Link to='/gpu' onClick={() => setShowMain(false)}>
                         GPU
                       </Link>
                     </div>
-                    <div className='nav-menu-item p-3 ml-2'>
+                    <div className='nav-menu-item p-2 ml-2'>
                       <Link to='/memory' onClick={() => setShowMain(false)}>
                         Memory
                       </Link>
                     </div>
-                    <div className='nav-menu-item p-3 ml-2'>
+                    <div className='nav-menu-item p-2 ml-2'>
                       <Link to='/storage' onClick={() => setShowMain(false)}>
                         Storage
                       </Link>
                     </div>
-                    <div className='nav-menu-item p-3 ml-2'>
+                    <div className='nav-menu-item p-2 ml-2'>
                       <Link to='/power' onClick={() => setShowMain(false)}>
                         Power supply
                       </Link>
                     </div>
-                    <div className='nav-menu-item p-3 ml-2'>
+                    <div className='nav-menu-item p-2 ml-2'>
                       <Link to='/cooler' onClick={() => setShowMain(false)}>
                         Cooler
                       </Link>
                     </div>
-                    <div className='nav-menu-item p-3 ml-2'>
+                    <div className='nav-menu-item p-2 ml-2'>
                       <Link to='/cases' onClick={() => setShowMain(false)}>
                         Case
                       </Link>

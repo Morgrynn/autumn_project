@@ -71,7 +71,7 @@ export default function LoginModal(props) {
 
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="success" type="submit" disabled={isSubmitting}>
+                <Button variant="outline-secondary" type="submit" disabled={isSubmitting}>
                     Login
                 </Button>
             </Modal.Footer>

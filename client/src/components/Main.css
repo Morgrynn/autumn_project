@@ -41,20 +41,19 @@
 
 .nav-menu-item {
     display: inline-block;
-    font-size: 18px;
     color: #565353;
 }
 
 .nav-menu-item:hover {
-    border-radius: 30px;
     background-color: #CEC7C7;
     
 }
 
 .nav-menu-item a {
-    font-size: 14px;
+    font-size: 18px;
     text-decoration: none;
     color: #565353;
+    font-weight: 500;
 }
 
 .nav-menu-item a:hover {

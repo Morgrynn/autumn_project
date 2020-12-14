@@ -19,7 +19,7 @@ export default function ProfileModal(props) {
                                 </div>
                         </Col>
                         <Col>
-                            <div className='profileCategory clearfix'>
+                            <div >
                                 <h5>Change password</h5>
                                 <Form.Group>
                                     <br/>
@@ -27,7 +27,7 @@ export default function ProfileModal(props) {
                                     <br/>
                                     <Form.Control size="sm" type="text" placeholder="New password" />
                                     <br/>
-                                    <Button className='float-right'>Save</Button>
+                                    <Button variant='outline-secondary' className='float-right'>Save</Button>
 
                                 </Form.Group>
                             </div>

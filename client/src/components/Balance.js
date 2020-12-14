@@ -33,7 +33,7 @@ export default function BalanceModal(props) {
                                     <br/>
                                     <Form.Control size="sm" type="text" placeholder='Amount' value={amount} onChange={e => setAmount(e.target.value)}/>
                                     <br/>
-                                    <Button className='float-right' onClick={() => addBalance(amount)}>Add</Button>
+                                    <Button className='float-right' variant='outline-secondary' onClick={() => addBalance(amount)}>Add</Button>
                                 </Form.Group>
                             </div>
                         </Col>

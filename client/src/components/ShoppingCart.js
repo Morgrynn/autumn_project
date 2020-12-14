@@ -53,7 +53,7 @@ export default function ShoppingCartModal(props) {
                                         <h5 className='mt-1'><b>€{item.price}</b></h5>
                                     </Col>
                                     <Col>
-                                        <Button variant='danger' size='sm' className='mt-3' onClick={() => DeleteItem(item.id)}> <DeleteIcon />Delete</Button>
+                                        <Button variant='outline-danger' size='sm' className='mt-3' onClick={() => DeleteItem(item.id)}> <DeleteIcon />Delete</Button>
                                     </Col>
                                 </Row>
                             </Container>
@@ -69,14 +69,14 @@ export default function ShoppingCartModal(props) {
                     <div>
                     <hr/>
                     <h6>Total: €{total.toFixed(2)}</h6><br/>
-                    <Button variant='danger' onClick={() => props.addToShoppingCart([])}>Clear cart</Button>
+                    <Button variant='outline-danger' onClick={() => props.addToShoppingCart([])}>Clear cart</Button>
                         {props.loggedIn ?
-                            <Button className='float-right' onClick={() => {
+                            <Button className='float-right' variant='outline-primary' onClick={() => {
                                 payment(Math.round(total))
                                 props.handleClose()
                             }
                             }>Pay</Button>
-                            : <Button className='float-right' onClick={() => {
+                            : <Button className='float-right' variant='outline-primary' onClick={() => {
                                 props.handleClose()
                                 props.handleLoginShow()}}>Login</Button>
                         }

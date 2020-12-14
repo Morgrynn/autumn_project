@@ -13,7 +13,7 @@ const createArray = (length) => [...Array(length)];
 export default function Gpu({ productData, onClick, baseUrl, location, addItem }) {
   return (
     <Container>
-      <Table responsive bordered hover>
+      <Table responsive hover>
         <thead>
           <tr>
             <th>Name</th>
