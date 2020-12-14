@@ -116,11 +116,13 @@ export default function Main({
             <Container>
               <Row>
                 <Col>
-                  <div className='mt-2' style={{ cursor: 'pointer' }}>
-                    <h1 onClick={() => setShowMain(true)}>
-                      <FaLaptopCode style={{ verticalAlign: '-10px' }} />
-                      PC Pal
-                    </h1>
+                  <div className='mt-2 logo'>
+                    <Link to='/' onClick={() => setShowMain(true)}>
+                      <h1>
+                        <FaLaptopCode style={{ verticalAlign: '-10px' }} />
+                        PC Pal
+                      </h1>{' '}
+                    </Link>
                   </div>
                 </Col>
                 <Col>
