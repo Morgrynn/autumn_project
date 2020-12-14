@@ -102,6 +102,7 @@ export default function Main({
 
       <ShoppingCartModal
         loggedIn={loggedIn}
+        handleLoginShow={handleLoginShow}
         shoppingCart={shoppingCart}
         handleClose={handleShoppingCartClose}
         handleShow={handleShoppingCartShow}
@@ -158,7 +159,9 @@ export default function Main({
                             <span>{shoppingCart.length}</span>
                           </span>
                       ) : (
-                          <span></span>
+                          <span>
+
+                          </span>
                       )}
                     </div>
                   ) : (

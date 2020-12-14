@@ -52,7 +52,13 @@ export default function ShoppingCartModal(props) {
                     <hr/>
                     <h6>Total: €{total.toFixed(2)}</h6><br/>
                     <Button variant='danger' onClick={() => props.addToShoppingCart([])}>Clear cart</Button>
-                    <Button className='float-right' onClick={() => console.log(props.loggedIn)}>Proceed to payment</Button>
+                        {props.loggedIn ?
+                            <Button className='float-right' onClick={() => console.log(props.currentUser.balance)}>Pay</Button>
+                            : <Button className='float-right' onClick={() => {
+                                props.handleClose()
+                                props.handleLoginShow()}}>Login</Button>
+                        }
+
                     </div>
                     : <span>Shopping cart is empty</span>
                 }
