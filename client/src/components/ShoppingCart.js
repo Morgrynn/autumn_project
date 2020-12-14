@@ -10,6 +10,13 @@ export default function ShoppingCartModal(props) {
         const updatedShoppingCart = props.shoppingCart.filter((item) => item.id !== itemId);
         props.addToShoppingCart(updatedShoppingCart)
     }
+
+    const payment = (sum) => {
+        if (sum > props.currentUser.balance) {
+            props.handleNotificationsDanger('Not enough money on the balance')
+        }
+    }
+
     return (
         <Modal show={props.showShoppingCart} onHide={props.handleClose}>
             <Modal.Header closeButton>
@@ -53,7 +60,11 @@ export default function ShoppingCartModal(props) {
                     <h6>Total: €{total.toFixed(2)}</h6><br/>
                     <Button variant='danger' onClick={() => props.addToShoppingCart([])}>Clear cart</Button>
                         {props.loggedIn ?
-                            <Button className='float-right' onClick={() => console.log(props.currentUser.balance)}>Pay</Button>
+                            <Button className='float-right' onClick={() => {
+                                payment(total)
+                                props.handleClose()
+                            }
+                            }>Pay</Button>
                             : <Button className='float-right' onClick={() => {
                                 props.handleClose()
                                 props.handleLoginShow()}}>Login</Button>

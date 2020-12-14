@@ -2,10 +2,6 @@ import React from "react";
 import {Modal, Button, Container, Col, Row, Form} from "react-bootstrap";
 import './Profile.css'
 export default function ProfileModal(props) {
-
-    const addBalance = (balance) => {
-
-    }
     return (
         <Modal show={props.showProfile} onHide={props.handleClose} size="lg">
             <Modal.Header closeButton>
@@ -17,7 +13,7 @@ export default function ProfileModal(props) {
                         <Col>
                                 <h5>Account information</h5>
                                 <div className='accountInfo text-left'>
-                                    <p>Name: {props.currentUser.username}</p>
+                                    <p>Username: {props.currentUser.username}</p>
                                     <p>Email: {props.currentUser.email}</p>
                                     <p>Balance: {props.currentUser.balance}€</p>
                                 </div>
@@ -49,20 +45,8 @@ export default function ProfileModal(props) {
                             </Form.Group>
                             </div>
                         </Col>
-                        <Col>
-                            <div className='profileCategory clearfix mt-2'>
-                                <h5>Add balance</h5>
-                                <Form.Group>
-                                    <br/>
-                                    <Form.Control size="sm" type="text" placeholder='Amount' />
-                                    <br/>
-                                    <Button className='float-right'>Pay</Button>
-                                </Form.Group>
-                            </div>
-                        </Col>
                     </Row>
                 </Container>
-                <Button className='float-right' variant='secondary' onClick={() => props.handleClose()}>Close</Button>
             </Modal.Body>
         </Modal>
     )

@@ -8,12 +8,14 @@ import ShoppingCartModal from './ShoppingCart';
 import LoginModal from './Login';
 import ProfileModal from './Profile';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
+import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import ReactNotification, { store } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 import Search from './Search';
 import { FaLaptopCode } from 'react-icons/fa';
+import BalanceModal from "./Balance";
 
 export default function Main({
   handleOnInputChange,
@@ -31,6 +33,7 @@ export default function Main({
   const [showLogin, setShowLogin] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [showShoppingCart, setShowShoppingCart] = useState(false);
+  const [showBalance, setShowBalance] = useState(false)
 
   const handleClose = () => setShowRegistration(false);
   const handleShow = () => setShowRegistration(true);
@@ -74,6 +77,11 @@ export default function Main({
     <div>
       <ReactNotification />
 
+      <BalanceModal
+          setShowBalance={setShowBalance}
+          showBalance={showBalance}
+      />
+
       <RegistrationModal
         handleClose={handleClose}
         handleShow={handleShow}
@@ -102,6 +110,7 @@ export default function Main({
 
       <ShoppingCartModal
         loggedIn={loggedIn}
+        handleNotificationsDanger={handleNotificationsDanger}
         handleLoginShow={handleLoginShow}
         shoppingCart={shoppingCart}
         handleClose={handleShoppingCartClose}
@@ -139,6 +148,9 @@ export default function Main({
                         <Dropdown.Menu>
                           <Dropdown.Item onClick={() => handleProfileShow()}>
                             <AccountBoxIcon className='mr-2' /> Profile
+                          </Dropdown.Item>
+                          <Dropdown.Item onClick={() => setShowBalance(true)}>
+                            <AccountBalanceWalletIcon className='mr-2' /> Add balance
                           </Dropdown.Item>
                           <Dropdown.Item onClick={() => setLoggedIn(false)}>
                             {' '}
