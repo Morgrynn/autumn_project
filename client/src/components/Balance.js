@@ -1,7 +1,21 @@
-import React from "react";
+import React, {useState} from "react";
 import {Modal, Button, Container, Col, Row, Form} from "react-bootstrap";
+import Axios from "axios";
 
 export default function BalanceModal(props) {
+
+    const [amount, setAmount] = useState('')
+
+    const addBalance = (sum) => {
+        Axios.post('http://localhost:5000/user/add_balance', {
+            username: props.currentUser.username,
+            amount: sum
+        }).then(
+            props.setShowBalance(false),
+            props.handleNotificationsSuccess('Balance has been added')
+        )
+    }
+
     return (
         <Modal show={props.showBalance} onHide={() => props.setShowBalance(false)} size="lg">
             <Modal.Header closeButton>
@@ -15,9 +29,9 @@ export default function BalanceModal(props) {
                                 <h5>Add balance</h5>
                                 <Form.Group>
                                     <br/>
-                                    <Form.Control size="sm" type="text" placeholder='Amount' />
+                                    <Form.Control size="sm" type="text" placeholder='Amount' value={amount} onChange={e => setAmount(e.target.value)}/>
                                     <br/>
-                                    <Button className='float-right'>Pay</Button>
+                                    <Button className='float-right' onClick={() => addBalance(amount)}>Pay</Button>
                                 </Form.Group>
                             </div>
                         </Col>

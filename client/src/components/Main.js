@@ -80,6 +80,8 @@ export default function Main({
       <BalanceModal
           setShowBalance={setShowBalance}
           showBalance={showBalance}
+          currentUser={currentUser}
+          handleNotificationsSuccess={handleNotificationsSuccess}
       />
 
       <RegistrationModal
