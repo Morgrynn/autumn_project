@@ -101,6 +101,7 @@ export default function Main({
       />
 
       <ShoppingCartModal
+        loggedIn={loggedIn}
         shoppingCart={shoppingCart}
         handleClose={handleShoppingCartClose}
         handleShow={handleShoppingCartShow}
@@ -138,10 +139,6 @@ export default function Main({
                           <Dropdown.Item onClick={() => handleProfileShow()}>
                             <AccountBoxIcon className='mr-2' /> Profile
                           </Dropdown.Item>
-                          <Dropdown.Item href='#/action-2'>
-                            <ShoppingCartIcon className='mr-2' />
-                            History
-                          </Dropdown.Item>
                           <Dropdown.Item onClick={() => setLoggedIn(false)}>
                             {' '}
                             <PowerSettingsNewIcon className='mr-2' />
@@ -153,6 +150,16 @@ export default function Main({
                         className='d-inline'
                         onClick={() => handleShoppingCartShow()}
                       />
+                      {shoppingCart.length ? (
+                          <span
+                              className='item-counter'
+                              style={{ cursor: 'pointer' }}
+                              onClick={() => handleShoppingCartShow()}>
+                            <span>{shoppingCart.length}</span>
+                          </span>
+                      ) : (
+                          <span></span>
+                      )}
                     </div>
                   ) : (
                     <div className='float-right mt-2'>

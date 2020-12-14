@@ -2,6 +2,10 @@ import React from "react";
 import {Modal, Button, Container, Col, Row, Form} from "react-bootstrap";
 import './Profile.css'
 export default function ProfileModal(props) {
+
+    const addBalance = (balance) => {
+
+    }
     return (
         <Modal show={props.showProfile} onHide={props.handleClose} size="lg">
             <Modal.Header closeButton>

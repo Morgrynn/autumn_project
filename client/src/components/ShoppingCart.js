@@ -52,7 +52,7 @@ export default function ShoppingCartModal(props) {
                     <hr/>
                     <h6>Total: €{total.toFixed(2)}</h6><br/>
                     <Button variant='danger' onClick={() => props.addToShoppingCart([])}>Clear cart</Button>
-                    <Button className='float-right'>Proceed to payment</Button>
+                    <Button className='float-right' onClick={() => console.log(props.loggedIn)}>Proceed to payment</Button>
                     </div>
                     : <span>Shopping cart is empty</span>
                 }
