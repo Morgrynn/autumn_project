@@ -15,6 +15,11 @@ const user = {
         return db.query(
             'UPDATE users SET balance=balance-$1 WHERE username = $2', [amount, username], callback
         )
+    },
+    changePassword: function (username, hash, callback) {
+        return db.query(
+            'UPDATE users SET password=$1 WHERE username=$2', [hash, username], callback
+        )
     }
 }
 
