@@ -8,6 +8,10 @@ import Build5 from '../images/display/build5.png';
 import Build6 from '../images/display/build6.png';
 import Build7 from '../images/display/build7.png';
 import Build8 from '../images/display/build8.png';
+import Build9 from '../images/display/build9.png';
+import Build10 from '../images/display/build10.png';
+import Build11 from '../images/display/build11.png';
+import Build12 from '../images/display/build12.png';
 import './Shopnow.css';
 
 export default function Shopnow() {
@@ -50,7 +54,7 @@ export default function Shopnow() {
               <Card.Text>
                 Amd Ryzen 5 5600X Parametric Video Card (Chipset: GeForce RTX
                 3080 Length: 224mm - 403mm; Cooling: 2 Fans, 3 Fans, 120mm
-                Radiator. ...) Lian Li Lancool II Mesh ATX Mid Tower
+                Radiator, ...) Lian Li Lancool II Mesh ATX Mid Tower
               </Card.Text>
               <Card.Text>€1347.83</Card.Text>
             </Card.Body>
@@ -78,7 +82,7 @@ export default function Shopnow() {
               <Card.Text>
                 Amd Ryzen 5 5600X Parametric Video Card (Chipset: GeForce RTX
                 3080 Length: 224mm - 403mm; Cooling: 2 Fans, 3 Fans, 120mm
-                Radiator. ...) Fractal Design Meshify C ATX Mid Tower
+                Radiator, ...) Fractal Design Meshify C ATX Mid Tower
               </Card.Text>
               <Card.Text>€1420.81</Card.Text>
             </Card.Body>
@@ -105,7 +109,7 @@ export default function Shopnow() {
               <Card.Title>Glorious AMD Gaming/Streaming Build</Card.Title>
               <Card.Text>
                 Amd Ryzen 9 5900X Parametric Video Card (Chipset: GeForce RTX
-                3090; Cooling: 2 Fans, 3 Fans, 120mm Radiator. ...) Cooler
+                3090; Cooling: 2 Fans, 3 Fans, 120mm Radiator, ...) Cooler
                 Master Masterbox TD500 Mesh White w/ Controller ATX Mid Tower
               </Card.Text>
               <Card.Text>€2398.89</Card.Text>
@@ -125,6 +129,67 @@ export default function Shopnow() {
               <Card.Text>€2899.77</Card.Text>
             </Card.Body>
             <Card.Img variant='bottom' src={Build8} />
+          </Card>
+        </Col>
+      </Row>
+      <div className='header'>
+        <h2>Desktop / Gaming </h2>
+      </div>
+      <Row className='row-items'>
+        <Col className='column'>
+          <Card>
+            <Card.Body>
+              <Card.Title>Modest AMD Gaming Build</Card.Title>
+              <Card.Text>
+                AMD Ryzen 5 3600 Parametric Video Card (Chipset: GeForce GTX
+                1660 SUPER; Length: 223mm - 403mm; Cooling: 2 Fans, 3 Fans)
+                Cooler Master Masterbox Q300L MicroATX Mini Tower
+              </Card.Text>
+              <Card.Text>€855.71</Card.Text>
+            </Card.Body>
+            <Card.Img variant='bottom' src={Build9} />
+          </Card>
+        </Col>
+        <Col className='column'>
+          <Card>
+            <Card.Body>
+              <Card.Title>Modest Intel Gaming Build</Card.Title>
+              <Card.Text>
+                Intel Core i5-9400F Parametric Video Card (Chipset: GeForce GTX
+                1660 SUPER; Length: 223mm - 403mm; Cooling: 2 Fans, 3 Fans)
+                Cooler Master Masterbox Q300L MicroATX Mini Tower
+              </Card.Text>
+              <Card.Text>€766.67</Card.Text>
+            </Card.Body>
+            <Card.Img variant='bottom' src={Build10} />
+          </Card>
+        </Col>
+        <Col className='column'>
+          <Card>
+            <Card.Body>
+              <Card.Title>Gret AMD Gaming Build</Card.Title>
+              <Card.Text>
+                AMD Ryzen 5 3600 Parametric Video Card (Chipset: Radeon RX 5700
+                XT; Cooling: 2 Fans, 3 Fans, 120mm Radiatior, ...) Phanteks
+                Eclipse P300A Mesh ATX Mid Tower
+              </Card.Text>
+              <Card.Text>€1068.83</Card.Text>
+            </Card.Body>
+            <Card.Img variant='bottom' src={Build11} />
+          </Card>
+        </Col>
+        <Col className='column'>
+          <Card>
+            <Card.Body>
+              <Card.Title>Great Intel Gaming Build</Card.Title>
+              <Card.Text>
+                Intel Core i5-10400 Parametric Video Card (Chipset: Radeon RX
+                5700 XT; Cooling: 2 Fans, 3 Fans, 120mm Radiatior, ...) Phanteks
+                Eclipse P300A Mesh ATX Mid Tower
+              </Card.Text>
+              <Card.Text>€1016.21</Card.Text>
+            </Card.Body>
+            <Card.Img variant='bottom' src={Build12} />
           </Card>
         </Col>
       </Row>
