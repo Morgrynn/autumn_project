@@ -63,5 +63,7 @@ This is an online e-commerce store. It is to help a user to search and purchase 
 [(Back to top)](#table-of-contents)
 
 ![home-screen](Screenshot1.png)
+
 ![cart-screen](Screenshot2.png)
+
 ![register-screen](Screenshot3.png)
