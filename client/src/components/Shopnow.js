@@ -17,12 +17,12 @@ import './Shopnow.css';
 export default function Shopnow() {
   return (
     <Container className='mt-5 container'>
-      <div className='header'>
+      <div className='header-shop'>
         <h2>Desktop / Gaming / Streaming</h2>
       </div>
       <Row className='row-items'>
         <Col className='column'>
-          <Card>
+          <Card className='card-product'>
             <Card.Body>
               <Card.Title>Excellent AMD Gaming/Streaming Build</Card.Title>
               <Card.Text>
@@ -35,7 +35,7 @@ export default function Shopnow() {
           </Card>
         </Col>
         <Col className='column'>
-          <Card>
+          <Card className='card-product'>
             <Card.Body>
               <Card.Title>Excellent Intel Gaming/Streaming Build</Card.Title>
               <Card.Text>
@@ -48,7 +48,7 @@ export default function Shopnow() {
           </Card>
         </Col>
         <Col className='column'>
-          <Card>
+          <Card className='card-product'>
             <Card.Body>
               <Card.Title>Enthusiast AMD Gaming/Streaming Build</Card.Title>
               <Card.Text>
@@ -62,7 +62,7 @@ export default function Shopnow() {
           </Card>
         </Col>
         <Col className='column'>
-          <Card>
+          <Card className='card-product'>
             <Card.Body>
               <Card.Title>Enthusiast Intel Gaming/Streaming Build</Card.Title>
               <Card.Text>
@@ -76,7 +76,7 @@ export default function Shopnow() {
           </Card>
         </Col>
         <Col className='column'>
-          <Card>
+          <Card className='card-product'>
             <Card.Body>
               <Card.Title>Magnificient AMD Gaming/Streaming Build</Card.Title>
               <Card.Text>
@@ -90,7 +90,7 @@ export default function Shopnow() {
           </Card>
         </Col>
         <Col className='column'>
-          <Card>
+          <Card className='card-product'>
             <Card.Body>
               <Card.Title>Magnificient Intel Gaming/Streaming Build</Card.Title>
               <Card.Text>
@@ -104,7 +104,7 @@ export default function Shopnow() {
           </Card>
         </Col>
         <Col className='column'>
-          <Card>
+          <Card className='card-product'>
             <Card.Body>
               <Card.Title>Glorious AMD Gaming/Streaming Build</Card.Title>
               <Card.Text>
@@ -118,7 +118,7 @@ export default function Shopnow() {
           </Card>
         </Col>
         <Col className='column'>
-          <Card>
+          <Card className='card-product'>
             <Card.Body>
               <Card.Title>Glorious Intel Gaming/Streaming Build</Card.Title>
               <Card.Text>
@@ -132,12 +132,12 @@ export default function Shopnow() {
           </Card>
         </Col>
       </Row>
-      <div className='header'>
+      <div className='header-shop'>
         <h2>Desktop / Gaming </h2>
       </div>
       <Row className='row-items'>
         <Col className='column'>
-          <Card>
+          <Card className='card-product'>
             <Card.Body>
               <Card.Title>Modest AMD Gaming Build</Card.Title>
               <Card.Text>
@@ -151,7 +151,7 @@ export default function Shopnow() {
           </Card>
         </Col>
         <Col className='column'>
-          <Card>
+          <Card className='card-product'>
             <Card.Body>
               <Card.Title>Modest Intel Gaming Build</Card.Title>
               <Card.Text>
@@ -165,7 +165,7 @@ export default function Shopnow() {
           </Card>
         </Col>
         <Col className='column'>
-          <Card>
+          <Card className='card-product'>
             <Card.Body>
               <Card.Title>Gret AMD Gaming Build</Card.Title>
               <Card.Text>
@@ -179,7 +179,7 @@ export default function Shopnow() {
           </Card>
         </Col>
         <Col className='column'>
-          <Card>
+          <Card className='card-product'>
             <Card.Body>
               <Card.Title>Great Intel Gaming Build</Card.Title>
               <Card.Text>

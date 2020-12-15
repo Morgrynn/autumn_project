@@ -21,14 +21,15 @@ const Star = ({ selected = false }) => (
 const createArray = (length) => [...Array(length)];
 
 export default function Cpu({
-  productData,
   filteredData,
   onClick,
   baseUrl,
   location,
   addItem,
   checked,
+  priceChecked,
   toggleHandler,
+  priceHandler,
 }) {
   return (
     <Container>
@@ -43,15 +44,6 @@ export default function Cpu({
               Filter
             </h4>
             <ButtonGroup toggle vertical classNames='mb-2'>
-              {/* <ToggleButton
-                type='checkbox'
-                variant='secondary'
-                checked={checked}
-                value='all'
-                prechecked
-                onChange={toggleHandler}>
-                All
-              </ToggleButton> */}
               <ToggleButton
                 type='checkbox'
                 variant='secondary'
@@ -67,6 +59,32 @@ export default function Cpu({
                 value='intel'
                 onChange={toggleHandler}>
                 Intel
+              </ToggleButton>
+            </ButtonGroup>
+            <h4
+              style={{
+                marginTop: '10px',
+                paddingBottom: '0.5rem',
+                borderBottom: '2px solid black',
+              }}>
+              Price
+            </h4>
+            <ButtonGroup toggle vertical classNames='mb-2'>
+              <ToggleButton
+                type='checkbox'
+                variant='secondary'
+                checked={priceChecked}
+                value='low'
+                onChange={priceHandler}>
+                Low
+              </ToggleButton>
+              <ToggleButton
+                type='checkbox'
+                variant='secondary'
+                checked={priceChecked}
+                value='high'
+                onChange={priceHandler}>
+                High
               </ToggleButton>
             </ButtonGroup>
           </ListGroup>

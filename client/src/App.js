@@ -42,6 +42,7 @@ function App() {
   const [value, setValue] = useState('');
   const [productData, setProductData] = useState([]);
   const [checked, setChecked] = useState(false);
+  const [priceChecked, setPriceChecked] = useState(false);
   const [filteredData, setFilteredData] = useState([]);
 
   // * Router dom references
@@ -262,6 +263,55 @@ function App() {
     }
   };
 
+  const priceHandler = (event) => {
+    const val = event.currentTarget.value;
+    setPriceChecked(event.currentTarget.checked);
+    let data = [...cpuData];
+
+    const low = data.map((item, i) => {
+      return { index: i, value: Number(item.price) };
+    });
+    const high = data.map((item, i) => {
+      return { index: i, value: Number(item.price) };
+    });
+    low.sort((a, b) => {
+      if (a.value > b.value) {
+        // console.log(val);
+        return 1;
+      }
+      if (a.value < b.value) {
+        return -1;
+      }
+      return 0;
+    });
+    high.sort((a, b) => {
+      if (b.value > a.value) {
+        // console.log(val);
+        return 1;
+      }
+      if (b.value < a.value) {
+        return -1;
+      }
+      return 0;
+    });
+
+    const lowPrice = low.map((el) => {
+      return data[el.index];
+    });
+
+    const highPrice = high.map((el) => {
+      return data[el.index];
+    });
+
+    if (!priceChecked && val === 'low') {
+      setFilteredData(lowPrice);
+      setPriceChecked(false);
+    } else if (!priceChecked && val === 'high') {
+      setFilteredData(highPrice);
+      setPriceChecked(false);
+    }
+  };
+
   const resetCpuData = () => {
     setFilteredData(cpuData);
   };
@@ -394,7 +444,9 @@ function App() {
               productData={cpuData}
               filteredData={filteredData}
               checked={checked}
+              priceChecked={priceChecked}
               toggleHandler={toggleHandler}
+              priceHandler={priceHandler}
               baseUrl={baseUrl}
               onClick={handleProductClick}
               addItem={handleAddItem}

@@ -30,3 +30,13 @@
     padding: 2rem 0;
     font-size: 1.25rem;
 }
+
+@media screen and (min-width: 700px) {
+    .subtitle h2 {
+        max-width: 600px;
+    }
+    
+    .section p {
+        max-width: 600px;
+    }
+}
