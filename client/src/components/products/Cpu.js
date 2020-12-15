@@ -34,7 +34,7 @@ export default function Cpu({
   return (
     <Container>
       <Row>
-        <Col xs={2}>
+        <Col>
           <ListGroup style={{ marginTop: '20px' }}>
             <h4
               style={{
@@ -45,6 +45,11 @@ export default function Cpu({
             </h4>
             <ButtonGroup toggle vertical classNames='mb-2'>
               <ToggleButton
+                style={{
+                  borderColor: 'lightgray',
+                  borderWidth: '1px',
+                  borderStyle: 'solid',
+                }}
                 type='checkbox'
                 variant='secondary'
                 checked={checked}
@@ -53,6 +58,11 @@ export default function Cpu({
                 AMD
               </ToggleButton>
               <ToggleButton
+                style={{
+                  borderColor: 'lightgray',
+                  borderWidth: '1px',
+                  borderStyle: 'solid',
+                }}
                 type='checkbox'
                 variant='secondary'
                 checked={checked}
@@ -71,6 +81,11 @@ export default function Cpu({
             </h4>
             <ButtonGroup toggle vertical classNames='mb-2'>
               <ToggleButton
+                style={{
+                  borderColor: 'lightgray',
+                  borderWidth: '1px',
+                  borderStyle: 'solid',
+                }}
                 type='checkbox'
                 variant='secondary'
                 checked={priceChecked}
@@ -79,6 +94,11 @@ export default function Cpu({
                 Low
               </ToggleButton>
               <ToggleButton
+                style={{
+                  borderColor: 'lightgray',
+                  borderWidth: '1px',
+                  borderStyle: 'solid',
+                }}
                 type='checkbox'
                 variant='secondary'
                 checked={priceChecked}
@@ -89,8 +109,8 @@ export default function Cpu({
             </ButtonGroup>
           </ListGroup>
         </Col>
-        <Col xs={10}>
-          <Table responsive bordered hover>
+        <Col>
+          <Table responsive bordered hover style={{ marginTop: '5px' }}>
             <thead>
               <tr>
                 <th>Name</th>

@@ -263,11 +263,11 @@ function App() {
     }
   };
 
-  const priceHandler = (event) => {
+  //  Price filters
+  const cpuPriceFilter = (event) => {
     const val = event.currentTarget.value;
     setPriceChecked(event.currentTarget.checked);
     let data = [...cpuData];
-
     const low = data.map((item, i) => {
       return { index: i, value: Number(item.price) };
     });
@@ -276,7 +276,6 @@ function App() {
     });
     low.sort((a, b) => {
       if (a.value > b.value) {
-        // console.log(val);
         return 1;
       }
       if (a.value < b.value) {
@@ -286,7 +285,6 @@ function App() {
     });
     high.sort((a, b) => {
       if (b.value > a.value) {
-        // console.log(val);
         return 1;
       }
       if (b.value < a.value) {
@@ -308,6 +306,328 @@ function App() {
       setPriceChecked(false);
     } else if (!priceChecked && val === 'high') {
       setFilteredData(highPrice);
+      setPriceChecked(false);
+    }
+  };
+
+  const gpuPriceFilter = (event) => {
+    const val = event.currentTarget.value;
+    setPriceChecked(event.currentTarget.checked);
+    let data = [...gpuData];
+    const low = data.map((item, i) => {
+      return { index: i, value: Number(item.price) };
+    });
+    const high = data.map((item, i) => {
+      return { index: i, value: Number(item.price) };
+    });
+    low.sort((a, b) => {
+      if (a.value > b.value) {
+        return 1;
+      }
+      if (a.value < b.value) {
+        return -1;
+      }
+      return 0;
+    });
+    high.sort((a, b) => {
+      if (b.value > a.value) {
+        return 1;
+      }
+      if (b.value < a.value) {
+        return -1;
+      }
+      return 0;
+    });
+
+    const lowPrice = low.map((el) => {
+      return data[el.index];
+    });
+
+    const highPrice = high.map((el) => {
+      return data[el.index];
+    });
+
+    if (!priceChecked && val === 'low') {
+      setGpuData(lowPrice);
+      setPriceChecked(false);
+    } else if (!priceChecked && val === 'high') {
+      setGpuData(highPrice);
+      setPriceChecked(false);
+    }
+  };
+
+  const mbPriceFilter = (event) => {
+    const val = event.currentTarget.value;
+    setPriceChecked(event.currentTarget.checked);
+    let data = [...motherboardData];
+    const low = data.map((item, i) => {
+      return { index: i, value: Number(item.price) };
+    });
+    const high = data.map((item, i) => {
+      return { index: i, value: Number(item.price) };
+    });
+    low.sort((a, b) => {
+      if (a.value > b.value) {
+        return 1;
+      }
+      if (a.value < b.value) {
+        return -1;
+      }
+      return 0;
+    });
+    high.sort((a, b) => {
+      if (b.value > a.value) {
+        return 1;
+      }
+      if (b.value < a.value) {
+        return -1;
+      }
+      return 0;
+    });
+
+    const lowPrice = low.map((el) => {
+      return data[el.index];
+    });
+
+    const highPrice = high.map((el) => {
+      return data[el.index];
+    });
+
+    if (!priceChecked && val === 'low') {
+      setMotherboardData(lowPrice);
+      setPriceChecked(false);
+    } else if (!priceChecked && val === 'high') {
+      setMotherboardData(highPrice);
+      setPriceChecked(false);
+    }
+  };
+
+  const memoryPriceFilter = (event) => {
+    const val = event.currentTarget.value;
+    setPriceChecked(event.currentTarget.checked);
+    let data = [...memoryData];
+    const low = data.map((item, i) => {
+      return { index: i, value: Number(item.price) };
+    });
+    const high = data.map((item, i) => {
+      return { index: i, value: Number(item.price) };
+    });
+    low.sort((a, b) => {
+      if (a.value > b.value) {
+        return 1;
+      }
+      if (a.value < b.value) {
+        return -1;
+      }
+      return 0;
+    });
+    high.sort((a, b) => {
+      if (b.value > a.value) {
+        return 1;
+      }
+      if (b.value < a.value) {
+        return -1;
+      }
+      return 0;
+    });
+
+    const lowPrice = low.map((el) => {
+      return data[el.index];
+    });
+
+    const highPrice = high.map((el) => {
+      return data[el.index];
+    });
+
+    if (!priceChecked && val === 'low') {
+      setMemoryData(lowPrice);
+      setPriceChecked(false);
+    } else if (!priceChecked && val === 'high') {
+      setMemoryData(highPrice);
+      setPriceChecked(false);
+    }
+  };
+
+  const storagePriceFilter = (event) => {
+    const val = event.currentTarget.value;
+    setPriceChecked(event.currentTarget.checked);
+    let data = [...storageData];
+    const low = data.map((item, i) => {
+      return { index: i, value: Number(item.price) };
+    });
+    const high = data.map((item, i) => {
+      return { index: i, value: Number(item.price) };
+    });
+    low.sort((a, b) => {
+      if (a.value > b.value) {
+        return 1;
+      }
+      if (a.value < b.value) {
+        return -1;
+      }
+      return 0;
+    });
+    high.sort((a, b) => {
+      if (b.value > a.value) {
+        return 1;
+      }
+      if (b.value < a.value) {
+        return -1;
+      }
+      return 0;
+    });
+
+    const lowPrice = low.map((el) => {
+      return data[el.index];
+    });
+
+    const highPrice = high.map((el) => {
+      return data[el.index];
+    });
+
+    if (!priceChecked && val === 'low') {
+      setStorageData(lowPrice);
+      setPriceChecked(false);
+    } else if (!priceChecked && val === 'high') {
+      setStorageData(highPrice);
+      setPriceChecked(false);
+    }
+  };
+
+  const casesPriceFilter = (event) => {
+    const val = event.currentTarget.value;
+    setPriceChecked(event.currentTarget.checked);
+    let data = [...caseData];
+    const low = data.map((item, i) => {
+      return { index: i, value: Number(item.price) };
+    });
+    const high = data.map((item, i) => {
+      return { index: i, value: Number(item.price) };
+    });
+    low.sort((a, b) => {
+      if (a.value > b.value) {
+        return 1;
+      }
+      if (a.value < b.value) {
+        return -1;
+      }
+      return 0;
+    });
+    high.sort((a, b) => {
+      if (b.value > a.value) {
+        return 1;
+      }
+      if (b.value < a.value) {
+        return -1;
+      }
+      return 0;
+    });
+
+    const lowPrice = low.map((el) => {
+      return data[el.index];
+    });
+
+    const highPrice = high.map((el) => {
+      return data[el.index];
+    });
+
+    if (!priceChecked && val === 'low') {
+      setCaseData(lowPrice);
+      setPriceChecked(false);
+    } else if (!priceChecked && val === 'high') {
+      setCaseData(highPrice);
+      setPriceChecked(false);
+    }
+  };
+
+  const coolerPriceFilter = (event) => {
+    const val = event.currentTarget.value;
+    setPriceChecked(event.currentTarget.checked);
+    let data = [...coolerData];
+    const low = data.map((item, i) => {
+      return { index: i, value: Number(item.price) };
+    });
+    const high = data.map((item, i) => {
+      return { index: i, value: Number(item.price) };
+    });
+    low.sort((a, b) => {
+      if (a.value > b.value) {
+        return 1;
+      }
+      if (a.value < b.value) {
+        return -1;
+      }
+      return 0;
+    });
+    high.sort((a, b) => {
+      if (b.value > a.value) {
+        return 1;
+      }
+      if (b.value < a.value) {
+        return -1;
+      }
+      return 0;
+    });
+
+    const lowPrice = low.map((el) => {
+      return data[el.index];
+    });
+
+    const highPrice = high.map((el) => {
+      return data[el.index];
+    });
+
+    if (!priceChecked && val === 'low') {
+      setCoolerData(lowPrice);
+      setPriceChecked(false);
+    } else if (!priceChecked && val === 'high') {
+      setCoolerData(highPrice);
+      setChecked(false);
+    }
+  };
+
+  const powerPriceFilter = (event) => {
+    const val = event.currentTarget.value;
+    setPriceChecked(event.currentTarget.checked);
+    let data = [...powerData];
+    const low = data.map((item, i) => {
+      return { index: i, value: Number(item.price) };
+    });
+    const high = data.map((item, i) => {
+      return { index: i, value: Number(item.price) };
+    });
+    low.sort((a, b) => {
+      if (a.value > b.value) {
+        return 1;
+      }
+      if (a.value < b.value) {
+        return -1;
+      }
+      return 0;
+    });
+    high.sort((a, b) => {
+      if (b.value > a.value) {
+        return 1;
+      }
+      if (b.value < a.value) {
+        return -1;
+      }
+      return 0;
+    });
+
+    const lowPrice = low.map((el) => {
+      return data[el.index];
+    });
+
+    const highPrice = high.map((el) => {
+      return data[el.index];
+    });
+
+    if (!priceChecked && val === 'low') {
+      setPowerData(lowPrice);
+      setPriceChecked(false);
+    } else if (!priceChecked && val === 'high') {
+      setPowerData(highPrice);
       setPriceChecked(false);
     }
   };
@@ -446,7 +766,7 @@ function App() {
               checked={checked}
               priceChecked={priceChecked}
               toggleHandler={toggleHandler}
-              priceHandler={priceHandler}
+              priceHandler={cpuPriceFilter}
               baseUrl={baseUrl}
               onClick={handleProductClick}
               addItem={handleAddItem}
@@ -463,6 +783,8 @@ function App() {
               onClick={handleProductClick}
               addItem={handleAddItem}
               baseUrl={baseUrl}
+              priceChecked={priceChecked}
+              priceHandler={mbPriceFilter}
               {...routeProps}
             />
           )}></Route>
@@ -472,6 +794,8 @@ function App() {
           render={(routeProps) => (
             <Gpu
               productData={gpuData}
+              priceChecked={priceChecked}
+              priceHandler={gpuPriceFilter}
               baseUrl={baseUrl}
               onClick={handleProductClick}
               addItem={handleAddItem}
@@ -487,6 +811,8 @@ function App() {
               baseUrl={baseUrl}
               onClick={handleProductClick}
               addItem={handleAddItem}
+              priceChecked={priceChecked}
+              priceHandler={memoryPriceFilter}
               {...routeProps}
             />
           )}></Route>
@@ -499,6 +825,8 @@ function App() {
               baseUrl={baseUrl}
               onClick={handleProductClick}
               addItem={handleAddItem}
+              priceChecked={priceChecked}
+              priceHandler={storagePriceFilter}
               {...routeProps}
             />
           )}></Route>
@@ -511,6 +839,8 @@ function App() {
               baseUrl={baseUrl}
               onClick={handleProductClick}
               addItem={handleAddItem}
+              priceChecked={priceChecked}
+              priceHandler={casesPriceFilter}
               {...routeProps}
             />
           )}></Route>
@@ -523,6 +853,8 @@ function App() {
               baseUrl={baseUrl}
               onClick={handleProductClick}
               addItem={handleAddItem}
+              priceChecked={priceChecked}
+              priceHandler={coolerPriceFilter}
               {...routeProps}
             />
           )}></Route>
@@ -535,6 +867,8 @@ function App() {
               baseUrl={baseUrl}
               onClick={handleProductClick}
               addItem={handleAddItem}
+              priceChecked={priceChecked}
+              priceHandler={powerPriceFilter}
               {...routeProps}
             />
           )}></Route>
