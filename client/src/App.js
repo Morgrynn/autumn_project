@@ -25,6 +25,7 @@ import CaseProductPage from './components/products/singleProduct/CaseProductPage
 import About from './components/About';
 import Footer from './components/Footer';
 import nextId from 'react-id-generator';
+import Shopnow from './components/Shopnow';
 const baseUrl = process.env.REACT_APP_BASEURL;
 
 function App() {
@@ -263,7 +264,7 @@ function App() {
 
   const resetCpuData = () => {
     setFilteredData(cpuData);
-  }
+  };
 
   return (
     <div className='App'>
@@ -487,6 +488,9 @@ function App() {
           )}></Route>
         <Route exact path='/about'>
           <About />
+        </Route>
+        <Route exact path='/shop-now'>
+          <Shopnow />
         </Route>
       </Switch>
       <Footer />
