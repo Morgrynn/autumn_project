@@ -24,6 +24,7 @@ export default function Main({
   onSubmitSearchForm,
   shoppingCart,
   addToShoppingCart,
+  resetCpuData,
 }) {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
@@ -133,11 +134,13 @@ export default function Main({
             <Container>
               <Row>
                 <Col>
-                  <div className='mt-2' style={{ cursor: 'pointer' }}>
-                    <h1 onClick={() => setShowMain(true)}>
-                      <FaLaptopCode style={{ verticalAlign: '-10px' }} />
-                      PC Pal
-                    </h1>
+                  <div className='mt-2 logo'>
+                    <Link to='/' onClick={() => setShowMain(true)}>
+                      <h1>
+                        <FaLaptopCode style={{ verticalAlign: '-10px' }} />
+                        PC Pal
+                      </h1>{' '}
+                    </Link>
                   </div>
                 </Col>
                 <Col>
@@ -229,13 +232,15 @@ export default function Main({
                     <div className='shop-text'>
                       Get yourself a brand new PC <br /> at a great price
                     </div>
-                    <Button
-                      className='mt-2'
-                      style={{ width: '155px' }}
-                      size='md'
-                      variant='secondary'>
-                      Shop now
-                    </Button>
+                    <Link to='/shop-now' onClick={() => setShowMain(false)}>
+                      <Button
+                        className='mt-2'
+                        style={{ width: '155px' }}
+                        size='md'
+                        variant='secondary'>
+                        Shop now
+                      </Button>
+                    </Link>
                   </Col>
                   <Col className='p-1'>
                     <div className=' main-picture'>
@@ -258,8 +263,13 @@ export default function Main({
                         Trending
                       </Link>
                     </div>
-                    <div className='nav-menu-item p-2 ml-2'>
-                      <Link to='/cpu' onClick={() => setShowMain(false)}>
+                    <div className='nav-menu-item p-3 ml-2'>
+                      <Link
+                        to='/cpu'
+                        onClick={() => {
+                          setShowMain(false);
+                          resetCpuData();
+                        }}>
                         CPU
                       </Link>
                     </div>
