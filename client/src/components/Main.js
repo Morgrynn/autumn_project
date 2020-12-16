@@ -8,12 +8,14 @@ import ShoppingCartModal from './ShoppingCart';
 import LoginModal from './Login';
 import ProfileModal from './Profile';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
+import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import ReactNotification, { store } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 import Search from './Search';
 import { FaLaptopCode } from 'react-icons/fa';
+import BalanceModal from "./Balance";
 
 export default function Main({
   handleOnInputChange,
@@ -32,6 +34,7 @@ export default function Main({
   const [showLogin, setShowLogin] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [showShoppingCart, setShowShoppingCart] = useState(false);
+  const [showBalance, setShowBalance] = useState(false)
 
   const handleClose = () => setShowRegistration(false);
   const handleShow = () => setShowRegistration(true);
@@ -75,6 +78,14 @@ export default function Main({
     <div>
       <ReactNotification />
 
+      <BalanceModal
+          setShowBalance={setShowBalance}
+          showBalance={showBalance}
+          currentUser={currentUser}
+          setCurrentUser={setCurrentUser}
+          handleNotificationsSuccess={handleNotificationsSuccess}
+      />
+
       <RegistrationModal
         handleClose={handleClose}
         handleShow={handleShow}
@@ -99,14 +110,21 @@ export default function Main({
         handleShow={handleProfileShow}
         showProfile={showProfile}
         currentUser={currentUser}
+        handleNotificationsSuccess={handleNotificationsSuccess}
+        handleNotificationsDanger={handleNotificationsDanger}
       />
 
       <ShoppingCartModal
+        loggedIn={loggedIn}
+        handleNotificationsDanger={handleNotificationsDanger}
+        handleNotificationsSuccess={handleNotificationsSuccess}
+        handleLoginShow={handleLoginShow}
         shoppingCart={shoppingCart}
         handleClose={handleShoppingCartClose}
         handleShow={handleShoppingCartShow}
         showShoppingCart={showShoppingCart}
         currentUser={currentUser}
+        setCurrentUser={setCurrentUser}
         addToShoppingCart={addToShoppingCart}
       />
 
@@ -141,9 +159,8 @@ export default function Main({
                           <Dropdown.Item onClick={() => handleProfileShow()}>
                             <AccountBoxIcon className='mr-2' /> Profile
                           </Dropdown.Item>
-                          <Dropdown.Item href='#/action-2'>
-                            <ShoppingCartIcon className='mr-2' />
-                            History
+                          <Dropdown.Item onClick={() => setShowBalance(true)}>
+                            <AccountBalanceWalletIcon className='mr-2' /> Add balance
                           </Dropdown.Item>
                           <Dropdown.Item onClick={() => setLoggedIn(false)}>
                             {' '}
@@ -156,6 +173,18 @@ export default function Main({
                         className='d-inline'
                         onClick={() => handleShoppingCartShow()}
                       />
+                      {shoppingCart.length ? (
+                          <span
+                              className='item-counter'
+                              style={{ cursor: 'pointer' }}
+                              onClick={() => handleShoppingCartShow()}>
+                            <span>{shoppingCart.length}</span>
+                          </span>
+                      ) : (
+                          <span>
+
+                          </span>
+                      )}
                     </div>
                   ) : (
                     <div className='float-right mt-2'>
@@ -224,7 +253,7 @@ export default function Main({
                 <Col></Col>
                 <Col xs={9}>
                   <div className='nav-category'>
-                    <div className='nav-menu-item p-3 ml-3 nav-chosen-category'>
+                    <div className='nav-menu-item p-2 ml-3 nav-chosen-category'>
                       <Link
                         to='/'
                         onClick={() => {
@@ -244,39 +273,39 @@ export default function Main({
                         CPU
                       </Link>
                     </div>
-                    <div className='nav-menu-item p-3 ml-2'>
+                    <div className='nav-menu-item p-2 ml-2'>
                       <Link
                         to='/motherboards'
                         onClick={() => setShowMain(false)}>
                         Motherboards
                       </Link>
                     </div>
-                    <div className='nav-menu-item p-3 ml-2'>
+                    <div className='nav-menu-item p-2 ml-2'>
                       <Link to='/gpu' onClick={() => setShowMain(false)}>
                         GPU
                       </Link>
                     </div>
-                    <div className='nav-menu-item p-3 ml-2'>
+                    <div className='nav-menu-item p-2 ml-2'>
                       <Link to='/memory' onClick={() => setShowMain(false)}>
                         Memory
                       </Link>
                     </div>
-                    <div className='nav-menu-item p-3 ml-2'>
+                    <div className='nav-menu-item p-2 ml-2'>
                       <Link to='/storage' onClick={() => setShowMain(false)}>
                         Storage
                       </Link>
                     </div>
-                    <div className='nav-menu-item p-3 ml-2'>
+                    <div className='nav-menu-item p-2 ml-2'>
                       <Link to='/power' onClick={() => setShowMain(false)}>
                         Power supply
                       </Link>
                     </div>
-                    <div className='nav-menu-item p-3 ml-2'>
+                    <div className='nav-menu-item p-2 ml-2'>
                       <Link to='/cooler' onClick={() => setShowMain(false)}>
                         Cooler
                       </Link>
                     </div>
-                    <div className='nav-menu-item p-3 ml-2'>
+                    <div className='nav-menu-item p-2 ml-2'>
                       <Link to='/cases' onClick={() => setShowMain(false)}>
                         Case
                       </Link>

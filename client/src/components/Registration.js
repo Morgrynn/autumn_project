@@ -7,7 +7,8 @@ import ReportIcon from '@material-ui/icons/Report';
 import {useFormik,} from "formik";
 import * as Yup from "yup";
 import Axios from "axios";
-import './Registration.css'
+import './Registration.css';
+const baseUrl = process.env.REACT_APP_BASEURL;
 
 export default function RegistrationModal(props) {
 
@@ -25,7 +26,7 @@ export default function RegistrationModal(props) {
             confirm_password: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').required('Password confirmation is required!')
         }),
         onSubmit: () =>  {
-            Axios.post("http://localhost:5000/register", {
+            Axios.post(`${baseUrl}register`, {
                 username: values.username,
                 email: values.email,
                 password: values.password,
