@@ -1,9 +1,10 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import One from '../images/banner/one.png';
 import Two from '../images/banner/two.png';
 import Three from '../images/banner/three.png';
 import Four from '../images/banner/four.png';
+import Setup from '../images/display/setup.jpg';
 import {
   Container,
   Row,
@@ -11,8 +12,10 @@ import {
   Carousel,
   Card,
   CardGroup,
+  Image,
 } from 'react-bootstrap';
 import { FaStar } from 'react-icons/fa';
+import './Trending.css';
 
 const Star = ({ selected = false }) => (
   <FaStar color={selected ? '#ff960c' : 'grey'} />
@@ -29,6 +32,7 @@ export default function Trending({
 }) {
   return (
     <Container className='mt-5'>
+      {/* Top Banner Carousel */}
       <Row>
         <Col></Col>
         <Col xs={9}>
@@ -69,6 +73,20 @@ export default function Trending({
         </Col>
         <Col></Col>
       </Row>
+      {/* Sale Clearance items */}
+      <Row style={{ marginTop: '15px' }}>
+        <Col></Col>
+        <Col xs={9} className='image-container'>
+          <Link to='/shop-now'>
+            <Image fluid src={Setup} />
+            <div className='centered'>
+              Gaming Setups of 2020 - Building the Ultimate Gaming PC
+            </div>
+          </Link>
+        </Col>
+        <Col></Col>
+      </Row>
+      {/* Bottom Products Carousel */}
       <Row style={{ marginTop: '10px' }}>
         <Col></Col>
         <Col xs={9}>

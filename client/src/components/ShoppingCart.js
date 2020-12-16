@@ -1,6 +1,8 @@
 import React from "react";
 import {Button, Col, Container, Image, Modal, Row} from "react-bootstrap";
 import DeleteIcon from '@material-ui/icons/Delete';
+import Axios from "axios";
+const baseUrl = process.env.REACT_APP_BASEURL;
 
 export default function ShoppingCartModal(props) {
     let total = 0;
@@ -10,6 +12,23 @@ export default function ShoppingCartModal(props) {
         const updatedShoppingCart = props.shoppingCart.filter((item) => item.id !== itemId);
         props.addToShoppingCart(updatedShoppingCart)
     }
+
+    const payment = (sum) => {
+        if (sum > props.currentUser.balance) {
+            props.handleNotificationsDanger('Not enough money on the balance')
+        } else {
+            Axios.post(`${baseUrl}user/pay`, {
+                username: props.currentUser.username,
+                amount: sum
+            }).then((response) => {
+                props.handleNotificationsSuccess('Payment success!')
+                props.addToShoppingCart([])
+                props.setCurrentUser(response.data[0])
+            })
+
+        }
+    }
+
     return (
         <Modal show={props.showShoppingCart} onHide={props.handleClose}>
             <Modal.Header closeButton>
@@ -35,7 +54,7 @@ export default function ShoppingCartModal(props) {
                                         <h5 className='mt-1'><b>€{item.price}</b></h5>
                                     </Col>
                                     <Col>
-                                        <Button variant='danger' size='sm' className='mt-3' onClick={() => DeleteItem(item.id)}> <DeleteIcon />Delete</Button>
+                                        <Button variant='outline-danger' size='sm' className='mt-3' onClick={() => DeleteItem(item.id)}> <DeleteIcon />Delete</Button>
                                     </Col>
                                 </Row>
                             </Container>
@@ -51,8 +70,18 @@ export default function ShoppingCartModal(props) {
                     <div>
                     <hr/>
                     <h6>Total: €{total.toFixed(2)}</h6><br/>
-                    <Button variant='danger' onClick={() => props.addToShoppingCart([])}>Clear cart</Button>
-                    <Button className='float-right'>Proceed to payment</Button>
+                    <Button variant='outline-danger' onClick={() => props.addToShoppingCart([])}>Clear cart</Button>
+                        {props.loggedIn ?
+                            <Button className='float-right' variant='outline-primary' onClick={() => {
+                                payment(Math.round(total))
+                                props.handleClose()
+                            }
+                            }>Pay</Button>
+                            : <Button className='float-right' variant='outline-primary' onClick={() => {
+                                props.handleClose()
+                                props.handleLoginShow()}}>Login</Button>
+                        }
+
                     </div>
                     : <span>Shopping cart is empty</span>
                 }

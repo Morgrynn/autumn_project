@@ -20,6 +20,7 @@ const memoryRouter = require('./routes/memory');
 const storageRouter = require('./routes/storage');
 const powerRouter = require('./routes/power');
 const casesRouter = require('./routes/cases');
+const usersRouter = require('./routes/user');
 
 
 const app = express();
@@ -57,6 +58,7 @@ app.use('/memory', memoryRouter);
 app.use('/storage', storageRouter);
 app.use('/power', powerRouter);
 app.use('/cases', casesRouter);
+app.use('/user', usersRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
