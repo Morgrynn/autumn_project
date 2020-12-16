@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import One from '../images/banner/one.png';
 import Two from '../images/banner/two.png';
 import Three from '../images/banner/three.png';
@@ -77,10 +77,12 @@ export default function Trending({
       <Row style={{ marginTop: '15px' }}>
         <Col></Col>
         <Col xs={9} className='image-container'>
-          <Image fluid src={Setup} />
-          <div className='centered'>
-            Gaming Setups of 2020 - Building the Ultimate Gaming PC
-          </div>
+          <Link to='/shop-now'>
+            <Image fluid src={Setup} />
+            <div className='centered'>
+              Gaming Setups of 2020 - Building the Ultimate Gaming PC
+            </div>
+          </Link>
         </Col>
         <Col></Col>
       </Row>
