@@ -2,6 +2,7 @@ import React from "react";
 import {Button, Col, Container, Image, Modal, Row} from "react-bootstrap";
 import DeleteIcon from '@material-ui/icons/Delete';
 import Axios from "axios";
+const baseUrl = process.env.REACT_APP_BASEURL;
 
 export default function ShoppingCartModal(props) {
     let total = 0;
@@ -16,7 +17,7 @@ export default function ShoppingCartModal(props) {
         if (sum > props.currentUser.balance) {
             props.handleNotificationsDanger('Not enough money on the balance')
         } else {
-            Axios.post('http://localhost:5000/user/pay', {
+            Axios.post(`${baseUrl}user/pay`, {
                 username: props.currentUser.username,
                 amount: sum
             }).then((response) => {

@@ -5,6 +5,7 @@ import {useFormik} from "formik";
 import * as Yup from "yup";
 import ReportIcon from "@material-ui/icons/Report";
 import Axios from "axios";
+const baseUrl = process.env.REACT_APP_BASEURL;
 
 export default function ProfileModal(props) {
 
@@ -17,9 +18,10 @@ export default function ProfileModal(props) {
             oldPassword: Yup.string().max(250, 'Password is too long!').min(6, 'Password is too short!').required('Password is required!'),
             newPassword: Yup.string().max(250, 'Password is too long!').min(6, 'New password must be at least 6 characters!').required('Password is required!')
         }),
+
         onSubmit: (values) => {
             console.log('submitted')
-            Axios.post("http://localhost:5000/user/change_password", {
+            Axios.post(`${baseUrl}user/change_password`, {
                 username: props.currentUser.username,
                 oldPassword: values.oldPassword,
                 newPassword: values.newPassword

@@ -1,13 +1,14 @@
 import React, {useState} from "react";
 import {Modal, Button, Container, Col, Row, Form} from "react-bootstrap";
 import Axios from "axios";
+const baseUrl = process.env.REACT_APP_BASEURL;
 
 export default function BalanceModal(props) {
 
     const [amount, setAmount] = useState('')
 
     const addBalance = (sum) => {
-        Axios.post('http://localhost:5000/user/add_balance', {
+        Axios.post(`${baseUrl}user/add_balance`, {
             username: props.currentUser.username,
             amount: sum
         }).then((response) => {

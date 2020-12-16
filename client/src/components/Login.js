@@ -4,6 +4,7 @@ import EmailIcon from '@material-ui/icons/Email';
 import LockIcon from '@material-ui/icons/Lock';
 import Axios from "axios";
 import {useFormik} from "formik";
+const baseUrl = process.env.REACT_APP_BASEURL;
 
 export default function LoginModal(props) {
 
@@ -12,8 +13,8 @@ export default function LoginModal(props) {
             username: '',
             password: ''
         },
-        onSubmit: (username,password) => {
-            Axios.post("http://localhost:5000/login", {
+        onSubmit: () => {
+            Axios.post(`${baseUrl}login`, {
                 username: values.username,
                 password: values.password
             }).then((response) => {
