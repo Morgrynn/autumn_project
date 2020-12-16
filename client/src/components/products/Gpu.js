@@ -66,7 +66,7 @@ export default function Gpu({
           </ListGroup>
         </Col>
         <Col>
-          <Table responsive bordered hover style={{ marginTop: '5px' }}>
+          <Table responsive hover style={{ marginTop: '5px' }}>
             <thead>
               <tr>
                 <th>Name</th>

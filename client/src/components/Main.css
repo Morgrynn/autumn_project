@@ -59,6 +59,11 @@
     text-decoration: none;
     color: #565353;
     font-weight: 500;
+    margin-top: 20px;
+}
+
+.nav-category {
+    margin-top: 10px;
 }
 
 .nav-menu-item a:hover {
